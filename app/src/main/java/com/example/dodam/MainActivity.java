@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends TabActivity implements TabHost.OnTabChangeListener {
     Intent intent;
     TabHost tabHost;
-
+    String[] Rlist = {"home_btn", "habbit_btn", "cal_btn", "game_btn"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
 
 
         intent = new Intent(this, MainScreen.class);
-        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("메인화면");
+        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("메인화면",getResources().getDrawable(R.drawable.home_btn));
         tabspecmain.setContent(intent);
         tabHost.addTab(tabspecmain);
 
@@ -47,15 +47,21 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
         }
 
         tabHost.getTabWidget().setCurrentTab(0);
-        tabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.YELLOW);
-        tabHost.setOnTabChangedListener(this);
+        tabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.home_btn);
+        tabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.habbit_btn);
+        tabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.cal_btn);
+        tabHost.getTabWidget().getChildAt(3).setBackgroundResource(R.drawable.game_btn);
+
+        //tabHost.setOnTabChangedListener(this);
     }
 
 
     @Override
     public void onTabChanged(String s) {
         for(int i =0;i<tabHost.getTabWidget().getChildCount();i++){
-            tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.GRAY);
+            String l = Rlist[i];
+            //tabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.);
+            //구현문제 논의
         }
 
         tabHost = getTabHost();
