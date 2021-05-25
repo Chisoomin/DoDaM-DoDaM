@@ -23,7 +23,7 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
 
 
         intent = new Intent(this, MainScreen.class);
-        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("메인화면",getResources().getDrawable(R.drawable.home_btn));
+        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("메인화면");
         tabspecmain.setContent(intent);
         tabHost.addTab(tabspecmain);
 
