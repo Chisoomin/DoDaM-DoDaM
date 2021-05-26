@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends TabActivity implements TabHost.OnTabChangeListener {
+    String l;
     Intent intent;
     TabHost tabHost;
     String[] Rlist = {"home_btn", "habbit_btn", "cal_btn", "game_btn"};
@@ -23,22 +24,22 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
 
 
         intent = new Intent(this, MainScreen.class);
-        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("메인화면");
+        TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("");
         tabspecmain.setContent(intent);
         tabHost.addTab(tabspecmain);
 
         intent = new Intent(this, HabitTracker.class);
-        TabHost.TabSpec tabspecHT = tabHost.newTabSpec("HabitTracker").setIndicator("해빗트렉커");
+        TabHost.TabSpec tabspecHT = tabHost.newTabSpec("HabitTracker").setIndicator("");
         tabspecHT.setContent(intent);
         tabHost.addTab(tabspecHT);
 
         intent = new Intent(this, Calendar.class);
-        TabHost.TabSpec tabspecCal = tabHost.newTabSpec("Calendar").setIndicator("캘린더");
+        TabHost.TabSpec tabspecCal = tabHost.newTabSpec("Calendar").setIndicator("");
         tabspecCal.setContent(intent);
         tabHost.addTab(tabspecCal);
 
         intent = new Intent(this, MiniGame.class);
-        TabHost.TabSpec tabspecGame = tabHost.newTabSpec("Game").setIndicator("미니게임");
+        TabHost.TabSpec tabspecGame = tabHost.newTabSpec("Game").setIndicator("");
         tabspecGame.setContent(intent);
         tabHost.addTab(tabspecGame);
 
@@ -52,20 +53,20 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
         tabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.cal_btn);
         tabHost.getTabWidget().getChildAt(3).setBackgroundResource(R.drawable.game_btn);
 
-        //tabHost.setOnTabChangedListener(this);
+        tabHost.setOnTabChangedListener(this);
     }
 
 
     @Override
     public void onTabChanged(String s) {
         for(int i =0;i<tabHost.getTabWidget().getChildCount();i++){
-            String l = Rlist[i];
-            //tabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.);
+            l = "R.drawable." + Rlist[i];
+            //tabHost.getTabWidget().getChildAt(i).setBackgroundResource(Integer.parseInt(l));
             //구현문제 논의
         }
 
         tabHost = getTabHost();
-        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.YELLOW);
+        //tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.YELLOW);
         //구현 필요(탭 색 안돌아옴)
     }
 }
