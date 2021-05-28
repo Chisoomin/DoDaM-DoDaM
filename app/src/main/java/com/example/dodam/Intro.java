@@ -1,5 +1,8 @@
 package com.example.dodam;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 /**
@@ -46,6 +51,11 @@ public class Intro extends Fragment {
         return fragment;
     }
 
+    public static Intro newInstance() {
+        return new Intro();
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,10 @@ public class Intro extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_intro,container,false);
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro, container, false);
+        return view;
     }
 }

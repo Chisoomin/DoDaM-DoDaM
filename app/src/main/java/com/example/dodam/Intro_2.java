@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -46,6 +50,10 @@ public class Intro_2 extends Fragment {
         return fragment;
     }
 
+    public static Intro_2 newInstance() {
+        return new Intro_2();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +62,47 @@ public class Intro_2 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    String name, gender;
+    ImageButton male, female;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_intro_2,container,false);
+        ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        male = (ImageButton)view.findViewById(R.id.male);
+        female = (ImageButton)view.findViewById(R.id.female);
+
+        male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gender = "남성";
+            }
+        });
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gender = "여성";
+            }
+        });
+
+        if(getArguments()!=null){
+            name = getArguments().getString("name");
+        }
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_3 In3 = Intro_3.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In3);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                In3.setArguments(bundle);
+                bundle.putString("gender", gender);
+                In3.setArguments(bundle);
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro_2, container, false);
+        return view;
     }
 }

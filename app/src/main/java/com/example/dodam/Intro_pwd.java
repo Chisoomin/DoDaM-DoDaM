@@ -44,6 +44,10 @@ public class Intro_pwd extends Fragment {
         // Required empty public constructor
     }
 
+    public static Intro_pwd newInstance() {
+        return new Intro_pwd();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

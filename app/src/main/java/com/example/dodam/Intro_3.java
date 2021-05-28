@@ -1,12 +1,20 @@
 package com.example.dodam;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 
 /**
@@ -46,6 +54,16 @@ public class Intro_3 extends Fragment {
         return fragment;
     }
 
+    public static Intro_3 newInstance() {
+        return new Intro_3();
+
+    }
+    View view;
+    String mon, day;
+    String name, gender;
+    EditText birthday;
+    Integer Year, Month, Day;
+    Calendar calendar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +76,65 @@ public class Intro_3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_intro_3, container,false);
+        ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        birthday = (EditText)view.findViewById(R.id.edit_date);
+
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR);
+        Month=calendar.get(Calendar.MONTH);
+        Day=calendar.get(Calendar.DAY_OF_MONTH);
+
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(v.getContext(), mDateSetListener, Year, Month, Day).show();
+            }
+        });
+
+        if(getArguments()!=null){
+            name = getArguments().getString("name");
+            gender = getArguments().getString("gender");
+        }
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_4 In4 = Intro_4.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In4);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                In4.setArguments(bundle);
+                bundle.putString("gender", gender);
+                In4.setArguments(bundle);
+                bundle.putString("birthday", birthday.getText().toString());
+                In4.setArguments(bundle);
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro_3, container, false);
+        return view;
     }
+    DatePickerDialog.OnDateSetListener mDateSetListener=new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            Year = year;
+            Month = monthOfYear;
+            Day = dayOfMonth;
+
+            calendar.set(Calendar.YEAR, Year);
+            calendar.set(Calendar.MONTH, Month);
+            calendar.set(Calendar.DATE, Day);
+
+            if(Integer.toString(Month+1).length()<2)
+                mon = "0"+(Month+1);
+            else
+                mon = ""+(Month+1);
+            if(Integer.toString(Day).length()<2)
+                day="0"+Day;
+            else
+                day = ""+Day;
+            birthday.setText(String.format("%d-%s-%s", Year, mon, day));
+        }
+    };
 }

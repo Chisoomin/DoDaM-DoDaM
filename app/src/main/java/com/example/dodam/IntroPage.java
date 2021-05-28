@@ -1,37 +1,41 @@
 package com.example.dodam;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageButton;
 
 public class IntroPage extends AppCompatActivity {
-    FragmentManager fm;
-    FragmentTransaction ft;
-    Intro intro;
-    Intro_1 intro_1;
-    Intro_2 intro_2;
-    Intro_3 intro_3;
-    Intro_4 intro_4;
-    Intro_pwd intro_pwd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_page);
 
-        fm = getSupportFragmentManager();
-        intro = new Intro();
-        intro_1 = new Intro_1();
-        intro_2 = new Intro_2();
-        intro_3 = new Intro_3();
-        intro_4 = new Intro_4();
-        intro_pwd = new Intro_pwd();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
-        ft = fm.beginTransaction();
-        ft.addToBackStack(null);
-        ft.replace(R.id.container, intro_1);
-        ft.commit();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.container, new Intro_1());
+        fragmentTransaction.commit();
 
+        //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        //fragmentTransaction.add(R.id.container, Intro_1.newInstance()).commit();
+
+
+    }
+
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 }

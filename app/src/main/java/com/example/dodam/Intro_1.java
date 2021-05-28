@@ -1,12 +1,20 @@
 package com.example.dodam;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 
 /**
@@ -55,10 +63,33 @@ public class Intro_1 extends Fragment {
         }
     }
 
+    public static Intro_1 newInstance() {
+        return new Intro_1();
+    }
+
+    View view;
+    EditText name;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_intro_1, container, false);
+        ImageButton next = (ImageButton) view.findViewById(R.id.n_btn);
+        name = view.findViewById(R.id.name);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_2 In2 = Intro_2.newInstance();
+                ((IntroPage) getActivity()).replaceFragment(In2);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name.getText().toString());
+                In2.setArguments(bundle);
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro_1, container, false);
+        return view;
+
     }
 }

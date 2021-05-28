@@ -1,12 +1,19 @@
 package com.example.dodam;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 /**
@@ -45,6 +52,14 @@ public class Intro_4 extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    String name, gender, birthday, pwd, hint, hint_answer;
+    EditText edit_pwd, edit_hint, edit_hint_answer;
+    DBHelper helper;
+    SQLiteDatabase join;
+    View view;
+    public static Intro_4 newInstance() {
+        return new Intro_4();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +73,59 @@ public class Intro_4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_intro_4,container,false);
+        ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        edit_pwd = (EditText)view.findViewById(R.id.edit_pwd);
+        edit_hint = (EditText)view.findViewById(R.id.edit_q);
+        edit_hint_answer = (EditText)view.findViewById(R.id.edit_a);
+
+        if(getArguments()!=null){
+            name = getArguments().getString("name");
+            gender = getArguments().getString("gender");
+            birthday = getArguments().getString("birthday");
+        }
+
+        edit_pwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean b) {
+                if(!b){
+                    if(edit_pwd.length()<4){
+                        Toast.makeText(view.getContext(), "비밀번호는 4자리로 설정해 주세요.", Toast.LENGTH_SHORT).show();
+                        edit_pwd.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                edit_pwd.setFocusable(true);
+                                edit_pwd.requestFocus();
+                                InputMethodManager imm = (InputMethodManager)view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.showSoftInput(edit_pwd,0);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+        helper = new DBHelper(view.getContext());
+        join = helper.getWritableDatabase();
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro In = Intro.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In);
+
+                pwd = edit_pwd.getText().toString();
+                hint = edit_hint.getText().toString();
+                hint_answer = edit_hint_answer.getText().toString();
+
+
+                String query="insert into Dodam(name, type, pass, passHint, passHintAns, birthday) values('" +name + "', '" +gender+ "', '"+ pwd+"', '"+hint+"', '"+hint_answer+"', '"+birthday+"')";
+
+                join.execSQL(query);
+                join.close();
+
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro_4, container, false);
+        return view;
     }
 }
