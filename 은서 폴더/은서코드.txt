@@ -1,0 +1,498 @@
+CustomAdapter.java
+
+package com.example.myapplication;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder>{
+
+    private ArrayList<Diary> diaryList;
+
+    public class CustomViewHolder extends RecyclerView.ViewHolder{
+        protected TextView content;
+        protected ImageView imoji;
+
+        public CustomViewHolder(View view){
+            super(view);
+            this.content = (TextView) view.findViewById(R.id.content);
+            this.imoji = (ImageView) view.findViewById(R.id.imoji);
+        }
+    }
+
+    public CustomAdapter(ArrayList<Diary> diaryList){
+        this.diaryList = diaryList;
+    }
+    @Override
+    public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_list, viewGroup, false);
+
+        CustomViewHolder viewHolder = new CustomViewHolder(view);
+        return viewHolder;
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CustomViewHolder viewHolder, int position) { 
+        viewHolder.content(diaryList.get(position.getContent()));
+        viewHolder.imoji(diaryList.get(position.getImoji()));
+        
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return (null != )
+    }
+}
+
+Diary.java
+
+package com.example.myapplication;
+
+public class Diary {
+    private String content;
+    private String imoji;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImoji() {
+        return imoji;
+    }
+
+    public void setImoji(String imoji) {
+        this.imoji = imoji;
+    }
+
+    public Diary(String content, String imoji) {
+        this.content = content;
+        this.imoji = imoji;
+    }
+}
+
+MainActivity.java
+package com.example.myapplication;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    private ArrayList<Diary> arrayListD;
+    private CustomAdapter adapter;
+    private int count = -1;
+
+   @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+       RecyclerView recyclerViewC = (RecyclerView) findViewById(R.id.recycleViewCalendar);
+       RecyclerView recyclerViewD = (RecyclerView) findViewById(R.id.recycleViewDiary);
+       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+       recyclerViewC.setLayoutManager(linearLayoutManager);
+
+       arrayListD = new ArrayList<>();
+       adapter = new CustomAdapter(arrayListD);
+       recyclerViewD.setAdapter(adapter);
+
+
+
+
+    }
+
+
+
+
+    /*
+    // 1
+    CalendarView calendarView;
+    TextView dateTextView, diaryTextView;
+    Button seeCalButton; // 버튼을 안보이게 하는게 나을지 아니면 레이아웃을 안보이게 하는게 나을지
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calendar);
+
+        // 2
+        calendarView = (CalendarView) findViewById( R.id.calendarView );
+        dateTextView = (TextView) findViewById( R.id.dateTextView );
+        diaryTextView = (TextView) findViewById( R.id.diaryTextView );
+        seeCalButton = (Button) findViewById( R.id.seeCalButton );
+
+        dateTextView.setVisibility( View.INVISIBLE );
+        diaryTextView.setVisibility( View.INVISIBLE );
+        seeCalButton.setVisibility( View.INVISIBLE );
+
+        // 3
+        // 캘린더뷰 날짜 눌렀을 때
+        calendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, final int year, final int month, final int dayOfMonth) {
+                // 대화상자
+                final String[] listArray = new String[] {"일기 보기", "일기 쓰기", "일기 수정하기", "일기 삭제하기"};
+                AlertDialog.Builder dialog = new AlertDialog.Builder( Calendar.this );
+                dialog.setTitle( "나의 일기" );
+                dialog.setItems( listArray,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (listArray[which].equals( "일기 보기" )) {
+                                    calendarView.setVisibility( View.GONE );
+                                    dateTextView.setText(year + "년 " + (month+1) + "월 " + dayOfMonth + "일");
+                                    dateTextView.setVisibility( View.VISIBLE );
+                                    diaryTextView.setVisibility( View.VISIBLE );
+                                    seeCalButton.setVisibility( View.VISIBLE );
+                                }
+
+                                if (listArray[which].equals( "일기 쓰기" )) {
+                                    Intent intent = new Intent(getApplicationContext(), DiaryCalendar.class);
+                                    startActivity(intent);
+                                }
+
+                                if (listArray[which].equals( "일기 수정하기" )) {
+                                    Intent intent = new Intent(getApplicationContext(), DiaryCalendarMod.class);
+                                    startActivity(intent);
+                                }
+
+                                if (listArray[which].equals( "일기 삭제하기" )) {
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder( getApplicationContext());
+                                    builder.setTitle( "일기 삭제하기" );
+                                    builder.setMessage( "일기를 삭제하시겠습니까?" );
+                                    builder.setPositiveButton( "삭제",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // 일기를 삭제하는 코드
+                                                }
+                                            } );
+                                    builder.setNegativeButton( "취소",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // 일기 삭제를 취소하는 코드
+                                                }
+                                            } );
+                                    builder.show();
+
+                                }
+                            }
+                        } );
+                // dialog.setPositiveButton( "확인",null );
+                dialog.show();
+            }
+        } );
+
+        // 달력보기 버튼 눌렀을 때
+        seeCalButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarView.setVisibility( View.VISIBLE );
+                dateTextView.setVisibility( View.INVISIBLE );
+                diaryTextView.setVisibility( View.INVISIBLE );
+                seeCalButton.setVisibility( View.INVISIBLE );
+            }
+        } );
+    }
+
+    */
+
+
+}
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"   _
+            android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/mleft"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/leftArrow"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginRight="20dp"
+                    android:padding="3dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">                    >
+                    <TextView
+                        android:id="@+id/year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YYYY"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MM"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DD"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/mright"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/rightArrow"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="3dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center">
+                <TextView
+                    android:textSize="20dp"
+                    android:text="일"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#f58989"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="월"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="화"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="수"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="목"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="금"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:textSize="20dp"
+                    android:text="토"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#79a9a9"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewDiary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+item_list.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="content"
+                android:layout_marginRight="10dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:id="@+id/imoji"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/imoji"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.384"
+                app:layout_constraintStart_toEndOf="@+id/content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.024"
+
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
