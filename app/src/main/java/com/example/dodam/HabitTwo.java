@@ -80,7 +80,7 @@ public class HabitTwo extends Fragment {
         gv.setAdapter(gAdapter);
 
         dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg2 = new AlertDialog.Builder(dialogView.getContext());
+        AlertDialog.Builder dlg2 = new AlertDialog.Builder(getActivity());
 
         dlg2.setTitle("습관 작성");
         dlg2.setView(dialogView);

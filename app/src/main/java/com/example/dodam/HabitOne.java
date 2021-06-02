@@ -65,7 +65,7 @@ public class HabitOne extends Fragment {
 
     }
 
-
+    View dialogView1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,20 +80,20 @@ public class HabitOne extends Fragment {
                 "26", "27", "28", "29", "30",
 
         };
-        final View dialogView;
+
         final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
         MyGridAdapter gAdapter = new MyGridAdapter(getActivity(), buttonNames);
         gv.setAdapter(gAdapter);
 
-        dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg1 = new AlertDialog.Builder(v.getContext());
+        dialogView1 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
+        AlertDialog.Builder dlg1 = new AlertDialog.Builder(getActivity());
 
         dlg1.setTitle("습관 작성");
-        dlg1.setView(dialogView);
+        dlg1.setView(dialogView1);
         dlg1.setPositiveButton("입력", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText pw1 = (EditText)dialogView.findViewById(R.id.editText);
+                EditText pw1 = (EditText)dialogView1.findViewById(R.id.editText);
             }
         });
         dlg1.setNegativeButton("취소", null);

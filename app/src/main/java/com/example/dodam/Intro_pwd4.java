@@ -1,6 +1,8 @@
 package com.example.dodam;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -60,13 +62,15 @@ public class Intro_pwd4 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    String firstpwd, secondpwd, thirdpwd, fourthpwd, putpwd;
+
+    String firstpwd, secondpwd, thirdpwd, fourthpwd, putpwd, userPwd;
+    TextView textView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_pwd4, container, false);
-
-        if(getArguments()!=null){
+        textView = (TextView)view.findViewById(R.id.textView8);
+        if (getArguments() != null) {
             firstpwd = getArguments().getString("firstpwd");
             secondpwd = getArguments().getString("secondpwd");
             thirdpwd = getArguments().getString("thirdpwd");
@@ -74,12 +78,26 @@ public class Intro_pwd4 extends Fragment {
         }
 
         putpwd = firstpwd + secondpwd + thirdpwd + fourthpwd;
-
         //저장한 비밀번호 불러오기
 
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        startActivity(intent);
+        DBHelper helper = new DBHelper(view.getContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select _id, pass from Dodam;", null);
+        while(cursor.moveToNext()){
+            Integer id = cursor.getInt(0);
+            if(id == 1){
+                userPwd = cursor.getString(1);
+            }
+        }
+
+
+        if (putpwd.equals(userPwd)) {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            startActivity(intent);
         // Inflate the layout for this fragment
+        }
+
+
         return view;
     }
 }

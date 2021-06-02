@@ -80,7 +80,7 @@ public class HabitThree extends Fragment {
         gv.setAdapter(gAdapter);
 
         dialogView3 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg3 = new AlertDialog.Builder(gv.getContext());
+        AlertDialog.Builder dlg3 = new AlertDialog.Builder(getActivity());
 
         dlg3.setTitle("습관 작성");
         dlg3.setView(dialogView3);

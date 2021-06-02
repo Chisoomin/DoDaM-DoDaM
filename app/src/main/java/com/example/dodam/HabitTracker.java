@@ -40,6 +40,7 @@ public class HabitTracker extends AppCompatActivity {
             super(fm);
             fragments = new ArrayList<>();
             fragments.add(new HabitOne());
+
             fragments.add(new HabitTwo());
             fragments.add(new HabitThree());
         }
