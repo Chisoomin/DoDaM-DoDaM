@@ -1,5 +1,6 @@
 package com.example.dodam;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -59,8 +60,7 @@ public class Intro_pwd4 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    String firstpwd, secondpwd, thirdpwd, fourthpwd, pwd;
-    TextView textView;
+    String firstpwd, secondpwd, thirdpwd, fourthpwd, putpwd;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,11 +73,12 @@ public class Intro_pwd4 extends Fragment {
             fourthpwd = getArguments().getString("fourthpwd");
         }
 
-        pwd = firstpwd + secondpwd + thirdpwd + fourthpwd;
+        putpwd = firstpwd + secondpwd + thirdpwd + fourthpwd;
 
-        textView = (TextView)view.findViewById(R.id.textView8);
-        textView.setText(pwd);
         //저장한 비밀번호 불러오기
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
         // Inflate the layout for this fragment
         return view;
     }

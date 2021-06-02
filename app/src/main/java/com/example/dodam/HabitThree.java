@@ -74,24 +74,24 @@ public class HabitThree extends Fragment {
                 "26", "27", "28", "29", "30",
 
         };
-        final View dialogView;
+        final View dialogView3;
         final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
         MyGridAdapter gAdapter = new MyGridAdapter(getActivity(),buttonNames);
         gv.setAdapter(gAdapter);
 
-        dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg = new AlertDialog.Builder(gv.getContext());
+        dialogView3 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
+        AlertDialog.Builder dlg3 = new AlertDialog.Builder(gv.getContext());
 
-        dlg.setTitle("습관 작성");
-        dlg.setView(dialogView);
-        dlg.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+        dlg3.setTitle("습관 작성");
+        dlg3.setView(dialogView3);
+        dlg3.setPositiveButton("입력", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText pw = (EditText)dialogView.findViewById(R.id.editText);
+                EditText pw3 = (EditText)dialogView3.findViewById(R.id.editText);
             }
         });
-        dlg.setNegativeButton("취소", null);
-        dlg.show();
+        dlg3.setNegativeButton("취소", null);
+        dlg3.show();
 
         return v;
     }

@@ -86,18 +86,18 @@ public class HabitOne extends Fragment {
         gv.setAdapter(gAdapter);
 
         dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg = new AlertDialog.Builder(gv.getContext());
+        AlertDialog.Builder dlg1 = new AlertDialog.Builder(v.getContext());
 
-        dlg.setTitle("습관 작성");
-        dlg.setView(dialogView);
-        dlg.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+        dlg1.setTitle("습관 작성");
+        dlg1.setView(dialogView);
+        dlg1.setPositiveButton("입력", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText pw = (EditText)dialogView.findViewById(R.id.editText);
+                EditText pw1 = (EditText)dialogView.findViewById(R.id.editText);
             }
         });
-        dlg.setNegativeButton("취소", null);
-        dlg.show();
+        dlg1.setNegativeButton("취소", null);
+        dlg1.show();
 
         return v;
     }
