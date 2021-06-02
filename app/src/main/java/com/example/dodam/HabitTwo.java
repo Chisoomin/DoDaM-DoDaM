@@ -65,9 +65,18 @@ public class HabitTwo extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_habit_two, container,false);
+        final String[] buttonNames = {
+                "1", "2", "3", "4", "5",
+                "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15",
+                "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25",
+                "26", "27", "28", "29", "30",
+
+        };
         final View dialogView;
-        final GridView gv = (GridView)v.findViewById(R.id.grid);
-        MyGridAdapter gAdapter = new MyGridAdapter(getActivity());
+        final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
+        MyGridAdapter gAdapter = new MyGridAdapter(getActivity(), buttonNames);
         gv.setAdapter(gAdapter);
 
         dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);

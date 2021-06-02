@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -64,12 +65,20 @@ public class Intro extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    Button button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro,container,false);
+        button = (Button)view.findViewById(R.id.button);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_pwd0 In_pwd0 = Intro_pwd0.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In_pwd0);
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
