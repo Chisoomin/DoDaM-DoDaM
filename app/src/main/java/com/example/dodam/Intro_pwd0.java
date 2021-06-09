@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 /**
@@ -61,6 +62,7 @@ public class Intro_pwd0 extends Fragment {
     }
     ImageButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
     String firstpwd;
+    TextView textView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +77,14 @@ public class Intro_pwd0 extends Fragment {
         btn7 = (ImageButton)view.findViewById(R.id.n7);
         btn8 = (ImageButton)view.findViewById(R.id.n8);
         btn9 = (ImageButton)view.findViewById(R.id.n9);
+        textView = (TextView)view.findViewById(R.id.textView7);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override

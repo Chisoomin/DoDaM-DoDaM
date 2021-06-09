@@ -69,7 +69,6 @@ public class Intro_pwd4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_pwd4, container, false);
-        textView = (TextView)view.findViewById(R.id.textView8);
         if (getArguments() != null) {
             firstpwd = getArguments().getString("firstpwd");
             secondpwd = getArguments().getString("secondpwd");
@@ -92,9 +91,12 @@ public class Intro_pwd4 extends Fragment {
 
 
         if (putpwd.equals(userPwd)) {
-            Intent intent = new Intent(getContext(), MainActivity.class);
+            Intent intent = new Intent(view.getContext(), MainActivity.class);
             startActivity(intent);
         // Inflate the layout for this fragment
+        }else{
+            Intro_pwd0 In_pwd0 = Intro_pwd0.newInstance();
+            ((IntroPage)getActivity()).replaceFragment(In_pwd0);
         }
 
 

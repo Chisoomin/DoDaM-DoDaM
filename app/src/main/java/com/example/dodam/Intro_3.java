@@ -78,6 +78,7 @@ public class Intro_3 extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_intro_3, container,false);
         ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        ImageButton before = (ImageButton)view.findViewById(R.id.before_btn);
         birthday = (EditText)view.findViewById(R.id.edit_date);
 
         calendar=Calendar.getInstance();
@@ -110,6 +111,13 @@ public class Intro_3 extends Fragment {
                 In4.setArguments(bundle);
                 bundle.putString("birthday", birthday.getText().toString());
                 In4.setArguments(bundle);
+            }
+        });
+        before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_2 In2 = Intro_2.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In2);
             }
         });
         // Inflate the layout for this fragment

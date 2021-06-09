@@ -1,25 +1,74 @@
 package com.example.dodam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ActionBar;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toolbar;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends TabActivity implements TabHost.OnTabChangeListener {
     Intent intent;
     TabHost tabHost;
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.playlist:
+                Intent PL = new Intent(getApplicationContext(), PlayList.class);
+                startActivity(PL);
+                return true;
+
+        }
+        return false;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabHost = getTabHost();
 
+
+        tabHost = getTabHost();
 
         intent = new Intent(this, MainScreen.class);
         TabHost.TabSpec tabspecmain = tabHost.newTabSpec("Main").setIndicator("");
@@ -31,7 +80,7 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
         tabspecHT.setContent(intent);
         tabHost.addTab(tabspecHT);
 
-        intent = new Intent(this, Calendar.class);
+        intent = new Intent(this, CalenD.class);
         TabHost.TabSpec tabspecCal = tabHost.newTabSpec("Calendar").setIndicator("");
         tabspecCal.setContent(intent);
         tabHost.addTab(tabspecCal);
@@ -72,4 +121,6 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
         tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundResource(R.drawable.open_btn);
         //구현 필요(탭 색 안돌아옴)
     }
+
+
 }

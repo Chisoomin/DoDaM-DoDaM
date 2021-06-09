@@ -69,18 +69,23 @@ public class Intro_2 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_2,container,false);
         ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        ImageButton before = (ImageButton)view.findViewById(R.id.before_btn);
         male = (ImageButton)view.findViewById(R.id.male);
         female = (ImageButton)view.findViewById(R.id.female);
 
         male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                male.setImageResource(R.drawable.male_r);
+                female.setImageResource(R.drawable.female_g);
                 gender = "남성";
             }
         });
         female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                female.setImageResource(R.drawable.female_r);
+                male.setImageResource(R.drawable.male_g);
                 gender = "여성";
             }
         });
@@ -100,6 +105,13 @@ public class Intro_2 extends Fragment {
                 In3.setArguments(bundle);
                 bundle.putString("gender", gender);
                 In3.setArguments(bundle);
+            }
+        });
+        before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_1 In1 = Intro_1.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In1);
             }
         });
         // Inflate the layout for this fragment

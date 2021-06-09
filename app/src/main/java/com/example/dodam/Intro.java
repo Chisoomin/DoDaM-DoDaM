@@ -1,15 +1,23 @@
 package com.example.dodam;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -66,13 +74,23 @@ public class Intro extends Fragment {
         }
     }
     Button button;
+    View view;
+    Animation slowly_appear,slowlyDisappear;
+    boolean start;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_intro,container,false);
+        view = inflater.inflate(R.layout.fragment_intro,container,false);
         button = (Button)view.findViewById(R.id.button);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        slowlyDisappear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadeout);
+        slowly_appear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadein);
+        slowly_appear.setRepeatCount(Animation.INFINITE);
+        slowlyDisappear.setRepeatCount(Animation.INFINITE);
+        view.setAnimation(slowlyDisappear);
+        //애니메이션 구현 상의
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intro_pwd0 In_pwd0 = Intro_pwd0.newInstance();

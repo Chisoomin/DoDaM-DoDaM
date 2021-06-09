@@ -75,6 +75,7 @@ public class Intro_4 extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_intro_4,container,false);
         ImageButton next = (ImageButton)view.findViewById(R.id.n_btn);
+        ImageButton before = (ImageButton)view.findViewById(R.id.before_btn);
         edit_pwd = (EditText)view.findViewById(R.id.edit_pwd);
         edit_hint = (EditText)view.findViewById(R.id.edit_q);
         edit_hint_answer = (EditText)view.findViewById(R.id.edit_a);
@@ -123,6 +124,13 @@ public class Intro_4 extends Fragment {
                 join.execSQL(query);
                 join.close();
 
+            }
+        });
+        before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_3 In3 = Intro_3.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In3);
             }
         });
         // Inflate the layout for this fragment
