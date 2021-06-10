@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 
 /**
@@ -58,7 +59,9 @@ public class HabitTwo extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    View dialogView2;
+    TextView goal2;
+    AlertDialog.Builder dlg2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,24 +77,35 @@ public class HabitTwo extends Fragment {
                 "26", "27", "28", "29", "30",
 
         };
-        final View dialogView;
+        goal2 = (TextView)v.findViewById(R.id.goal2);
+
         final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
         MyGridAdapter gAdapter = new MyGridAdapter(getActivity(), buttonNames);
         gv.setAdapter(gAdapter);
 
-        dialogView = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg2 = new AlertDialog.Builder(getActivity());
+        dialogView2 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
+        dlg2 = new AlertDialog.Builder(getActivity());
 
-        dlg2.setTitle("습관 작성");
-        dlg2.setView(dialogView);
-        dlg2.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+        goal2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                EditText pw2 = (EditText)dialogView.findViewById(R.id.editText);
+            public void onClick(View view) {
+                if(dialogView2.getParent()!=null){
+                    ((ViewGroup)dialogView2.getParent()).removeView(dialogView2);
+                }
+                dlg2.setView(dialogView2);
+                dlg2.setTitle("습관 작성");
+                dlg2.setView(dialogView2);
+                dlg2.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText pw2 = (EditText)dialogView2.findViewById(R.id.editText);
+                        goal2.setText(pw2.getText());
+                    }
+                });
+                dlg2.setNegativeButton("취소", null);
+                dlg2.show();
             }
         });
-        dlg2.setNegativeButton("취소", null);
-        dlg2.show();
 
         return v;
     }

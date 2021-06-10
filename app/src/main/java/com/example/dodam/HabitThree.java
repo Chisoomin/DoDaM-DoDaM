@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 
 /**
@@ -58,7 +59,9 @@ public class HabitThree extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    View dialogView3;
+    TextView goal3;
+    AlertDialog.Builder dlg3;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,24 +77,36 @@ public class HabitThree extends Fragment {
                 "26", "27", "28", "29", "30",
 
         };
-        final View dialogView3;
+        goal3 = (TextView)v.findViewById(R.id.goal3);
+
         final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
         MyGridAdapter gAdapter = new MyGridAdapter(getActivity(),buttonNames);
         gv.setAdapter(gAdapter);
 
         dialogView3 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
-        AlertDialog.Builder dlg3 = new AlertDialog.Builder(getActivity());
+        dlg3 = new AlertDialog.Builder(getActivity());
 
-        dlg3.setTitle("습관 작성");
-        dlg3.setView(dialogView3);
-        dlg3.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+        goal3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                EditText pw3 = (EditText)dialogView3.findViewById(R.id.editText);
+            public void onClick(View view) {
+                if(dialogView3.getParent()!=null){
+                    ((ViewGroup)dialogView3.getParent()).removeView(dialogView3);
+                }
+                dlg3.setView(dialogView3);
+                dlg3.setTitle("습관 작성");
+                dlg3.setView(dialogView3);
+                dlg3.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText pw3 = (EditText)dialogView3.findViewById(R.id.editText);
+                        goal3.setText(pw3.getText());
+                    }
+                });
+                dlg3.setNegativeButton("취소", null);
+                dlg3.show();
             }
         });
-        dlg3.setNegativeButton("취소", null);
-        dlg3.show();
+
 
         return v;
     }

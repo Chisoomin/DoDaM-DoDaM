@@ -92,7 +92,7 @@ public class MyGridAdapter extends BaseAdapter {
                     if (i != pos) {
                         Toast.makeText(context, "차례로 클릭해 주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        v.setBackground(ContextCompat.getDrawable(context, R.drawable.rr_habit_check));
+                        v.setBackground(ContextCompat.getDrawable(context, R.drawable.rr_habit_check_2));
                         i++;
                     }
                 }

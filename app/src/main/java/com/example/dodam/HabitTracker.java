@@ -19,23 +19,24 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class HabitTracker extends AppCompatActivity {
-    //int i =0;
+    ViewPager pager;
+    ArrayList<Fragment> fragments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_tracker);
 
-        ViewPager pager = (ViewPager)findViewById(R.id.view_pager1);
+        pager = (ViewPager)findViewById(R.id.view_pager1);
         MyPagerAdpater pagerAdapter = new MyPagerAdpater(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
+        pager.setOffscreenPageLimit(fragments.size());
+
 
         /*final GridView gv = (GridView)findViewById(R.id.grid);
         MyGridAdapter gAdapter = new MyGridAdapter(this);
         gv.setAdapter(gAdapter);*/
     }
     class MyPagerAdpater extends FragmentPagerAdapter {
-        ArrayList<Fragment> fragments;
-
         public MyPagerAdpater(@NonNull FragmentManager fm) {
             super(fm);
             fragments = new ArrayList<>();
