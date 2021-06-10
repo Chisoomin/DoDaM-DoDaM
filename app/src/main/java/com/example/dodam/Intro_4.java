@@ -57,6 +57,7 @@ public class Intro_4 extends Fragment {
     DBHelper helper;
     SQLiteDatabase join;
     View view;
+    Integer point=0;
     public static Intro_4 newInstance() {
         return new Intro_4();
     }
@@ -119,7 +120,7 @@ public class Intro_4 extends Fragment {
                 hint_answer = edit_hint_answer.getText().toString();
 
 
-                String query="insert into Dodam(name, type, pass, passHint, passHintAns, birthday) values('" +name + "', '" +gender+ "', '"+ pwd+"', '"+hint+"', '"+hint_answer+"', '"+birthday+"')";
+                String query="insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('" +name + "', '" +gender+ "', '"+ pwd+"', '"+hint+"', '"+hint_answer+"','"+birthday+"','"+point+"')";
 
                 join.execSQL(query);
                 join.close();

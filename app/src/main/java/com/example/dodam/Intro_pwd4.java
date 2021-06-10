@@ -84,7 +84,7 @@ public class Intro_pwd4 extends Fragment {
         Cursor cursor = db.rawQuery("select _id, pass from Dodam;", null);
         while(cursor.moveToNext()){
             Integer id = cursor.getInt(0);
-            if(id == 1){
+            if(id == 2){
                 userPwd = cursor.getString(1);
             }
         }

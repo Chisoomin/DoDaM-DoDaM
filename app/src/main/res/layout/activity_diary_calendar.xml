@@ -169,6 +169,7 @@
             android:tint="#808080" />
 
         <ImageButton
+            android:id="@+id/goback"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:padding="2dp"

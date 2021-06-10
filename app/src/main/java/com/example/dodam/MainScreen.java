@@ -3,6 +3,8 @@ package com.example.dodam;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class MainScreen extends AppCompatActivity {
     String re = "";
     String[] saying;
     ConstraintLayout c;
+    Integer SetPoint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class MainScreen extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        String url = "http://172.30.1.45:8080/AndroidAppEx/saying.jsp";
+        String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -50,31 +53,37 @@ public class MainScreen extends AppCompatActivity {
                 });
         requestQueue.add(stringRequest);
 
+        DBHelper helper = new DBHelper(getApplicationContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select point, _id from Dodam;", null);
 
-
-
-        point.setText("0");
-
+        while(cursor.moveToNext()){
+            Integer id = cursor.getInt(1);
+            if(id == 2){
+                SetPoint = cursor.getInt(0);
+            }
+        }
+        point.setText(" "+SetPoint);
         //서버DB 연결 후 가져와서 명언 불러오는 것 구현
         //포인트 상의
         try {
-            MyPoint = Integer.parseInt(point.getText().toString());
+            MyPoint = SetPoint;
         } catch (
                 NumberFormatException nfe) {
             System.out.println("Could not parse " + nfe);
         }
 
         if (MyPoint >= 10 && MyPoint < 25) {
-            c.setBackgroundResource(R.drawable.main_ssak);
+            c.setBackgroundResource(R.drawable.main_2);
         }
         if (MyPoint >= 25 && MyPoint < 45) {
-            c.setBackgroundResource(R.drawable.main_ssak2);
+            c.setBackgroundResource(R.drawable.main_3);
         }
         if (MyPoint >= 45 && MyPoint < 70) {
-            c.setBackgroundResource(R.drawable.main_ssak3);
+            c.setBackgroundResource(R.drawable.main_4);
         }
         if (MyPoint >= 70) {
-            c.setBackgroundResource(R.drawable.main_flower);
+            c.setBackgroundResource(R.drawable.main_4);
         }
     }
 }

@@ -83,11 +83,11 @@ public class Intro extends Fragment {
         view = inflater.inflate(R.layout.fragment_intro,container,false);
         button = (Button)view.findViewById(R.id.button);
 
-        slowlyDisappear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadeout);
+        /*slowlyDisappear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadeout);
         slowly_appear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadein);
         slowly_appear.setRepeatCount(Animation.INFINITE);
         slowlyDisappear.setRepeatCount(Animation.INFINITE);
-        view.setAnimation(slowlyDisappear);
+        view.setAnimation(slowlyDisappear);*/
         //애니메이션 구현 상의
 
         view.setOnClickListener(new View.OnClickListener() {

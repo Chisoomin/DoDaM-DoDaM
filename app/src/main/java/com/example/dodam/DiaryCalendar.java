@@ -43,6 +43,14 @@ public class DiaryCalendar extends AppCompatActivity {
         datedata = intent.getExtras().getString("date");
         date.setText(datedata+".");
 
+        goBack = (ImageButton)findViewById(R.id.goback);
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
     }

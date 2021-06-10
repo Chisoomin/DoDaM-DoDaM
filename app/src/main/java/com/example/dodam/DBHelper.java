@@ -23,13 +23,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "passHint text, " + // 비번 힌트
                 "passHintAns text," + // 비번 힌트 답
                 "birthday datetime,"+ // 생일
-                "point int default 0)"; // 도담 포인트
+                "point integer)"; // 도담 포인트
 
         db.execSQL(testSQL);
         testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('김명지', '여자', '1111', '1이 네 개면?', '1111', '2000-11-08', 0)";
         db.execSQL(testSQL);
-        testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('홍길동', '남자', '1234', '비번 1234', '1234', '1999-01-07', 0)";
-        db.execSQL(testSQL);
+        /*testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('홍길동', '남자', '1234', '비번 1234', '1234', '1999-01-07', 0)";
+        db.execSQL(testSQL);*/
     }
 
     /*
