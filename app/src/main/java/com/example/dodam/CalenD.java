@@ -43,7 +43,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
     ImageView stamp;
 
     String date; // 선택된 날짜
-
+    String dbDate;
     /*DB 영역
     DiaryDBHelper dbHelper = new DiaryDBHelper(this);
     SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -85,6 +85,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
 
                 Intent intent = new Intent(getApplicationContext(), DiaryCalendar.class);
                 intent.putExtra("date", date);
+                intent.putExtra("dbDate", dbDate);
                 startActivity(intent);
 
 
@@ -204,7 +205,9 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         date = mThisMonthCalendar.get(Calendar.YEAR) + ". " +
                 (mThisMonthCalendar.get(Calendar.MONTH) + 1) + ". " +
                 mDayList.get(position).getDay();
-
+        dbDate = mThisMonthCalendar.get(Calendar.YEAR) + "-" +
+                (mThisMonthCalendar.get(Calendar.MONTH) + 1) + "-" +
+                mDayList.get(position).getDay();
 
         /*
             일기가 DB에 있으면 일기랑 스탬프 보여주기 !! diary.setText(~); stamp.setImage(~);
