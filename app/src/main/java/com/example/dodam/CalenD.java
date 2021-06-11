@@ -43,17 +43,20 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
     ImageView stamp;
 
     String date; // 선택된 날짜
-
+    String dbDate;
     /*DB 영역
     DiaryDBHelper dbHelper = new DiaryDBHelper(this);
     SQLiteDatabase db = dbHelper.getReadableDatabase();
+
     Cursor cursor = db.rawQuery("select strftime('%Y-%m-%d', date), content from DiaryData;", null);
+
     //DB 끝*/
 
     /*
         구현 남은 것 메모
         1. DB에 일기가 저장된 경우 circle visible로 바꾸기 + 가능하면 색깔도 설정
         2. 버튼을 눌렀을 경우 해당 날짜의 일기가 나오도록 하기
+
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
 
                 Intent intent = new Intent(getApplicationContext(), DiaryCalendar.class);
                 intent.putExtra("date", date);
+                intent.putExtra("dbDate", dbDate);
                 startActivity(intent);
 
 
@@ -201,7 +205,9 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         date = mThisMonthCalendar.get(Calendar.YEAR) + ". " +
                 (mThisMonthCalendar.get(Calendar.MONTH) + 1) + ". " +
                 mDayList.get(position).getDay();
-
+        dbDate = mThisMonthCalendar.get(Calendar.YEAR) + "-" +
+                (mThisMonthCalendar.get(Calendar.MONTH) + 1) + "-" +
+                mDayList.get(position).getDay();
 
         /*
             일기가 DB에 있으면 일기랑 스탬프 보여주기 !! diary.setText(~); stamp.setImage(~);
@@ -229,6 +235,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         mThisMonthCalendar.get(Calendar.YEAR); // 년 위아래 둘 다 mThisMonthCalendar??
         mThisMonthCalendar.get(Calendar.MONTH) + 1;  //월 오류 나는데 원코드에서 수정은 X
         mDayList.get(position).getDay();  //일
+
         // DB에서 해당 년,월,일의 자료를 불러왔을 때 결과 값이 있으면
         // db 코딩해둔 것
         while(cursor.moveToNext()) {
@@ -250,6 +257,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
                     stamp.setVisibility(View.INVISIBLE);
                 }
             }
+
         }*/
 
 
@@ -277,5 +285,6 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         mGvCalendar.setAdapter(mCalendarAdapter);
     }
 }
+
 
 

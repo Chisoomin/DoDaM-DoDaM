@@ -14,19 +14,29 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class DiaryCalendar extends AppCompatActivity {
     // 1
     TextView date; // 날짜 표시
     String datedata; // 날짜 값
+    String[] da;
+    String dbdate,  tt;
 
     EditText diaryContent; // 일기 쓰기
     SeekBar happySeekBar, badSeekBar, sadSeekBar; // 감정
     ImageButton delete, save, goBack; // 버튼 세 개
     int happyVal, badVal, sadVal; // 감정 값
     String content;
+
+    String dbDate;
 
      /*
         구현 남은 것 메모
@@ -42,6 +52,10 @@ public class DiaryCalendar extends AppCompatActivity {
         date = (TextView) findViewById(R.id.date);
         diaryContent = (EditText) findViewById(R.id.diaryContent);
 
+
+
+        Date listCurrentTime = Calendar.getInstance().getTime();
+        String listDate = new SimpleDateFormat( "yyyy-MM-dd", Locale.getDefault() ).format( listCurrentTime );
 
         happySeekBar = (SeekBar) findViewById(R.id.happySeekBar);
         badSeekBar = (SeekBar) findViewById(R.id.badSeekBar);
@@ -59,13 +73,14 @@ public class DiaryCalendar extends AppCompatActivity {
 
         final Intent intent = getIntent();
         datedata = intent.getExtras().getString("date");
+        dbDate = intent.getExtras().getString("dbDate");
         date.setText(datedata + ".");
 
+
         // 기쁨 seekBar를 움직였을 때 바뀌는 리스너
-        happySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        happySeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //happyPercent.setText( String.valueOf( progress ) );
                 happyVal = progress;
             }
 
@@ -78,13 +93,12 @@ public class DiaryCalendar extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
-        });
+        } );
 
         // 화남 seekBar를 움직였을 때 바뀌는 리스너
-        badSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        badSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //badPercent.setText( String.valueOf( progress ) );
                 badVal = progress;
             }
 
@@ -97,13 +111,12 @@ public class DiaryCalendar extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
-        });
+        } );
 
         // 슬픔 seekBar를 움직였을 때 바뀌는 리스너
-        sadSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sadSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //  sadPercent.setText( String.valueOf( progress ) );
                 sadVal = progress;
 
             }
@@ -117,7 +130,7 @@ public class DiaryCalendar extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
-        });
+        } );
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -129,25 +142,14 @@ public class DiaryCalendar extends AppCompatActivity {
                 values.put("bad", badVal);
                 values.put("sad", sadVal);
                 values.put("content", content);
+                values.put("date", dbDate);
                 diaryDB.insert("DiaryData", null, values);
 
-                // mood 값 넘기기
-
-                // ContentValues values1 = new ContentValues();
-                Intent intent1 = new Intent(DiaryCalendar.this, PlayList.class);
-                int mood = happyVal * 100 + badVal * 10 + sadVal;
-                intent1.putExtra("mood", mood);
-                diaryDB.close();
-                startActivity(intent1);
-
-              /* values.put("mood", mood);
-               playListDB.insert("PlayListData", null, values);*/
 
                 diaryDB.close();
-                //  playListDB.close();
 
-               /* Intent intent = new Intent(getApplicationContext(), PlayList.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(), PlayList.class);
+                startActivity(intent);
             }
         });
 
@@ -171,25 +173,6 @@ public class DiaryCalendar extends AppCompatActivity {
                             }
                         });
 
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("다이얼로그 제목")        // 제목 설정
-                        .setMessage("메시지")        // 메세지 설정
-                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                            // 확인 버튼 클릭시 설정, 오른쪽 버튼입니다.
-                            public void onClick(DialogInterface dialog, int whichButton){
-                                //원하는 클릭 이벤트를 넣으시면 됩니다.
-                            }
-                        })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                            // 취소 버튼 클릭시 설정, 왼쪽 버튼입니다.
-                            public void onClick(DialogInterface dialog, int whichButton){
-                                //원하는 클릭 이벤트를 넣으시면 됩니다.
-                            }
-                        });
-                AlertDialog dialog = builder.create();    // 알림창 객체 생성
-                dialog.show();*/
-
                 AlertDialog alert = builder.create();
                 alert.setTitle("쓰던 일기가 사라집니다.");
                 alert.show();
@@ -204,10 +187,16 @@ public class DiaryCalendar extends AppCompatActivity {
         happySeekBar = (SeekBar) findViewById( R.id.happySeekBar );
         badSeekBar = (SeekBar) findViewById( R.id.badSeekBar );
         sadSeekBar = (SeekBar) findViewById( R.id.sadSeekBar );
+
         diaryContent = (EditText)findViewById(R.id.diaryContent);
+
         saveButton = (Button) findViewById( R.id.saveButton );
+
+
         DiaryDBHelper helper = new DiaryDBHelper(this);
         final SQLiteDatabase diaryDB = helper.getWritableDatabase();
+
+
         // 3
         // 기쁨 seekBar를 움직였을 때 바뀌는 리스너
         happySeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
@@ -216,15 +205,18 @@ public class DiaryCalendar extends AppCompatActivity {
                 happyPercent.setText( String.valueOf( progress ) );
                 happyVal = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
         } );
+
         // 화남 seekBar를 움직였을 때 바뀌는 리스너
         badSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -232,31 +224,40 @@ public class DiaryCalendar extends AppCompatActivity {
                 badPercent.setText( String.valueOf( progress ) );
                 badVal = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
         } );
+
         // 슬픔 seekBar를 움직였을 때 바뀌는 리스너
         sadSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sadPercent.setText( String.valueOf( progress ) );
                 sadVal = progress;
+
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //
             }
         } );
+
+
+
         saveButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,7 +268,9 @@ public class DiaryCalendar extends AppCompatActivity {
                 values.put("sad", sadVal);
                 values.put("content", content);
                 diaryDB.insert("DiaryData", null, values);
+
                 diaryDB.close();
+
                 Intent intent = new Intent(getApplicationContext(), PlayList.class);
                 startActivity(intent);
             }
