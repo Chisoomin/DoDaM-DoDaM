@@ -33,7 +33,7 @@ public class IntroPage extends AppCompatActivity {
             if(id >= 2){
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.add(R.id.container, new Intro_pwd0());
+                fragmentTransaction.add(R.id.container, new Intro());
                 fragmentTransaction.commit();
             }else{
                 FragmentManager fm = getSupportFragmentManager();

@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 
 /**
@@ -69,13 +71,34 @@ public class Intro_1 extends Fragment {
 
     View view;
     EditText name;
-
+    ImageView Introoo;
+    AlphaAnimation AA;
+    String i="0";
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_intro_1, container, false);
         ImageButton next = (ImageButton) view.findViewById(R.id.n_btn);
         name = view.findViewById(R.id.name);
+        Introoo = (ImageView)view.findViewById(R.id.introoo);
+
+        AA = new AlphaAnimation(1,0);
+        AA.setDuration(1000);
+        AA.setStartOffset(2500);
+
+        if(getArguments()!=null){
+            i = getArguments().getString("back");
+        }
+
+        if (i != null) {
+            if(i.equals("1")){
+                Introoo.setVisibility(View.INVISIBLE);
+            }else{
+                Introoo.setAnimation(AA);
+                Introoo.setVisibility(View.INVISIBLE);
+            }
+        }
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

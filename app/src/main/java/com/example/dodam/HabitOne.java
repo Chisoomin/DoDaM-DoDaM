@@ -115,6 +115,7 @@ public class HabitOne extends Fragment {
                         if(dialogView1.getParent()!=null){
                             ((ViewGroup)dialogView1.getParent()).removeView(dialogView1);
                         }
+
                         dlg1.setView(dialogView1);
                         dlg1.setTitle("습관 작성");
                         dlg1.setView(dialogView1);

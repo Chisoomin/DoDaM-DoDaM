@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -112,6 +113,10 @@ public class Intro_2 extends Fragment {
             public void onClick(View view) {
                 Intro_1 In1 = Intro_1.newInstance();
                 ((IntroPage)getActivity()).replaceFragment(In1);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("back", "1");
+                In1.setArguments(bundle);
             }
         });
         // Inflate the layout for this fragment

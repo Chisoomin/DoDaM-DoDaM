@@ -57,7 +57,6 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
                 Intent PL = new Intent(getApplicationContext(), PlayList.class);
                 startActivity(PL);
                 return true;
-
         }
         return false;
     }

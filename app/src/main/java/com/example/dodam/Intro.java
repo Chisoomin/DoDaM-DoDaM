@@ -73,22 +73,30 @@ public class Intro extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    Button button;
     View view;
-    Animation slowly_appear,slowlyDisappear;
-    boolean start;
+    AlphaAnimation AA;
+    TextView click;
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_intro,container,false);
-        button = (Button)view.findViewById(R.id.button);
+        click = (TextView)view.findViewById(R.id.click);
 
-        /*slowlyDisappear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadeout);
-        slowly_appear = AnimationUtils.loadAnimation(view.getContext(),R.anim.fadein);
-        slowly_appear.setRepeatCount(Animation.INFINITE);
-        slowlyDisappear.setRepeatCount(Animation.INFINITE);
-        view.setAnimation(slowlyDisappear);*/
-        //애니메이션 구현 상의
+        AA = new AlphaAnimation(1,0);
+        AA.setDuration(500);
+        AA.setStartOffset(500);
+        AA.setRepeatCount(Animation.INFINITE);
+        AA.setRepeatMode(Animation.REVERSE);
+
+        click.setAnimation(AA);
+
+        click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intro_pwd0 In_pwd0 = Intro_pwd0.newInstance();
+                ((IntroPage)getActivity()).replaceFragment(In_pwd0);
+            }
+        });
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
