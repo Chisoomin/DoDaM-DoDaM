@@ -1,6 +1,9 @@
 package com.example.dodam;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -67,6 +70,7 @@ public class HabitThree extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         View v = inflater.inflate(R.layout.fragment_habit_three, container,false);
         final String[] buttonNames = {
                 "1", "2", "3", "4", "5",
@@ -86,6 +90,46 @@ public class HabitThree extends Fragment {
         dialogView3 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
         dlg3 = new AlertDialog.Builder(getActivity());
 
+
+        HabitDBHelper habitDBHelper = new HabitDBHelper(getContext());
+        final SQLiteDatabase db = habitDBHelper.getWritableDatabase();
+        final SQLiteDatabase db2 = habitDBHelper.getReadableDatabase();
+
+        Cursor cursor = db2.rawQuery("select numID, goal from HabitData;", null);
+        while(cursor.moveToNext()) {
+            // 이미 목표가 설정되어 있을 때 변경하기
+            if (cursor.getString(0).equals("3")) {
+                goal3.setText(cursor.getString(1));
+
+                goal3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(dialogView3.getParent()!=null){
+                            ((ViewGroup)dialogView3.getParent()).removeView(dialogView3);
+                        }
+                        dlg3.setView(dialogView3);
+                        dlg3.setTitle("습관 작성");
+                        dlg3.setView(dialogView3);
+                        dlg3.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                EditText pw3 = (EditText)dialogView3.findViewById(R.id.editText);
+                                goal3.setText(pw3.getText());
+                                String requ3 = pw3.getText().toString();
+                                db.execSQL("UPDATE HabitData" + "SET"
+                                        + "goal =" + requ3 + "WHERE numId =" + "3");
+                            }
+                        });
+                        dlg3.setNegativeButton("취소", null);
+                        dlg3.show();
+                    }
+                });
+
+
+
+            }
+        }
+
         goal3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +144,12 @@ public class HabitThree extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         EditText pw3 = (EditText)dialogView3.findViewById(R.id.editText);
                         goal3.setText(pw3.getText());
+                        String requ3 = pw3.getText().toString();
+
+                        ContentValues values = new ContentValues();
+                        values.put("numId", "3");
+                        values.put("goal", requ3);
+                        db.insert("HabitData", null, values);
                     }
                 });
                 dlg3.setNegativeButton("취소", null);
