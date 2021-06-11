@@ -19,13 +19,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class MiniGame extends AppCompatActivity {
     // 1
-    String eggBadStr;
-    Integer eggBadInt, eggBadIntM;
+    String eggBadStr, pointSavStr;
+    Integer eggBadInt, eggBadIntM, pointInt, pointSav;
 
     TextView eggTextView;
     ImageView eggImageView;
+
+    TextView pointRes;
 
     // 터치 이벤트 경고창이 뜨지 않도록 설정
     @SuppressLint("ClickableViewAccessibility")
@@ -39,12 +46,18 @@ public class MiniGame extends AppCompatActivity {
         eggTextView = (TextView) findViewById( R.id.eggTextView );
         eggImageView = (ImageView) findViewById( R.id.eggImageView );
 
+        pointRes = (TextView) findViewById( R.id.point );
+
+        // 오늘 날짜 포맷
+        Date listCurrentTime = Calendar.getInstance().getTime();
+        String listDate = new SimpleDateFormat( "yyyy-MM-dd", Locale.getDefault() ).format( listCurrentTime );
+
         // 알깨는 횟수 DB 설정
         DiaryDBHelper diaryDBHelper = new DiaryDBHelper( this );
         SQLiteDatabase eggDB = diaryDBHelper.getReadableDatabase();
 
         // 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        // Cursor diaryCursor = diaryDB.rawQuery( "select happy, bad, sad from DiarySQL where date like listeDate;", null );
+        // Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
 
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
         Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '2021-06-02';", null );
@@ -55,13 +68,28 @@ public class MiniGame extends AppCompatActivity {
 
         eggDB.close();
 
-        // 알깨는 횟수 = 나쁨 감정 * 10, 알깨는 횟수 다른 변수에 저장
+        DBHelper dbHelper = new DBHelper( this );
+        SQLiteDatabase pointSavDB = dbHelper.getReadableDatabase();
+
+        Cursor pointSavCursor = pointSavDB.rawQuery( "select point from Dodam",null );
+
+        while (pointSavCursor.moveToNext()) {
+            pointSav = pointSavCursor.getInt( 0 );
+        }
+
+        // 알깨는 횟수 = 나쁨 감정 * 10 or 100, 알깨는 횟수 다른 변수에 저장
         if (eggBadStr.equals( "0" ))
             eggBadInt = 100;
         else
             eggBadInt = Integer.parseInt( eggBadStr ) * 10;
 
         eggBadIntM = eggBadInt;
+
+        // 포인트 = 나쁨 감정 or 10
+        if (eggBadStr.equals( "0" ))
+            pointInt = 10;
+        else
+            pointInt = Integer.parseInt( eggBadStr );
 
         // 상단에 위치하는 TextView 설정
         eggTextView.setText( "알을 깨기까지 " + eggBadInt + " 번" );
@@ -110,6 +138,9 @@ public class MiniGame extends AppCompatActivity {
                     // 알깨는 횟수 다시 설정
                     eggBadInt = eggBadIntM + 1;
 
+                    // point DB 값 수정
+                    pointDB();
+
                     // 알을 다 깬후 나오는 AlertDialog
                     eggShowDialog();
                 }
@@ -125,6 +156,17 @@ public class MiniGame extends AppCompatActivity {
         }
     }
 
+    // point 값 수정 DB 설정,
+    private void pointDB() {
+        pointSav = pointSav + pointInt;
+        pointSavStr = String.valueOf( pointSav );
+
+        DBHelper dbHelper = new DBHelper( this );
+        SQLiteDatabase pointDB = dbHelper.getWritableDatabase();
+        String pointSql = "UPDATE Dodam SET point=" + pointSav;
+        pointDB.execSQL( pointSql );
+    }
+
     // 알을 다 깬후 나오는 AlertDialog 메소드
     // setOnDismissListener는 api 17 이상부터 지원한다는 의미
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -138,7 +180,7 @@ public class MiniGame extends AppCompatActivity {
                 //
             }
         } );
-        builder.setMessage( "알이 깨졌습니다." );
+        builder.setMessage( "알이 깨졌습니다.\n\nPOINT : +" + pointInt );
         builder.setPositiveButton( "확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

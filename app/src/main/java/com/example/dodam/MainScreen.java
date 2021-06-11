@@ -22,27 +22,28 @@ public class MainScreen extends AppCompatActivity {
     String[] saying;
     ConstraintLayout c;
     Integer SetPoint;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_screen);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_main_screen );
 
-        c = (ConstraintLayout) findViewById(R.id.Main);
-        point = (TextView) findViewById(R.id.point);
-        Fsaying = (TextView) findViewById(R.id.Fsaying);
-        Fpeople = (TextView) findViewById(R.id.Fpeople);
+        c = (ConstraintLayout) findViewById( R.id.Main );
+        point = (TextView) findViewById( R.id.point );
+        Fsaying = (TextView) findViewById( R.id.Fsaying );
+        Fpeople = (TextView) findViewById( R.id.Fpeople );
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue( this );
 
         String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         re = response;
-                        saying = re.split("#");
-                        Fsaying.setText("\""+saying[0].trim()+"\"");
-                        Fpeople.setText("- "+saying[1].trim());
+                        saying = re.split( "#" );
+                        Fsaying.setText( "\"" + saying[0].trim() + "\"" );
+                        Fpeople.setText( "- " + saying[1].trim() );
                     }
                 },
                 new Response.ErrorListener() {
@@ -50,40 +51,40 @@ public class MainScreen extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                });
-        requestQueue.add(stringRequest);
+                } );
+        requestQueue.add( stringRequest );
 
-        DBHelper helper = new DBHelper(getApplicationContext());
+        DBHelper helper = new DBHelper( getApplicationContext() );
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select point, _id from Dodam;", null);
+        Cursor cursor = db.rawQuery( "select point, _id from Dodam;", null );
 
-        while(cursor.moveToNext()){
-            Integer id = cursor.getInt(1);
-            if(id == 2){
-                SetPoint = cursor.getInt(0);
+        while (cursor.moveToNext()) {
+            Integer id = cursor.getInt( 1 );
+            if (id == 2) {
+                SetPoint = cursor.getInt( 0 );
             }
         }
-        point.setText(" "+SetPoint);
+        point.setText( " " + SetPoint );
         //서버DB 연결 후 가져와서 명언 불러오는 것 구현
         //포인트 상의
         try {
             MyPoint = SetPoint;
         } catch (
                 NumberFormatException nfe) {
-            System.out.println("Could not parse " + nfe);
+            System.out.println( "Could not parse " + nfe );
         }
 
         if (MyPoint >= 10 && MyPoint < 25) {
-            c.setBackgroundResource(R.drawable.main_2);
+            c.setBackgroundResource( R.drawable.main_2 );
         }
         if (MyPoint >= 25 && MyPoint < 45) {
-            c.setBackgroundResource(R.drawable.main_3);
+            c.setBackgroundResource( R.drawable.main_3 );
         }
         if (MyPoint >= 45 && MyPoint < 70) {
-            c.setBackgroundResource(R.drawable.main_4);
+            c.setBackgroundResource( R.drawable.main_4 );
         }
         if (MyPoint >= 70) {
-            c.setBackgroundResource(R.drawable.main_4);
+            c.setBackgroundResource( R.drawable.main_4 );
         }
     }
 }

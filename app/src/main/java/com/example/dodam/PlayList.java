@@ -72,16 +72,16 @@ public class PlayList extends YouTubeBaseActivity {
         playerView.setVisibility( View.GONE );
         numberPlaylist.setVisibility( View.GONE );
 
-        // 오늘 날짜 포맷
-        Date listCurrentTime = Calendar.getInstance().getTime();
-        String listDate = new SimpleDateFormat( "yyyy-MM-dd", Locale.getDefault() ).format( listCurrentTime );
-
         // youtube, textView 배경색 지정, DB 설정
         DiaryDBHelper diaryDBHelper = new DiaryDBHelper( this );
         SQLiteDatabase youtubeDB = diaryDBHelper.getReadableDatabase();
 
+        // 오늘 날짜 포맷
+        Date listCurrentTime = Calendar.getInstance().getTime();
+        String listDate = new SimpleDateFormat( "yyyy-MM-dd", Locale.getDefault() ).format( listCurrentTime );
+
         // 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        // Cursor diaryCursor = diaryDB.rawQuery( "select happy, bad, sad from DiarySQL where date like listeDate;", null );
+        // Cursor diaryCursor = youtubeDB.rawQuery( "select happy, bad, sad from DiaryData where date like '%"+listDate+"%';", null );
 
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
         //Cursor diaryCursor = youtubeDB.rawQuery( "select happy, bad, sad from DiaryData where date like '2021-06-01';", null );
@@ -118,7 +118,7 @@ public class PlayList extends YouTubeBaseActivity {
         PlayListDBHelper playListDBHelper = new PlayListDBHelper( this );
         SQLiteDatabase db = playListDBHelper.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery( "select mood, music, artist, videoId from PlayListData where mood like '%"+moodNum+"%'", null );
+        Cursor cursor = db.rawQuery( "select mood, music, artist, videoId from PlayListData where mood like '%" + moodNum + "%'", null );
 
         ArrayList<PlayListItem> data = new ArrayList<>();
         while (cursor.moveToNext()) {
@@ -139,7 +139,7 @@ public class PlayList extends YouTubeBaseActivity {
 
     // youtube, textView 배경색 지정 메소드
     private void youtubeBackgroundColor() {
-        if (happyInt == badInt && badInt == sadInt && sadInt == happyInt  && happyInt !=0)
+        if (happyInt == badInt && badInt == sadInt && sadInt == happyInt && happyInt != 0)
             youtubeLinearLayout.setBackgroundColor( Color.parseColor( "#FFFFFF" ) );
         if (happyInt > badInt && happyInt > sadInt)
             youtubeLinearLayout.setBackgroundColor( Color.parseColor( "#006400" ) );
@@ -171,9 +171,8 @@ public class PlayList extends YouTubeBaseActivity {
 
                     @Override
                     public void onLoaded(String id) {
-                        //player.loadVideo( videoId );
-                        player.cueVideo(videoId);
-                        //player.play();
+                        player.loadVideo( videoId );
+                        player.play();
                     }
 
                     @Override
@@ -198,7 +197,7 @@ public class PlayList extends YouTubeBaseActivity {
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
                 if (youTubeInitializationResult.isUserRecoverableError()) {
                     // 초기화 설정 오류시 사용, getErrorDialog
-                    youTubeInitializationResult.getErrorDialog(PlayList.this, RQS_ErrorDialog ).show();
+                    youTubeInitializationResult.getErrorDialog( PlayList.this, RQS_ErrorDialog ).show();
                 } else {
                     Toast.makeText( getApplicationContext(),
                             "YouTubePlayer.onInitializationFailure(): " + youTubeInitializationResult.toString(),
@@ -210,7 +209,7 @@ public class PlayList extends YouTubeBaseActivity {
 
     // moodNum, 기분별 음악 추천 코드 메소드
     private void moodNumStr() {
-        if (happyInt == badInt && badInt == sadInt && sadInt == happyInt && happyInt !=0)
+        if (happyInt == badInt && badInt == sadInt && sadInt == happyInt && happyInt != 0)
             moodNum = "555";
         if (happyInt > badInt && happyInt > sadInt)
             moodNum = "500";
