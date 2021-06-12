@@ -1,6 +1,7 @@
 package com.example.dodam;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -43,6 +44,8 @@ public class PlayList extends YouTubeBaseActivity {
     TextView numberPlaylist;
     ListView playlistCustom;
 
+    ImageView homeImageView;
+
     // 유튜브 API KEY
     private static String API_KEY = "AIzaSyAbJ7W-mkjLm5aYR0BuqWSvOq9pkAISOAg";
 
@@ -67,6 +70,8 @@ public class PlayList extends YouTubeBaseActivity {
 
         numberPlaylist = (TextView) findViewById( R.id.numberPlaylist );
         playlistCustom = (ListView) findViewById( R.id.playlistCustom );
+
+        homeImageView = (ImageView) findViewById( R.id.homeImageView );
 
         // 처음 안보이게 설정
         playerView.setVisibility( View.GONE );
@@ -135,6 +140,15 @@ public class PlayList extends YouTubeBaseActivity {
         // playlist 어댑터 연결
         PlayListAdapter playListAdapter = new PlayListAdapter( this, R.layout.custom_item_playlist, data );
         playlistCustom.setAdapter( playListAdapter );
+
+        // 3, 홈 화면 이동 이미지 버튼 리스너
+        homeImageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getApplicationContext(), MainActivity.class );
+                startActivity( intent );
+            }
+        } );
     }
 
     // youtube, textView 배경색 지정 메소드
