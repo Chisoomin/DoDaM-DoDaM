@@ -164,6 +164,10 @@ public class PlayList extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 player = youTubePlayer;
+
+                if (!b)
+                    player.cueVideo( videoId );
+
                 player.setPlayerStateChangeListener( new YouTubePlayer.PlayerStateChangeListener() {
                     @Override
                     public void onLoading() {
@@ -171,7 +175,7 @@ public class PlayList extends YouTubeBaseActivity {
 
                     @Override
                     public void onLoaded(String id) {
-                        player.loadVideo( videoId );
+                        // player.loadVideo( videoId );
                         player.play();
                     }
 
@@ -258,7 +262,7 @@ public class PlayList extends YouTubeBaseActivity {
 
             title.setText( playListItem.music );
             singer.setText( playListItem.artist );
-            mood.setImageDrawable( ResourcesCompat.getDrawable( context.getResources(), R.drawable.rightarrow, null ) );
+            mood.setImageDrawable( ResourcesCompat.getDrawable( context.getResources(), R.drawable.playbutton, null ) );
             mood.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
