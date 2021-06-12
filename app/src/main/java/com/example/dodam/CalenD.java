@@ -50,15 +50,10 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
     String month;
     String day;
 
+    int happyInt, badInt, sadInt;
+
     LinearLayout diaryContainer;
 
-    //DB 영역
-   /* DiaryDBHelper dbHelper = new DiaryDBHelper(this);
-    SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-    Cursor cursor = db.rawQuery("select strftime('%Y-%m-%d', date), content from DiaryData;", null);*/
-
-    //DB 끝
 
     /*
         구현 남은 것 메모
@@ -66,7 +61,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         2. 버튼을 눌렀을 경우 해당 날짜의 일기가 나오도록 하기
 
      */
-    @SuppressLint("WrongViewCast")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +97,9 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
             }
         });
 
+
+        diary.setText("작성된 글이 없습니다.");
+        stamp.setVisibility(View.INVISIBLE);
 
     }
 
@@ -193,14 +191,6 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         return calendar;
     }
 
-   /* //DB 영역
-    DiaryDBHelper dbHelper = new DiaryDBHelper(this);
-    SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-    Cursor cursor = db.rawQuery("select strftime('%Y-%m-%d', date), content from DiaryData;", null);
-
-    *///DB 끝
-
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
 
@@ -213,11 +203,15 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
 
         if ((mThisMonthCalendar.get(Calendar.MONTH) + 1) <= 9 && (mThisMonthCalendar.get(Calendar.MONTH) + 1) >= 1) {
             month = "0" + (mThisMonthCalendar.get(Calendar.MONTH) + 1);
+        } else {//if ((mThisMonthCalendar.get(Calendar.MONTH) + 1) >= 10 && (mThisMonthCalendar.get(Calendar.MONTH) + 1) <= 12) {
+            month = "" + (mThisMonthCalendar.get(Calendar.MONTH) + 1);
         }
-        //Integer.toString(from);
+
 
         if ((Integer.parseInt(String.valueOf(mDayList.get(position).getDay()))) <= 9 && (Integer.parseInt(String.valueOf(mDayList.get(position).getDay())) >= 1)) {
             day = "0" + mDayList.get(position).getDay();
+        } else {//if ((Integer.parseInt(String.valueOf(mDayList.get(position).getDay()))) >= 10 && (Integer.parseInt(String.valueOf(mDayList.get(position).getDay())) <= 31)) {
+            day = "" + (Integer.parseInt(String.valueOf(mDayList.get(position).getDay())));
         }
 
         date = mThisMonthCalendar.get(Calendar.YEAR) + ". " +
@@ -230,64 +224,50 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
 
         //일기 불러오기
 
-     /*   while (cursor.moveToNext()) {
-            if (cursor.getString(0).trim().equals(dbDate)){
-                diary.setText(cursor.getString(1));
-                diaryContainer.addView(diary);
+        //DB 영역
+        DiaryDBHelper dbHelper = new DiaryDBHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-            }
-        }*/
+        Cursor cursor = db.rawQuery("select date, content, happy, bad, sad from DiaryData;", null);
 
-        /*
-            일기가 DB에 있으면 일기랑 스탬프 보여주기 !! diary.setText(~); stamp.setImage(~);
-            없으면 diary.setText("작성된 글이 없습니다.");
-        */
 
-        // 이거 전달이나 다음달의 날짜를 누르게 되면 현재 달로 인식하니까 나중에 ... 구현할 것 ...
+        //감정 스탬프 받는 중
 
-        /* 원본
-            년 mThisMonthCalendar.get(Calendar.YEAR)
-            월 mThisMonthCalendar.get(Calendar.MONTH) + 1
-            일 mDayList.get(position).getDay()
-         DB에서 해당 년,월,일의 자료를 불러왔을 때 결과 값이 있으면
-         diary.setText("~~");
-         stamp.setVisibility(View.VISIBLE);
-         switch(스탬프):
-            case ~ :
-                stamp.setImageResource(R.drawable.~);
-                break;
-         없으면
-         diary.setText("작성된 글이 없습니다.");
+
+        diary.setText("작성된 글이 없습니다.");
         stamp.setVisibility(View.INVISIBLE);
-         */
-        /*
-        mThisMonthCalendar.get(Calendar.YEAR); // 년 위아래 둘 다 mThisMonthCalendar??
-        mThisMonthCalendar.get(Calendar.MONTH) + 1;  //월 오류 나는데 원코드에서 수정은 X
-        mDayList.get(position).getDay();  //일
 
-        // DB에서 해당 년,월,일의 자료를 불러왔을 때 결과 값이 있으면
-        // db 코딩해둔 것
-        while(cursor.moveToNext()) {
-            if (cursor.getString(0).equals(getString(Calendar.YEAR) + "-" + getString(Calendar.MONTH+1) + "-" + mDayList)) { // 날짜 정보 있을 때(오류 가능성 있음)
-                if (cursor.getString(1) != null) { // 내용이 있을 때
-                    diary.setText(cursor.getString(1)); //dairydb에서 content 꺼내기
-                    stamp.setVisibility(View.VISIBLE);
-                    switch (/*여기에 감정 어떻게 나타내는지 결정하면 db랑 같이 바꿔야함) {
-                        case /*스탬프별 케이스:
-                            stamp.setImageResource(R.drawable. ~); /*스탬프 그림
-                            break;
-                        case 스탬프별 케이스:
-                            stamp.setImageResource(R.drawable. ~); /*스탬프 그림
-                            break;
-                    }
-                }
-                else { //없으면
-                    diary.setText("작성된 글이 없습니다.");
-                    stamp.setVisibility(View.INVISIBLE);
-                }
+        while (cursor.moveToNext()) {
+
+            if (cursor.getString(0).equals(dbDate)) {
+                diary.setText(cursor.getString(1));
+                happyInt = cursor.getInt(2);
+                badInt = cursor.getInt(3);
+                sadInt = cursor.getInt(4);
+
+                //스탬프 감정 변경
+                if (happyInt == badInt && badInt == sadInt && happyInt != 0) // 감정 폭발(세개 다)
+                    stamp.setImageResource(R.drawable.stamp_full_feel);
+                if (happyInt > badInt && happyInt > sadInt) // 기쁨
+                    stamp.setImageResource(R.drawable.stamp_happy);
+                if (badInt > happyInt && badInt > sadInt) // 화남
+                    stamp.setImageResource(R.drawable.stamp_angry);
+                if (sadInt > badInt && sadInt > happyInt) //슬픔
+                    stamp.setImageResource(R.drawable.stamp_sad);
+                if (happyInt == badInt && happyInt > sadInt) // 기쁨+화남
+                    stamp.setImageResource(R.drawable.stamp_happy_angry);
+                if (happyInt == sadInt && happyInt > badInt) // 기쁨+슬픔
+                    stamp.setImageResource(R.drawable.stamp_sad_happy);
+                if (badInt == sadInt && badInt > happyInt) // 슬픔+화남
+                    stamp.setImageResource(R.drawable.stamp_sad_angry);
+                if (happyInt == badInt && badInt == 0 && sadInt == 0) // 감정 000
+                    stamp.setImageResource(R.drawable.stamp_no_feel);
+                //스탬프 끝
+                stamp.setVisibility(View.VISIBLE);
             }
 
-        }*/
+
+        }
 
 
     }
