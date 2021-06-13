@@ -22,7 +22,11 @@ public class HabitDBHelper extends SQLiteOpenHelper {
                 "step integer default 0)";  // 수치
 
         db.execSQL(HabitSQL);
-        HabitSQL = "insert into HabitData(numId, goal, step) values('1', '하루에 물 2L 마시기', 0)";
+        HabitSQL = "insert into HabitData(numId, goal, step) values('1', '클릭해서 목표설정', 0)";
+        db.execSQL(HabitSQL);
+        HabitSQL = "insert into HabitData(numId, goal, step) values('2', '클릭해서 목표설정', 0)";
+        db.execSQL(HabitSQL);
+        HabitSQL = "insert into HabitData(numId, goal, step) values('3', '클릭해서 목표설정', 0)";
         db.execSQL(HabitSQL);
     }
 

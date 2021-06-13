@@ -1,13 +1,13 @@
 package com.example.dodam;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.ActionBar;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -57,6 +57,10 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
                 Intent PL = new Intent(getApplicationContext(), PlayList.class);
                 startActivity(PL);
                 return true;
+            case R.id.logout:
+                Intent Intro = new Intent(getApplicationContext(), IntroPage.class);
+                startActivity(Intro);
+                return true;
         }
         return false;
     }
@@ -64,8 +68,6 @@ public class MainActivity extends TabActivity implements TabHost.OnTabChangeList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         tabHost = getTabHost();
 

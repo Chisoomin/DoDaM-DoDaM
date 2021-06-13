@@ -68,14 +68,38 @@ public class MiniGame extends AppCompatActivity {
 
         eggDB.close();
 
-        DBHelper dbHelper = new DBHelper( this );
-        SQLiteDatabase pointSavDB = dbHelper.getReadableDatabase();
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                while (true)
+                    try
+                    {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                DBHelper dbHelper = new DBHelper(MiniGame.this);
+                                SQLiteDatabase pointSavDB = dbHelper.getReadableDatabase();
 
-        Cursor pointSavCursor = pointSavDB.rawQuery( "select point from Dodam",null );
+                                Cursor pointSavCursor = pointSavDB.rawQuery( "select point from Dodam",null );
 
-        while (pointSavCursor.moveToNext()) {
-            pointSav = pointSavCursor.getInt( 0 );
-        }
+                                while (pointSavCursor.moveToNext()) {
+                                    pointSav = pointSavCursor.getInt( 0 );
+                                }
+                            }
+                        });
+                    }
+                    catch (InterruptedException e)
+                    {
+                        // error
+                    }
+            }
+        }).start();
+
 
         // 알깨는 횟수 = 나쁨 감정 * 10 or 100, 알깨는 횟수 다른 변수에 저장
         if (eggBadStr.equals( "0" ))

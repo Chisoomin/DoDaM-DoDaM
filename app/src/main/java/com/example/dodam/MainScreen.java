@@ -22,7 +22,7 @@ public class MainScreen extends AppCompatActivity {
     String[] saying;
     ConstraintLayout c;
     Integer SetPoint;
-
+    Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -56,7 +56,7 @@ public class MainScreen extends AppCompatActivity {
 
         DBHelper helper = new DBHelper( getApplicationContext() );
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery( "select point, _id from Dodam;", null );
+        cursor = db.rawQuery( "select point, _id from Dodam;", null );
 
         while (cursor.moveToNext()) {
             Integer id = cursor.getInt( 1 );
@@ -64,10 +64,58 @@ public class MainScreen extends AppCompatActivity {
                 SetPoint = cursor.getInt( 0 );
             }
         }
-        point.setText( " " + SetPoint );
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                while (true)
+                    try
+                    {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                DBHelper helper = new DBHelper( getApplicationContext() );
+                                SQLiteDatabase db = helper.getReadableDatabase();
+                                cursor = db.rawQuery( "select point, _id from Dodam;", null );
+                                while (cursor.moveToNext()) {
+                                    Integer id = cursor.getInt( 1 );
+                                    if (id == 2) {
+                                        SetPoint = cursor.getInt( 0 );
+                                    }
+                                }
+                                point.setText( " " + SetPoint );
+                                MyPoint = SetPoint;
+                                if (MyPoint >= 10 && MyPoint < 25) {
+                                    c.setBackgroundResource( R.drawable.main_2 );
+                                }
+                                if (MyPoint >= 25 && MyPoint < 45) {
+                                    c.setBackgroundResource( R.drawable.main_3 );
+                                }
+                                if (MyPoint >= 45 && MyPoint < 70) {
+                                    c.setBackgroundResource( R.drawable.main_4 );
+                                }
+                                if (MyPoint >= 70) {
+                                    c.setBackgroundResource( R.drawable.main_5 );
+                                }
+
+                            }
+                        });
+                    }
+                    catch (InterruptedException e)
+                    {
+                        // error
+                    }
+            }
+        }).start();
+        //point.setText( " " + SetPoint );
         //서버DB 연결 후 가져와서 명언 불러오는 것 구현
         //포인트 상의
-        try {
+        /*try {
             MyPoint = SetPoint;
         } catch (
                 NumberFormatException nfe) {
@@ -85,6 +133,6 @@ public class MainScreen extends AppCompatActivity {
         }
         if (MyPoint >= 70) {
             c.setBackgroundResource( R.drawable.main_4 );
-        }
+        }*/
     }
 }

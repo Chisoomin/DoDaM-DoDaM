@@ -65,6 +65,8 @@ public class HabitThree extends Fragment {
     View dialogView3;
     TextView goal3;
     AlertDialog.Builder dlg3;
+    Cursor cursor;
+    Integer s;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,21 +84,24 @@ public class HabitThree extends Fragment {
 
         };
         goal3 = (TextView)v.findViewById(R.id.goal3);
-
         final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
-        MyGridAdapter gAdapter = new MyGridAdapter(getActivity(),buttonNames);
+        MyGridAdapter gAdapter = new MyGridAdapter(getActivity(), buttonNames);
         gv.setAdapter(gAdapter);
-
         dialogView3 = getLayoutInflater().inflate(R.layout.dialog_habit, null);
         dlg3 = new AlertDialog.Builder(getActivity());
 
+        /*final GridView gv = (GridView)v.findViewById(R.id.habitTracker);
+        MyGridAdapter gAdapter = new MyGridAdapter(getActivity(),buttonNames,cursor.getInt(2), "3");
+        gv.setAdapter(gAdapter);*/
 
         HabitDBHelper habitDBHelper = new HabitDBHelper(getContext());
         final SQLiteDatabase db = habitDBHelper.getWritableDatabase();
         final SQLiteDatabase db2 = habitDBHelper.getReadableDatabase();
 
-        Cursor cursor = db2.rawQuery("select numID, goal from HabitData;", null);
+        cursor = db2.rawQuery("select numID, goal, step from HabitData;", null);
+
         while(cursor.moveToNext()) {
+            s = cursor.getInt(2);
             // 이미 목표가 설정되어 있을 때 변경하기
             if (cursor.getString(0).equals("3")) {
                 goal3.setText(cursor.getString(1));
