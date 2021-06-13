@@ -1,5 +1,6 @@
 package com.example.dodam;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -62,7 +63,7 @@ public class Intro_pwd0 extends Fragment {
     }
     ImageButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
     String firstpwd;
-    TextView textView;
+    TextView search;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,12 +78,13 @@ public class Intro_pwd0 extends Fragment {
         btn7 = (ImageButton)view.findViewById(R.id.n7);
         btn8 = (ImageButton)view.findViewById(R.id.n8);
         btn9 = (ImageButton)view.findViewById(R.id.n9);
-        textView = (TextView)view.findViewById(R.id.textView7);
+        search = (TextView)view.findViewById(R.id.textView7);
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent search = new Intent(getContext(), pwdSearch.class);
+                startActivity(search);
             }
         });
 

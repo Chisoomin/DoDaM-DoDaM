@@ -1,5 +1,6 @@
 package com.example.dodam;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 /**
@@ -61,10 +63,13 @@ public class Intro_pwd2 extends Fragment {
     }
     ImageButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
     String firstpwd, secondpwd, thirdpwd;
+    TextView search;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_pwd2, container, false);
+        search = (TextView)view.findViewById(R.id.textView7);
         btn0 = (ImageButton)view.findViewById(R.id.n0);
         btn1 = (ImageButton)view.findViewById(R.id.n1);
         btn2 = (ImageButton)view.findViewById(R.id.n2);
@@ -75,6 +80,14 @@ public class Intro_pwd2 extends Fragment {
         btn7 = (ImageButton)view.findViewById(R.id.n7);
         btn8 = (ImageButton)view.findViewById(R.id.n8);
         btn9 = (ImageButton)view.findViewById(R.id.n9);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent search = new Intent(getContext(), pwdSearch.class);
+                startActivity(search);
+            }
+        });
 
         if(getArguments()!=null){
             firstpwd = getArguments().getString("firstpwd");

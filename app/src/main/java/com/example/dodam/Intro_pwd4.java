@@ -64,17 +64,26 @@ public class Intro_pwd4 extends Fragment {
     }
 
     String firstpwd, secondpwd, thirdpwd, fourthpwd, putpwd, userPwd;
-    TextView textView;
+    TextView search;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_pwd4, container, false);
+        search = (TextView)view.findViewById(R.id.textView7);
         if (getArguments() != null) {
             firstpwd = getArguments().getString("firstpwd");
             secondpwd = getArguments().getString("secondpwd");
             thirdpwd = getArguments().getString("thirdpwd");
             fourthpwd = getArguments().getString("fourthpwd");
         }
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent search = new Intent(getContext(), pwdSearch.class);
+                startActivity(search);
+            }
+        });
 
         putpwd = firstpwd + secondpwd + thirdpwd + fourthpwd;
         //저장한 비밀번호 불러오기
