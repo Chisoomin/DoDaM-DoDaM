@@ -98,7 +98,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         });
 
 
-        diary.setText("작성된 글이 없습니다.");
+        diary.setText("작성된 글이 없습니다. \n터치해서 일기 쓰기  ");
         stamp.setVisibility(View.INVISIBLE);
 
     }
@@ -234,7 +234,7 @@ public class CalenD extends AppCompatActivity implements AdapterView.OnItemClick
         //감정 스탬프 받는 중
 
 
-        diary.setText("작성된 글이 없습니다.");
+        diary.setText("작성된 글이 없습니다. \n터치해서 일기 쓰기  ");
         stamp.setVisibility(View.INVISIBLE);
 
         while (cursor.moveToNext()) {
