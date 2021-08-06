@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalenD"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/mleft"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitCenter"
+                android:background="#FFFFFF"
+                android:src="@drawable/leftarrow"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginRight="20dp"
+                android:rotation="15"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">                    >
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="년월"
+                    android:textColor="#696969"
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/mright"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitCenter"
+                android:background="#FFFFFF"
+                android:src="@drawable/rightarrow"
+                android:layout_marginTop="2.5dp"
+                android:rotation="15"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center">
+            <TextView
+                android:textSize="15dp"
+                android:text="SUN"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textColor="#f58989"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="MON"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="TUE"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="WED"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="THU"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="FRI"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:text="SAT"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textColor="#79a9a9"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <GridView
+            android:id="@+id/calendar_grid"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="30dp"
+            android:numColumns="7"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3"
+            />
+
+        <RelativeLayout
+            android:id="@+id/diaryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/diary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="작성된 글이 없습니다. \n터치해서 일기 쓰기  "
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/stamp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
