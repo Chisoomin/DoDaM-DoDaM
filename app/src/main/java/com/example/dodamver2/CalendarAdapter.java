@@ -52,7 +52,7 @@ class CalendarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         DayInfo day = mDayList.get(position);
 
-        DayViewHolde dayViewHolder;
+        DayViewHolder dayViewHolder;
 
         if (convertView == null) {
             convertView = mLiInflater.inflate(mResource, null);
@@ -64,14 +64,14 @@ class CalendarAdapter extends BaseAdapter {
             }*/
 
 
-            dayViewHolder = new DayViewHolde();
+            dayViewHolder = new DayViewHolder();
 
             dayViewHolder.llBackground = (LinearLayout) convertView.findViewById(R.id.day_cell_ll_background);
             dayViewHolder.tvDay = (TextView) convertView.findViewById(R.id.day_cell_tv_day);
 
             convertView.setTag(dayViewHolder);
         } else {
-            dayViewHolder = (DayViewHolde) convertView.getTag();
+            dayViewHolder = (DayViewHolder) convertView.getTag();
         }
 
         if (day != null) {
@@ -94,7 +94,7 @@ class CalendarAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public class DayViewHolde {
+    public class DayViewHolder {
         public LinearLayout llBackground;
         public TextView tvDay;
 
