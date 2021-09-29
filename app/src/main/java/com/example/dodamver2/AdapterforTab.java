@@ -26,13 +26,18 @@ class AdapterforTab extends FragmentPagerAdapter {
                 CalenD tab3 = new CalenD();
                 return tab3;
             case 3:
-                MiniGame tab4 = new MiniGame();
+                GameSelect tab4 = new GameSelect();
                 return tab4;
             default:
                 return null;
         }
         //return null;
+
+
     }
+
+
+
 
     @Override
     public int getCount() {

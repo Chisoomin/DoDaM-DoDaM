@@ -2,6 +2,7 @@ package com.example.dodamver2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -25,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.playlist:
                 Intent PL = new Intent(getApplicationContext(), PlayList.class);
                 startActivity(PL);
@@ -40,6 +42,25 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    MiniGame miniGame;
+
+    public void changeFragment(int index) {
+        switch (index) {
+            case 1:
+                /*getSupportFragmentManager().beginTransaction().replace(R.id.main_container, miniGame).commit();
+                break;*/
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.main_container, miniGame);
+                ft.commit();
+            case 2:
+                //getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment_menu).commit();
+                break;
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
