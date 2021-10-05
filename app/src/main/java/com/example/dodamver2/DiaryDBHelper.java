@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DiaryDBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 5;
 
     //미완성!
 
@@ -27,9 +27,9 @@ public class DiaryDBHelper extends SQLiteOpenHelper {
                 "content text)"; //내용
 
         db.execSQL(DiarySQL);
-        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content) values(5, 0, 0, '2021-06-02', '오늘은 팀 프로젝트 중이다.')";
+        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content) values(5, 0, 0, '2021-10-02', '오늘은 팀 프로젝트 중이다.')";
         db.execSQL(DiarySQL);
-        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content) values(0, 8, 8, '2021-06-01', '과제가 많다.')";
+        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content) values(0, 8, 8, '2021-10-01', '과제가 많다.')";
         db.execSQL(DiarySQL);
     }
 

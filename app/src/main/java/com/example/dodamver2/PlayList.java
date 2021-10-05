@@ -189,8 +189,7 @@ public class PlayList extends YouTubeBaseActivity {
 
                     @Override
                     public void onLoaded(String id) {
-                        // player.loadVideo( videoId );
-                        player.play();
+                        player.loadVideo( videoId );
                     }
 
                     @Override
@@ -199,6 +198,7 @@ public class PlayList extends YouTubeBaseActivity {
 
                     @Override
                     public void onVideoStarted() {
+                        player.play();
                     }
 
                     @Override
@@ -223,6 +223,7 @@ public class PlayList extends YouTubeBaseActivity {
                 }
             }
         } );
+
     }
 
     // moodNum, 기분별 음악 추천 코드 메소드

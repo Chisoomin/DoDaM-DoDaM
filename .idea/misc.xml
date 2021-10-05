@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProject/DODAMver2/app/src/main/res/layout/activity_psychological_test.xml" value="0.33" />
-        <entry key="..\:/AndroidProject/DODAMver2/app/src/main/res/layout/test_recycle.xml" value="0.33" />
+        <entry key="..\:/MyAndroidProjects/CapstoneDesign/DODAM/app/src/main/res/layout/activity_diary_calendar.xml" value="0.23822463768115942" />
+        <entry key="..\:/MyAndroidProjects/CapstoneDesign/DODAM/app/src/main/res/layout/activity_play_list.xml" value="0.25271739130434784" />
+        <entry key="..\:/MyAndroidProjects/CapstoneDesign/DODAM/app/src/main/res/layout/custom_item_playlist.xml" value="0.25271739130434784" />
+        <entry key="..\:/MyAndroidProjects/CapstoneDesign/DODAM/app/src/main/res/layout/fragment_calen_d.xml" value="0.25226449275362317" />
       </map>
     </option>
   </component>
