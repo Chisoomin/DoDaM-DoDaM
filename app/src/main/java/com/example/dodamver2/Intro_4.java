@@ -1,6 +1,7 @@
 package com.example.dodamver2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -110,8 +111,8 @@ public class Intro_4 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intro In = Intro.newInstance();
-                ((IntroPage)getActivity()).replaceFragment(In);
+                Intent intent = new Intent(view.getContext(), Psychological_Test.class);
+                startActivity(intent);
 
                 pwd = edit_pwd.getText().toString();
                 hint = edit_hint.getText().toString();

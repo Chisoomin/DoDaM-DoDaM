@@ -108,6 +108,7 @@ class MyGridAdapter extends BaseAdapter {
             while (cursor3.moveToNext()) {
                 if (Integer.valueOf(cursor3.getString(0)) == position + 1) {
                     savestep = cursor3.getInt(2);
+                    i=savestep;
                 }
             }
             if (j < savestep) {
@@ -123,7 +124,7 @@ class MyGridAdapter extends BaseAdapter {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (i != pos) {
+                    if (i != arg0) {
                         Toast.makeText(context, "차례로 클릭해 주세요", Toast.LENGTH_SHORT).show();
                     } else {
                         v.setBackground(ContextCompat.getDrawable(context, R.drawable.rr_habit_check_2));

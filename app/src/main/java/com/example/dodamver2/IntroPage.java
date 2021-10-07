@@ -35,7 +35,7 @@ public class IntroPage extends AppCompatActivity {
             }else{
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.add(R.id.container, new Intro_1());
+                fragmentTransaction.add(R.id.container, new IntroExplain());
                 fragmentTransaction.commit();
             }
         }

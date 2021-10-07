@@ -30,6 +30,9 @@ import static com.example.dodamver2.MainScreen.MY_ACTION;
 class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHolder> {
     Context c;
     ArrayList<Habit_getset> list = new ArrayList<Habit_getset>();
+
+
+
     final String[] buttonNames = {
             "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "10",

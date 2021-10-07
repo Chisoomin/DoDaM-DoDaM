@@ -9,11 +9,11 @@
         android:id="@+id/textView15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#BFB873"
+        android:background="#DFBFCA"
         android:paddingLeft="10dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/radioGroup2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D5CC80"
+        android:background="#C5A8B2"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,36 +31,58 @@
         tools:ignore="MissingConstraints">
 
         <RadioButton
-            android:id="@+id/radioButton16"
+            android:id="@+id/day1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton17"
+            android:id="@+id/day12"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton18"
+            android:id="@+id/day34"
             android:layout_width="wrap_content"
 
             android:layout_height="50dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton19"
+            android:id="@+id/day57"
             android:layout_width="wrap_content"
 
             android:layout_height="50dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton20"
+            android:id="@+id/week2"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_weight="1" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="결과 보기"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

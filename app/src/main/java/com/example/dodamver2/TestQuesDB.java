@@ -10,7 +10,7 @@ class TestQuesDB extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     public TestQuesDB(@Nullable Context context) {
-        super(context, "mydb", null, DATABASE_VERSION);
+        super(context, "mydb2", null, DATABASE_VERSION);
     }
 
     @Override
