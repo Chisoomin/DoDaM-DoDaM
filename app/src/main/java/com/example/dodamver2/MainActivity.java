@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -71,18 +72,29 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setId(1));
         tabs.addTab(tabs.newTab().setId(2));
         tabs.addTab(tabs.newTab().setId(3));
+        tabs.addTab(tabs.newTab().setId(4));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         //tabs.getTabAt(0).view.setBackgroundResource(R.drawable.home_btn);
+        tabs.getTabAt(0).view.setBackgroundResource(R.drawable.calendar_btn);
         tabs.getTabAt(1).view.setBackgroundResource(R.drawable.habit_btn);
-        tabs.getTabAt(2).view.setBackgroundResource(R.drawable.calendar_btn);
-        tabs.getTabAt(3).view.setBackgroundResource(R.drawable.minigame_btn);
+        tabs.getTabAt(2).view.setBackgroundResource(R.drawable.home_btn);
+        tabs.getTabAt(3).view.setBackgroundResource(R.drawable.statistics_btn);
+        tabs.getTabAt(4).view.setBackgroundResource(R.drawable.foryou_btn);
 
-        tabs.getTabAt(0).view.setBackgroundResource(R.drawable.open_btn);
+        //tabs.getTabAt(2).view.setBackgroundResource(R.drawable.open_btn);
+        new Handler().postDelayed(
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        tabs.getTabAt(2).select();
+                    }
+                }, 0);
+
 
         //Adapter
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        final AdapterforTab myPagerAdapter = new AdapterforTab(getSupportFragmentManager(), 4);
+        final AdapterforTab myPagerAdapter = new AdapterforTab(getSupportFragmentManager(), 5);
         viewPager.setAdapter(myPagerAdapter);
 
         //탭 선택 이벤트
@@ -96,10 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tabs.getTabAt(0).view.setBackgroundResource(R.drawable.home_btn);
+                tabs.getTabAt(0).view.setBackgroundResource(R.drawable.calendar_btn);
                 tabs.getTabAt(1).view.setBackgroundResource(R.drawable.habit_btn);
-                tabs.getTabAt(2).view.setBackgroundResource(R.drawable.calendar_btn);
-                tabs.getTabAt(3).view.setBackgroundResource(R.drawable.minigame_btn);
+                tabs.getTabAt(2).view.setBackgroundResource(R.drawable.home_btn);
+                tabs.getTabAt(3).view.setBackgroundResource(R.drawable.statistics_btn);
+                tabs.getTabAt(4).view.setBackgroundResource(R.drawable.foryou_btn);
             }
 
             @Override

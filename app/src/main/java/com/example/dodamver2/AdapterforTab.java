@@ -17,17 +17,20 @@ class AdapterforTab extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0 :
-                MainScreen tab1 = new MainScreen();
+                CalenD tab1 = new CalenD();
                 return tab1;
             case 1:
                 HabitTracker tab2 = new HabitTracker();
                 return tab2;
             case 2:
-                CalenD tab3 = new CalenD();
+                MainScreen tab3 = new MainScreen();
                 return tab3;
             case 3:
-                GameSelect tab4 = new GameSelect();
+                Statistics tab4 = new Statistics();
                 return tab4;
+            case 4:
+                ForYou tab5 = new ForYou();
+                return tab5;
             default:
                 return null;
         }
