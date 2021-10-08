@@ -2,6 +2,7 @@ package com.example.dodamver2;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -32,6 +33,7 @@ public class MoleGame2 extends AppCompatActivity {
     //ImageView hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9;
     Button timerBtn;
     Thread thread;
+    ConstraintLayout hole_container, game_container;
 
     final String TAG_ON = "on"; //태그용
     final String TAG_OFF = "off";
@@ -48,6 +50,10 @@ public class MoleGame2 extends AppCompatActivity {
         timer = (TextView) findViewById(R.id.timer);
         score = (TextView) findViewById(R.id.score);
         timerBtn = (Button) findViewById(R.id.timer_button);
+        hole_container = (ConstraintLayout) findViewById(R.id.hole_container);
+        game_container = (ConstraintLayout) findViewById(R.id.game_container);
+
+        hole_container.setVisibility(View.INVISIBLE);
 
       /*  // 9개
         hole1 = (ImageView) view.findViewById(R.id.hole1);
@@ -67,7 +73,7 @@ public class MoleGame2 extends AppCompatActivity {
             // img_array[i].setImageResource(R.drawable.mole);
 
 
-             img_array[i].setOnClickListener(new View.OnClickListener() {
+            img_array[i].setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -93,7 +99,7 @@ public class MoleGame2 extends AppCompatActivity {
                 timer.start();
                 timer.setTextColor(Color.BLUE);*/
                 timerBtn.setVisibility(View.INVISIBLE);
-
+                hole_container.setVisibility(View.VISIBLE);
                 thread = new Thread(new timeCheck());
                 thread.start();
 
@@ -111,7 +117,7 @@ public class MoleGame2 extends AppCompatActivity {
     // 두더지 터치 중복 -> 강종 방지
     public abstract class OnSingleClickListener implements View.OnClickListener {
         //중복클릭시간차이
-        private static final long MIN_CLICK_INTERVAL=600;
+        private static final long MIN_CLICK_INTERVAL = 600;
 
         //마지막으로 클릭한 시간
         private long mLastClickTime;
@@ -121,14 +127,14 @@ public class MoleGame2 extends AppCompatActivity {
         @Override
         public final void onClick(View v) {
             //현재 클릭한 시간
-            long currentClickTime=SystemClock.uptimeMillis();
+            long currentClickTime = SystemClock.uptimeMillis();
             //이전에 클릭한 시간과 현재시간의 차이
-            long elapsedTime=currentClickTime-mLastClickTime;
+            long elapsedTime = currentClickTime - mLastClickTime;
             //마지막클릭시간 업데이트
-            mLastClickTime=currentClickTime;
+            mLastClickTime = currentClickTime;
 
             //내가 정한 중복클릭시간 차이를 안넘었으면 클릭이벤트 발생못하게 return
-            if(elapsedTime<=MIN_CLICK_INTERVAL)
+            if (elapsedTime <= MIN_CLICK_INTERVAL)
                 return;
             //중복클릭시간 아니면 이벤트 발생
             onSingleClick(v);
@@ -241,7 +247,7 @@ public class MoleGame2 extends AppCompatActivity {
     private void moleDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MoleGame2.this);
 
-       // 배경 터치 무력화
+        // 배경 터치 무력화
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
@@ -254,7 +260,7 @@ public class MoleGame2 extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 finish();
                 // 확인 버튼을 누른 후 토스트 메세지
-               Toast.makeText(getApplicationContext(), "홈으로 돌아갑니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "홈으로 돌아갑니다", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
