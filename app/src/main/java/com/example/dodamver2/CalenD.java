@@ -231,6 +231,7 @@ public class CalenD extends Fragment {
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
 
+        // 클릭하면 날짜에 노란점
         for (int i = 0; i < parent.getChildCount(); i++) {
             parent.getChildAt(i).findViewById(R.id.flag).setVisibility(View.INVISIBLE);
 
@@ -326,6 +327,4 @@ public class CalenD extends Fragment {
         mCalendarAdapter = new CalendarAdapter(getContext(), R.layout.item_view_calendar, mDayList);
         mGvCalendar.setAdapter(mCalendarAdapter);
     }
-
-
 }

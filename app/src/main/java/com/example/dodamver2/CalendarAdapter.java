@@ -79,9 +79,9 @@ class CalendarAdapter extends BaseAdapter {
 
             if (day.isInMonth()) {
                 if (position % 7 == 0) {
-                    dayViewHolder.tvDay.setTextColor(Color.BLACK);
+                    dayViewHolder.tvDay.setTextColor(Color.parseColor( "#f58989" ));
                 } else if (position % 7 == 6) {
-                    dayViewHolder.tvDay.setTextColor(Color.BLACK);
+                    dayViewHolder.tvDay.setTextColor(Color.parseColor( "#79a9a9" ));
                 } else {
                     dayViewHolder.tvDay.setTextColor(Color.BLACK);
                 }
