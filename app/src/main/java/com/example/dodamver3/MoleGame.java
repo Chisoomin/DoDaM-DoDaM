@@ -66,8 +66,8 @@ public class MoleGame extends AppCompatActivity {
             img_array[i] = (ImageView) findViewById(imageID[i]);
             //img_array[i].setForeground(ContextCompat.getDrawable(getContext(), R.drawable.mole));
             // img_array[i].setImageResource(R.drawable.mole);
-
-
+            img_array[i].setTag(TAG_OFF);
+           // System.out.println(img_array[i]);
             img_array[i].setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
