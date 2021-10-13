@@ -83,7 +83,7 @@
                         android:gravity="left"
                         android:text="업적"
                         android:textColor="#353535"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <View
@@ -94,8 +94,8 @@
 
                     <ImageButton
                         android:id="@+id/questionMark1"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="#FFFFFF"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
@@ -146,8 +146,8 @@
 
                     <ImageButton
                         android:id="@+id/questionMark2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="#FFFFFF"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
@@ -185,7 +185,7 @@
                         android:gravity="left"
                         android:text="미니 게임"
                         android:textColor="#353535"
-                        android:textSize="22sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <View
@@ -196,8 +196,8 @@
 
                     <ImageButton
                         android:id="@+id/questionMark3"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="#FFFFFF"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
@@ -215,8 +215,8 @@
 
                         <LinearLayout
                             android:id="@+id/eggBtn_container"
-                            android:layout_width="120dp"
-                            android:layout_height="160dp"
+                            android:layout_width="100dp"
+                            android:layout_height="130dp"
                             android:layout_marginRight="16dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -226,15 +226,15 @@
 
                             <ImageButton
                                 android:id="@+id/eggBtn"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
                                 android:background="#FFE6E6"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/eggs" />
 
                             <TextView
                                 android:id="@+id/egg_text"
-                                android:layout_width="match_parent"
+                                android:layout_width="100dp"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:text="알깨기 게임"
@@ -244,8 +244,8 @@
 
                         <LinearLayout
                             android:id="@+id/moleBtn_container"
-                            android:layout_width="120dp"
-                            android:layout_height="160dp"
+                            android:layout_width="100dp"
+                            android:layout_height="130dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -254,8 +254,8 @@
 
                             <ImageButton
                                 android:id="@+id/moleBtn"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
                                 android:background="#E4F8AE"
                                 android:padding="5dp"
                                 android:scaleType="fitXY"
@@ -263,11 +263,11 @@
 
                             <TextView
                                 android:id="@+id/mole_text"
-                                android:layout_width="match_parent"
+                                android:layout_width="100dp"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:text="두더지 잡기"
-                                android:textSize="16sp"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>

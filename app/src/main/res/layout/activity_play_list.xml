@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="오늘 감정에 어울리는"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/musicPlayList"
@@ -72,7 +72,7 @@
             android:layout_gravity="center"
             android:text="나의 몇번째 플레이리스트"
             android:textColor="#000000"
-            android:textSize="21sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ListView

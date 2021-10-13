@@ -60,7 +60,8 @@
                 android:hint="글을 입력해주세요."
                 android:inputType="textMultiLine"
                 android:padding="15dp"
-                android:textColor="#333333" />
+                android:textColor="#333333"
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 

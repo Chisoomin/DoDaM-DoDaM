@@ -520,7 +520,7 @@ public class ForYou extends Fragment {
         Cursor okCursor = rewardDB.rawQuery( "select exp from rewardData", null );
         boolean checkDB = false;
         while (okCursor.moveToNext()) {
-            if ((okCursor.getString( 0 )).equals( "도담 나무 1단계 달성!" )) {
+            if ((okCursor.getString( 0 )).equals( "도담 포인트 첫단계 진입!" )) {
                 checkDB = true;
                 break;
             }
@@ -532,8 +532,8 @@ public class ForYou extends Fragment {
                 byte[] trophy3 = getByteArrayFromDrawable( trophy3D );
                 SQLiteStatement p = rewardDB.compileStatement( "INSERT INTO RewardData(image, exp, detailExp) values(?,?,?);" );
                 p.bindBlob( 1, trophy3 );
-                p.bindString( 2, "도담 나무 1단계 달성!" );
-                p.bindString( 3, "도담 나무가 1단계 성장했어요!\n더욱 성장하는 모습을 같이 봐요!" );
+                p.bindString( 2, "도담 포인트 첫단계 진입!" );
+                p.bindString( 3, "도담 포인트의 첫단계에 진입했어요!\n포인트를 모아서 나무를 성장시켜봐요!" );
                 p.execute();
             }
         }
