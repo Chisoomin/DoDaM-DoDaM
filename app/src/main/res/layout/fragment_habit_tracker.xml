@@ -79,14 +79,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#77123456"
+        android:background="@color/pink1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:selectorColor="#424247"
-        app:textColorNormal="#000000"
-        app:textColorSelected="#123456">
+        app:selectorColor="#f4a0a0"
+        app:textColorNormal="#8E8E8E"
+        app:textColorSelected="#4A4945">
 
     </devs.mulham.horizontalcalendar.HorizontalCalendarView>
 

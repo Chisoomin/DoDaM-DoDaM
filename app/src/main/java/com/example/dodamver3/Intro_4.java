@@ -71,7 +71,7 @@ public class Intro_4 extends Fragment {
     DBHelper helper;
     SQLiteDatabase join;
     View view;
-    Integer point = 0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,18 +114,24 @@ public class Intro_4 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), Psychological_Test.class);
-                startActivity(intent);
-
+                Intro_bonus In_b = Intro_bonus.newInstance();
+                ((IntroPage) getActivity()).replaceFragment(In_b);
                 pwd = edit_pwd.getText().toString();
                 hint = edit_hint.getText().toString();
                 hint_answer = edit_hint_answer.getText().toString();
-
-
-                String query = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('" + name + "', '" + gender + "', '" + pwd + "', '" + hint + "', '" + hint_answer + "','" + birthday + "','" + point + "')";
-
-                join.execSQL(query);
-                join.close();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                In_b.setArguments(bundle);
+                bundle.putString("gender", gender);
+                In_b.setArguments(bundle);
+                bundle.putString("birthday", birthday);
+                In_b.setArguments(bundle);
+                bundle.putString("pwd", pwd);
+                In_b.setArguments(bundle);
+                bundle.putString("hint", hint);
+                In_b.setArguments(bundle);
+                bundle.putString("hint_answer", hint_answer);
+                In_b.setArguments(bundle);
 
             }
         });

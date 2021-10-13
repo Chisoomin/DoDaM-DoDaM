@@ -10,57 +10,57 @@ class TestQuesDB extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     public TestQuesDB(@Nullable Context context) {
-        super(context, "mydb2", null, DATABASE_VERSION);
+        super(context, "testDB", null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String testSQL = "create table TestQues(" +
                 "_id integer primary key autoincrement," +
+                "ques_numid test, " + //질문 아이디
                 "questions text, " + // 질문
-                "type text, " + // 질문 타입
-                "answer text)";  // 대답
+                "type text)";  // 질문 타입
 
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('1. 식욕이 없었다.', 'Appetite', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('1', '평소에는 아무렇지도 않던 일들이 괴롭고 귀찮게 느껴졌다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('2. 울적한 기분을 떨쳐 버릴 수 없었다.', 'Sadness', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('2', '먹고 싶지 않고 식욕이 없었다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('3. 무슨 일을 하든 정신을 집중하기가 힘들었다.', 'Thinking / concentration', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('3', '어느 누가 도와준다 하더라도 나의 울적한 기분을 떨쳐버릴 수 없을 것 같았다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('4. 상당히 우울했다.', 'Sadness', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('4', '무슨 일을 하든 정신을 집중하기가 힘들었다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('5. 잠을 설쳤다(잠을 잘 이루지 못했다).', 'Sleep', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('5', '비교적 잘 지냈다.', 'positive')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('6. 마음이 슬펐다.', 'Sadness', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('6', '상당히 우울했다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('7. 도무지 뭘 해 나갈 엄두가 나지 않았다.', 'Tired', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('7', '모든 일들이 힘들게 느껴졌다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('8. 나를 행복하게 하는 것은 아무것도 없었다.', 'Loss of Interest', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('8', '앞일이 암담하게 느껴졌다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('9. 내가 나쁜 사람처럼 느껴졌다.', 'Guilt', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('9', '지금까지의 내 인생은 실패작이라는 생각이 들었다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('10. 일상 활동에 대한 흥미를 잃었다.', 'Loss of Interest', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('10', '적어도 보통 사람들만큼의 능력은 있었다고 생각한다.', 'positive')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('11. 평소보다 훨씬 더 많이 잤다.', 'Sleep', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('11', '잠을 설쳤다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('12. 내 움직임이 너무 둔해진 것처럼 느껴졌다.', 'Movement', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('12', '두려움을 느꼈다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('13. 안절부절 못했다.', 'Movement', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('13', '평소에 비해 말수가 적었다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('14. 죽었으면 하고 바랬다.', 'Suicidal ideation', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('14', '세상에 홀로 있는 듯한 외로움을 느꼈다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('15. 자해하고 싶었다.', 'Suicidal ideation', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('15', '큰 불만 없이 생활했다.', 'positive')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('16. 항상 피곤했다.', 'Tired', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('16', '사람들이 나에게 차갑게 대하는 것 같았다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('17. 나 자신이 싫었다.', 'Guilt', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('17', '갑자기 울음이 나왔다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('18. (살을 빼려고) 노력하지 않았는데, 몸무게가 많이 줄었다.', 'Appetite', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('18', '마음이 슬펐다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('19. 잠들기가 많이 힘들었다.', 'Sleep', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('19', '사람들이 나를 싫어하는 것 같았다.', 'negative')";
         db.execSQL(testSQL);
-        testSQL = "insert into TestQues(questions, type, answer) values('20. 중요한 일에 집중할 수가 없었다.', 'Thinking / concentration', null)";
+        testSQL = "insert into TestQues(ques_numid, questions, type) values('20', '도무지 무엇을 해 나갈 엄두가 나지 않았다.', 'negative')";
         db.execSQL(testSQL);
 
     }

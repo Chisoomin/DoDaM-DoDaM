@@ -2,6 +2,7 @@ package com.example.dodamver3;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("DoDaMDoDam");
+        setTitle("DoDaMDoDaM");
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setId(0));
@@ -122,4 +123,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

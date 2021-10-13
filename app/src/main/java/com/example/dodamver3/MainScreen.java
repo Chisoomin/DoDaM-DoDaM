@@ -15,8 +15,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,6 +26,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +76,7 @@ public class MainScreen extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     TextView point, Fsaying, Fpeople;
     Integer MyPoint;
     ImageView plant;
@@ -80,76 +86,136 @@ public class MainScreen extends Fragment {
     Integer SetPoint;
     Cursor cursor;
     BroadcastReceiver broadcastReceiver;
-    public static final String MY_ACTION = "com.example.dodamver2.action.ACTION_MY_BROADCAST";
-
+    public static final String MY_ACTION = "com.example.dodamver3.action.ACTION_MY_BROADCAST";
+    Button test_btn, minigame_btn;
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    int i=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_screen, container, false);
-        c = (ConstraintLayout) view.findViewById( R.id.Main );
+        c = (ConstraintLayout) view.findViewById(R.id.Main);
         plant = view.findViewById(R.id.plant);
-        point = (TextView) view.findViewById( R.id.point );
-        Fsaying = (TextView) view.findViewById( R.id.Fsaying );
-        Fpeople = (TextView) view.findViewById( R.id.Fpeople );
+        point = (TextView) view.findViewById(R.id.point);
+        Fsaying = (TextView) view.findViewById(R.id.Fsaying);
+        Fpeople = (TextView) view.findViewById(R.id.Fpeople);
+        test_btn = view.findViewById(R.id.test_btn);
+        minigame_btn = view.findViewById(R.id.minigame_btn);
 
         RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
 
         String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         re = response;
-                        Log.e("명언", " "+re.toString());
-                        saying = re.split( "#" );
-                        Fsaying.setText( "\"" + saying[0].trim() + "\"" );
-                        Fpeople.setText( "- " + saying[1].trim() );
+                        Log.e("명언", " " + re.toString());
+                        saying = re.split("#");
+                        Fsaying.setText("\"" + saying[0].trim() + "\"");
+                        Fpeople.setText("- " + saying[1].trim());
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("오류", " "+error);
+                        Log.e("오류", " " + error);
 
                     }
-                } );
-        requestQueue.add( stringRequest );
+                });
+        requestQueue.add(stringRequest);
 
-        DBHelper helper = new DBHelper( getContext() );
+        DBHelper helper = new DBHelper(getContext());
         SQLiteDatabase db = helper.getReadableDatabase();
-        cursor = db.rawQuery( "select point, _id from Dodam;", null );
+        cursor = db.rawQuery("select point, _id from Dodam;", null);
+
+        test_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestResultDB testResultDB = new TestResultDB(view.getContext());
+                SQLiteDatabase db_r = testResultDB.getReadableDatabase();
+                Cursor cursor = db_r.rawQuery("select date, answer from TestResult;", null);
+                mNow = System.currentTimeMillis();
+                mDate = new Date(mNow);
+                String date = mFormat.format(mDate);
+
+                while (cursor.moveToNext()) {
+                    if (cursor.getString(0).equals(date)) {
+                        i++;
+                    }
+                }
+                if(i!=0){
+                    Toast.makeText(view.getContext(),"오늘의 심리진단은 완료되었습니다. 잘했어요!", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(view.getContext(), Psychological_Test.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+        minigame_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(view.getContext(), GameSelect2.class);
+                startActivity(intent2);
+            }
+        });
 
         while (cursor.moveToNext()) {
-            Integer id = cursor.getInt( 1 );
+            Integer id = cursor.getInt(1);
             if (id == 2) {
-                SetPoint = cursor.getInt( 0 );
+                SetPoint = cursor.getInt(0);
             }
         }
-
+        DBHelper DBHelper = new DBHelper(getContext());
+        SQLiteDatabase db_r = DBHelper.getReadableDatabase();
+        cursor = db_r.rawQuery("select point, _id from Dodam;", null);
+        while (cursor.moveToNext()) {
+            Integer id = cursor.getInt(1);
+            if (id == 2) {
+                SetPoint = cursor.getInt(0);
+            }
+        }
+        point.setText(String.valueOf(SetPoint));
+        MyPoint = SetPoint;
+        if (MyPoint >= 10 && MyPoint < 25) {
+            plant.setImageResource(R.drawable.grow_33);
+        }
+        if (MyPoint >= 25 && MyPoint < 45) {
+            plant.setImageResource(R.drawable.grow_66);
+        }
+        if (MyPoint >= 45 && MyPoint < 70) {
+            plant.setImageResource(R.drawable.grow_99);
+        }
+        if (MyPoint >= 70) {
+            plant.setImageResource(R.drawable.grow_perfect);
+        }
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (MY_ACTION.equals(intent.getAction())) {
-                    DBHelper helper = new DBHelper( getContext() );
+                    DBHelper helper = new DBHelper(getContext());
                     SQLiteDatabase db = helper.getReadableDatabase();
-                    cursor = db.rawQuery( "select point, _id from Dodam;", null );
+                    cursor = db.rawQuery("select point, _id from Dodam;", null);
                     while (cursor.moveToNext()) {
-                        Integer id = cursor.getInt( 1 );
+                        Integer id = cursor.getInt(1);
                         if (id == 2) {
-                            SetPoint = cursor.getInt( 0 );
+                            SetPoint = cursor.getInt(0);
                         }
                     }
-                    point.setText( " " + SetPoint );
+                    point.setText(String.valueOf(SetPoint));
                     MyPoint = SetPoint;
                     if (MyPoint >= 10 && MyPoint < 25) {
-                        plant.setBackgroundResource( R.drawable.grow_33 );
+                        plant.setBackgroundResource(R.drawable.grow_33);
                     }
                     if (MyPoint >= 25 && MyPoint < 45) {
-                        c.setBackgroundResource( R.drawable.grow_66 );
+                        c.setBackgroundResource(R.drawable.grow_66);
                     }
                     if (MyPoint >= 45 && MyPoint < 70) {
-                        c.setBackgroundResource( R.drawable.grow_99 );
+                        c.setBackgroundResource(R.drawable.grow_99);
                     }
                     if (MyPoint >= 70) {
                         c.setBackgroundResource(R.drawable.grow_perfect);
@@ -160,6 +226,7 @@ public class MainScreen extends Fragment {
 
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -167,6 +234,7 @@ public class MainScreen extends Fragment {
         filter.addAction(MY_ACTION);
         getContext().registerReceiver(broadcastReceiver, filter);
     }
+
     @Override
     public void onPause() {
         super.onPause();

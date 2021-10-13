@@ -2,11 +2,13 @@ package com.example.dodamver3;
 
 class habit_getset {
     String habit_num, habit, date;
+    Integer color;
 
-    public habit_getset(String habit_num, String habit, String date) {
+    public habit_getset(String habit_num, String habit, String date, Integer color) {
         this.habit_num = habit_num;
         this.habit = habit;
         this.date = date;
+        this.color = color;
     }
 
     public String getHabit_num() {
@@ -31,6 +33,14 @@ class habit_getset {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getColor() {
+        return color;
+    }
+
+    public void setColor(Integer color) {
+        this.color = color;
     }
 }
 

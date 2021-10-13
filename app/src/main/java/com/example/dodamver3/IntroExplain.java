@@ -11,6 +11,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +66,7 @@ public class IntroExplain extends Fragment {
 
     EditText name;
     ImageView Introoo;
+    TextView subTitle;
     AlphaAnimation AA;
     String i = "0";
 
@@ -76,9 +78,10 @@ public class IntroExplain extends Fragment {
         ImageButton next = (ImageButton) view.findViewById(R.id.n_btn);
         name = view.findViewById(R.id.name);
         Introoo = (ImageView) view.findViewById(R.id.introoo);
+        subTitle = view.findViewById(R.id.subtitle);
 
         AA = new AlphaAnimation(1, 0);
-        AA.setDuration(1000);
+        AA.setDuration(3000);
         AA.setStartOffset(2500);
 
         if (getArguments() != null) {
@@ -88,9 +91,12 @@ public class IntroExplain extends Fragment {
         if (i != null) {
             if (i.equals("1")) {
                 Introoo.setVisibility(View.INVISIBLE);
+                subTitle.setVisibility(View.INVISIBLE);
             } else {
                 Introoo.setAnimation(AA);
                 Introoo.setVisibility(View.INVISIBLE);
+                subTitle.setAnimation(AA);
+                subTitle.setVisibility(View.INVISIBLE);
             }
         }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -85,6 +86,14 @@ public class Intro_3 extends Fragment {
         Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        birthday.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                new DatePickerDialog(view.getContext(), mDateSetListener, Year, Month, Day).show();
+                return true;
+            }
+        });
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
