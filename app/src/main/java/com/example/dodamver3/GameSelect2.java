@@ -44,7 +44,7 @@ public class GameSelect2 extends AppCompatActivity {
                 ((GameSelect) getActivity()).replaceFragment(miniGame);
 */
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(GameSelect2.this);
 
                 builder.setMessage("알 깨기 게임을 시작할까요?");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -71,7 +71,7 @@ public class GameSelect2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(GameSelect2.this);
 
                 builder.setMessage("두더지 잡기 게임을 시작할까요?");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
