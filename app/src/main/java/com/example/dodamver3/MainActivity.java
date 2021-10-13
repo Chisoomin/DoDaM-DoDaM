@@ -9,9 +9,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     //MiniGame miniGame;
 
+
     public void changeFragment(int index) {
         switch (index) {
             case 1:
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("DoDaMDoDaM");
+
+
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setId(0));

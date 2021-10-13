@@ -4,5 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="result">척도지 점수 및 결과, 검진기준, 그래프(검진기준 표시), 인터넷 자가검진은 간이검사이므로 진단을 대신할 수 없습니다.
 보다 자세한 사항은 정신보건전문요원 또는 전문의의 상담이 필요합니다.</string>
+    <string name="default_notification_channel_id">Channel ID</string>
+
+    <string name="default_notification_channel_name" translatable="true">DoDaMDoDaM</string>
+    <string name="fcm_message">DoDaMDoDaM</string>
 
 </resources>

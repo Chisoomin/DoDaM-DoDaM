@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/roundbackground"
@@ -33,24 +34,39 @@
                 android:paddingBottom="5dp"
                 android:text="검진기준"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView23"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="16점 미만 : 정상\n16~20점 : 약간의/보통의 우울감\n21~24점 : 심한 우울감\n25점 이상 : 매우 심한 우울감"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="16점 미만 : 정상\n16~20점 : 약간의/보통의 우울감\n21~24점 : 심한 우울감\n25점 이상 : 매우 심한 우울감"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </ScrollView>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/roundbackground2"
             android:orientation="vertical">
@@ -67,7 +83,8 @@
                 android:paddingBottom="5dp"
                 android:text="결과보기"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -82,7 +99,7 @@
                     android:padding="10dp"
                     android:text="TextView"
                     android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </ScrollView>
 
 

@@ -14,20 +14,20 @@
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_game_select_2.xml" value="0.20520833333333333" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_intro_page.xml" value="0.1" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_mole_game.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_mole_game.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_play_list.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_psychological_test.xml" value="0.25280898876404495" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/activity_pwd_search.xml" value="0.1" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/custom_item_playlist.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_calen_d.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_for_you.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_for_you.xml" value="0.25" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_game_select.xml" value="0.1" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_habit_tracker.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro.xml" value="0.33" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_1.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_1.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_2.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_3.xml" value="0.33" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_4.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_4.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_bonus.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_explain.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/fragment_intro_pwd.xml" value="0.1" />
@@ -36,10 +36,13 @@
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/habit_dialog.xml" value="0.35294117647058826" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/habit_layout.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/item_view_calendar.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/playlist_recycler.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/mypage_custom_dialog.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/notification.xml" value="0.2046875" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/playlist_recycler.xml" value="0.25" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/test_dialog.xml" value="0.33" />
-        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/test_recycle.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/layout/test_recycle.xml" value="0.33" />
         <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/menu/menu.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/DoDaMver3/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22083333333333333" />
         <entry key="..\:/MyAndroidProjects/CapstoneDesign/DoDaM_3/app/src/main/res/drawable/borderline.xml" value="0.26979166666666665" />
         <entry key="..\:/MyAndroidProjects/CapstoneDesign/DoDaM_3/app/src/main/res/layout/fragment_for_you.xml" value="0.176" />
         <entry key="..\:/MyAndroidProjects/CapstoneDesign/DoDaM_3/app/src/main/res/layout/fragment_game_select.xml" value="0.22282608695652173" />

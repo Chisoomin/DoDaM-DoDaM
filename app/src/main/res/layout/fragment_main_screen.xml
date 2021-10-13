@@ -70,8 +70,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#14334F"
+        android:backgroundTint="#FF9393"
         android:text="심리 진단 하기"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/minigame_btn"
         app:layout_constraintStart_toStartOf="parent" />
@@ -82,8 +83,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#14334F"
+        android:backgroundTint="#FF9393"
         android:text="미니게임 하기"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -93,7 +93,7 @@
         android:id="@+id/result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple"
+        android:backgroundTint="@color/button"
         android:text="결과 보기"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,13 +1,13 @@
 package com.example.dodamver3;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GameSelect2 extends AppCompatActivity {
     ImageButton eggBtn, moleBtn;

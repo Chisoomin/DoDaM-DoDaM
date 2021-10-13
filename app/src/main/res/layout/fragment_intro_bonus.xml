@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="당신을 위한 Bonus"
+        android:textColor="#FF636060"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
         android:text="Bonus"
+        android:textColor="#FF636060"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +55,7 @@
         android:paddingLeft="100dp"
         android:paddingRight="100dp"
         android:text="요즘 당신을 가장 힘들게 하는 것은 무엇인가요?"
+        android:textColor="#FF636060"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +69,7 @@
         android:ems="10"
         android:hint="친구 관계, 학업 등"
         android:inputType="textPersonName"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -78,6 +82,7 @@
         android:paddingLeft="70dp"
         android:paddingRight="80dp"
         android:text="보너스 질문이니 만큼 힘들게 답하지 않아도 좋아요. :)"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editWorry" />
@@ -87,9 +92,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
         android:layout_marginTop="26dp"
         android:text="이전"
+        android:textColor="#FF636060"
         app:layout_constraintStart_toEndOf="@+id/before_btn"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -111,8 +116,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
         android:text="심리진단 하러가기"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toStartOf="@+id/n_btn"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 

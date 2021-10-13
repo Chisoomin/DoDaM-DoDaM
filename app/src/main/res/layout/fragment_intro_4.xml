@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="당신을 위한 4문 4답"
+        android:textColor="#FF636060"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -42,6 +43,7 @@
         android:layout_marginTop="68dp"
         android:gravity="center"
         android:text="비밀번호"
+        android:textColor="#FF636060"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -58,6 +60,7 @@
         android:hint="4자리 숫자 입력"
         android:inputType="numberPassword"
         android:maxLength="4"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -69,6 +72,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="비밀번호를 잊어버릴시를 대비하여\n힌트를 작성해 주세요"
+        android:textColor="#FF636060"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +87,7 @@
         android:gravity="center"
         android:hint="질문을 입력해주세요"
         android:inputType="textPersonName"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -96,6 +101,7 @@
         android:gravity="center"
         android:hint="질문에 대한 답을 적어주세요"
         android:inputType="textPersonName"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_q" />
@@ -106,8 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
         android:text="다음"
+        android:textColor="#FF636060"
         android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/n_btn"
         app:layout_constraintTop_toBottomOf="@+id/edit_a" />
@@ -129,9 +135,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
         android:layout_marginTop="26dp"
         android:text="이전"
+        android:textColor="#FF636060"
         app:layout_constraintStart_toEndOf="@+id/before_btn"
         app:layout_constraintTop_toBottomOf="@+id/edit_a" />
 

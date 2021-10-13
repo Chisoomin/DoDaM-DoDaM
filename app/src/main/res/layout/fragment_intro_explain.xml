@@ -11,6 +11,8 @@
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="250dp"
         android:elevation="2dp"
         android:text=": AI와 빅데이터를 활용한 심리 치유 앱"
@@ -51,6 +53,7 @@
         android:layout_marginTop="90dp"
         android:gravity="center_horizontal"
         android:text="당신을 위한 DoDaMDoDaM\n사용설명서"
+        android:textColor="#FF636060"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -76,7 +79,7 @@
             android:text="도담도담은 심리 상태 분석을 통해 사용자들에게 현재 자신의 심리 상태를 파악하여 심리 상태를 관리해주는 앱이에요.\n\n
 여러분의 심리 상태를 관리하기 위해 몇가지 컨텐츠를 담고 있답니다.:)\n1. 자신의 감정을 쉽게 파악할 수 있는 감정일기쓰기\n2. 좋은 습관을 만들어 자존감을 키울 수 있는 해빗 트레커
 \n3. 쌓이는 스트레스를 조금이나마 해소할 수 있도록 하는 여러 미니게임\n\n개인의 기록들을 관리해야 하기 때문에 간단한 회원가입과 초기 심리 상태 검사를 하고 넘어갈거에요!\n잘 따라와 주세요^^ gogo!"
-            android:textColor="#000000"
+            android:textColor="#FF636060"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
         android:text="다음"
+        android:textColor="#FF636060"
         app:layout_constraintEnd_toStartOf="@+id/n_btn"
         app:layout_constraintTop_toBottomOf="@+id/scr" />
 
