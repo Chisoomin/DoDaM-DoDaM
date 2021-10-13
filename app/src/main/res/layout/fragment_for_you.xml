@@ -38,10 +38,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:text="내이름"
                     android:textColor="#202020"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profileImage"
@@ -52,7 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:text="님께"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profileName"
@@ -63,7 +61,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#FFF4E0" />
+                android:background="#EAE0CE" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,16 +70,36 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/rewardText"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
                     android:layout_marginBottom="8dp"
-                    android:gravity="left"
-                    android:text="업적"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rewardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="업적"
+                        android:textColor="#353535"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/questionMark1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="#FFFFFF"
+                        android:src="@drawable/questionmark" />
+                </LinearLayout>
 
                 <HorizontalScrollView
                     android:id="@+id/rewardScroll"
@@ -89,57 +107,12 @@
                     android:layout_height="match_parent"
                     tools:ignore="SpeakableTextPresentCheck">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/imageView9"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/mole" />
-
-                        <ImageView
-                            android:id="@+id/imageView8"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/leftarrow" />
-
-                        <ImageView
-                            android:id="@+id/imageView7"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/clouds" />
-
-                        <ImageView
-                            android:id="@+id/imageView5"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/after" />
-
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/circle" />
-                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rewardRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
                 </HorizontalScrollView>
+
             </LinearLayout>
 
             <LinearLayout
@@ -149,16 +122,36 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/playlistText"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
                     android:layout_marginBottom="8dp"
-                    android:gravity="left"
-                    android:text="플레이리스트"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/playListText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="감정에 따른 노래 추천"
+                        android:textColor="#353535"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/questionMark2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="#FFFFFF"
+                        android:src="@drawable/questionmark" />
+                </LinearLayout>
 
                 <HorizontalScrollView
                     android:id="@+id/playlistScroll"
@@ -172,6 +165,116 @@
                 </HorizontalScrollView>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/borderline"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/miniGameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="미니 게임"
+                        android:textColor="#353535"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/questionMark3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="#FFFFFF"
+                        android:src="@drawable/questionmark" />
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/miniGameScroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <LinearLayout
+                            android:id="@+id/eggBtn_container"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginRight="16dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/moleBtn_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageButton
+                                android:id="@+id/eggBtn"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="#FFE6E6"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/eggs" />
+
+                            <TextView
+                                android:id="@+id/egg_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="알깨기 게임"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/moleBtn_container"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/eggBtn_container"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageButton
+                                android:id="@+id/moleBtn"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="#E4F8AE"
+                                android:padding="5dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/whack_a_mole" />
+
+                            <TextView
+                                android:id="@+id/mole_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="두더지 잡기"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

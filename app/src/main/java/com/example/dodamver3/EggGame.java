@@ -51,10 +51,10 @@ public class EggGame extends AppCompatActivity {
         SQLiteDatabase eggDB = diaryDBHelper.getReadableDatabase();
 
         // 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        // Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
+        Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
 
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '2021-06-02';", null);
+        // Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '2021-06-02';", null);
 
         while (diaryCursor.moveToNext()) {
             eggBadStr = diaryCursor.getString(0);
@@ -63,7 +63,7 @@ public class EggGame extends AppCompatActivity {
         eggDB.close();
 
 
-        if (eggBadStr.equals("0"))
+        if (eggBadStr.equals("0") || eggBadStr.isEmpty())
             eggBadInt = 100;
         else
             eggBadInt = Integer.parseInt(eggBadStr) * 10;

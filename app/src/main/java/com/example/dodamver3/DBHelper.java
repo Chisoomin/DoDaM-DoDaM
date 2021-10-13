@@ -26,7 +26,7 @@ class DBHelper extends SQLiteOpenHelper {
                 "point integer)"; // 도담 포인트
 
         db.execSQL(testSQL);
-        testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('김명지', '여자', '1111', '1이 네 개면?', '1111', '2000-11-08', 0)";
+        testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('김명지', '여자', '1111', '1이 네 개면?', '1111', '2000-11-08', 24)";
         db.execSQL(testSQL);
         /*testSQL = "insert into Dodam(name, type, pass, passHint, passHintAns, birthday, point) values('홍길동', '남자', '1234', '비번 1234', '1234', '1999-01-07', 0)";
         db.execSQL(testSQL);*/
