@@ -56,14 +56,18 @@ public class EggGame extends AppCompatActivity {
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
         // Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '2021-06-02';", null);
 
+        boolean checkDB = false;
         while (diaryCursor.moveToNext()) {
             eggBadStr = diaryCursor.getString(0);
+            if ((diaryCursor.getString( 0 )).isEmpty()) {
+                checkDB = true;
+                break;
+            }
         }
 
         eggDB.close();
 
-
-        if (eggBadStr.equals("0") || eggBadStr.isEmpty())
+        if (checkDB == true)
             eggBadInt = 100;
         else
             eggBadInt = Integer.parseInt(eggBadStr) * 10;

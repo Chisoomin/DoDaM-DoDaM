@@ -85,7 +85,7 @@
                         android:id="@+id/rewardText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="left|center_vertical"
                         android:gravity="left"
                         android:text="업적"
                         android:textColor="#353535"
@@ -137,7 +137,7 @@
                         android:id="@+id/playListText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="left|center_vertical"
                         android:gravity="left"
                         android:text="감정에 따른 노래 추천"
                         android:textColor="#353535"
@@ -187,7 +187,7 @@
                         android:id="@+id/miniGameText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="left|center_vertical"
                         android:gravity="left"
                         android:text="미니 게임"
                         android:textColor="#353535"
@@ -202,8 +202,8 @@
 
                     <ImageButton
                         android:id="@+id/questionMark3"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="#AAEAE0CE"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
