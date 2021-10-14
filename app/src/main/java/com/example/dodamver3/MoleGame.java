@@ -122,9 +122,9 @@ public class MoleGame extends AppCompatActivity {
         //Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
         Cursor pointCursor = ReadPointDB2.rawQuery("select point from Dodam", null);
         while (pointCursor.moveToNext()) {
-            System.out.println("기존 포인트 : " + (int) pointCursor.getInt(0));
+           // System.out.println("기존 포인트 : " + (int) pointCursor.getInt(0));
             mole_point = (int) pointCursor.getInt(0) + (int) (game_score / 3);
-            System.out.println("추가 포인트 : " + mole_point);
+          //  System.out.println("추가 포인트 : " + mole_point);
         }
 
         String molePoint_UPDATE = "UPDATE Dodam SET point=" + mole_point;

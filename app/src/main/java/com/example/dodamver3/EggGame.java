@@ -23,8 +23,8 @@ import java.util.Locale;
 
 public class EggGame extends AppCompatActivity {
     String eggBadStr, pointSavStr;
-    Integer eggBadInt, eggBadIntM, pointInt, pointSav;
-
+    Integer eggBadInt, eggBadIntM, pointInt, pointSav = 0;
+    int egg_point;
     TextView eggTextView;
     ImageView eggImageView;
 
@@ -51,15 +51,17 @@ public class EggGame extends AppCompatActivity {
         SQLiteDatabase eggDB = diaryDBHelper.getReadableDatabase();
 
         // 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
+        Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '%" + listDate + "%';", null);
 
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
         // Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '2021-06-02';", null);
 
+
+        // 화남 0으로 설정했을 때 터치 횟수가 마이너스로 넘어감
         boolean checkDB = false;
         while (diaryCursor.moveToNext()) {
             eggBadStr = diaryCursor.getString(0);
-            if ((diaryCursor.getString( 0 )).isEmpty()) {
+            if ((diaryCursor.getString(0)).isEmpty()) {
                 checkDB = true;
                 break;
             }
@@ -129,7 +131,7 @@ public class EggGame extends AppCompatActivity {
                     eggBadInt = eggBadIntM + 1;
 
                     // point DB 값 수정
-                    pointDB();
+                    // pointDB();
 
                     // 알을 다 깬후 나오는 AlertDialog
                     eggShowDialog();
@@ -148,12 +150,21 @@ public class EggGame extends AppCompatActivity {
 
     // point 값 수정 DB 설정,
     private void pointDB() {
-        pointSav = pointSav + pointInt;
-        pointSavStr = String.valueOf(pointSav);
+       /* pointSav = pointSav + pointInt;
+        pointSavStr = String.valueOf(pointSav);*/
 
         DBHelper dbHelper = new DBHelper(getApplicationContext());
         SQLiteDatabase pointDB = dbHelper.getWritableDatabase();
-        String pointSql = "UPDATE Dodam SET point=" + pointSav;
+        SQLiteDatabase ReadPointDB = dbHelper.getReadableDatabase();
+        Cursor pointCursor = ReadPointDB.rawQuery("select point from Dodam", null);
+        while (pointCursor.moveToNext()) {
+           // System.out.println("기존 포인트 : " + (int) pointCursor.getInt(0));
+            egg_point = (int) pointCursor.getInt(0) + pointInt;
+            //System.out.println("추가 포인트 : " + egg_point);
+        }
+       /* DBHelper dbHelper = new DBHelper(getApplicationContext());
+        SQLiteDatabase pointDB = dbHelper.getWritableDatabase();*/
+        String pointSql = "UPDATE Dodam SET point=" + egg_point;
         pointDB.execSQL(pointSql);
     }
 
@@ -171,6 +182,7 @@ public class EggGame extends AppCompatActivity {
             }
         });
         builder.setMessage("알이 깨졌습니다.\n\nPOINT : +" + pointInt);
+        pointDB();
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
