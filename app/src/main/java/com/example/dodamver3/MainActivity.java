@@ -194,13 +194,17 @@ public class MainActivity extends AppCompatActivity {
         final AdapterforTab myPagerAdapter = new AdapterforTab( getSupportFragmentManager(), 5 );
         viewPager.setAdapter( myPagerAdapter );
 
+
+
         //탭 선택 이벤트
         tabs.addOnTabSelectedListener( new TabLayout.ViewPagerOnTabSelectedListener( viewPager ) );
         viewPager.addOnPageChangeListener( new TabLayout.TabLayoutOnPageChangeListener( tabs ) );
         tabs.setOnTabSelectedListener( new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tabs.getTabAt( tabs.getSelectedTabPosition() ).view.setBackgroundResource( R.drawable.open_btn );
+                viewPager.setCurrentItem(tab.getPosition());
+                tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_btn );
+                myPagerAdapter.notifyDataSetChanged();
             }
 
             @Override

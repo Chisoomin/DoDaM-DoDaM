@@ -21,6 +21,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CalenD#newInstance} factory method to
@@ -102,7 +106,7 @@ public class CalenD extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_calen_d,container,false);
+        View view = inflater.inflate(R.layout.fragment_calen_d, container,false);
 
         ImageButton bLastMonth = (ImageButton) view.findViewById(R.id.mleft);
         ImageButton bNextMonth = (ImageButton) view.findViewById(R.id.mright);
@@ -112,6 +116,9 @@ public class CalenD extends Fragment {
 
         diary = (TextView) view.findViewById(R.id.diary);
         stamp = (ImageView) view.findViewById(R.id.stamp);
+
+        ShowIntro("캘린더", "날짜를 클릭해서 일기를 볼 수 있어요.", view, R.id.cal, 1);
+
 
         bLastMonth.setOnClickListener(this::onClick);
         bNextMonth.setOnClickListener(this::onClick);
@@ -325,5 +332,29 @@ public class CalenD extends Fragment {
     private void initCalendarAdapter() {
         mCalendarAdapter = new CalendarAdapter(getContext(), R.layout.item_view_calendar, mDayList);
         mGvCalendar.setAdapter(mCalendarAdapter);
+    }
+
+    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+
+        new GuideView.Builder(getContext())
+                .setTitle(title)
+                .setContentText(text)
+                .setTargetView(view1.findViewById(id))
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14)//optional
+                .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        if (type == 1) {
+                            View viewe = view1;
+                            ShowIntro("일기 보기 및 쓰기", "일기를 썼다면 그날의 일기를, 안썼다면 클릭해서 일기를 쓸 수 있어요.", viewe, R.id.diaryContainer, 2);
+                        } else if (type == 2) {
+
+                        }
+                    }
+                })
+                .build()
+                .show();
     }
 }

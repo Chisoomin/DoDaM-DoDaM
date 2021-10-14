@@ -3,6 +3,7 @@ package com.example.dodamver3;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 
 class AdapterforTab extends FragmentPagerAdapter {
 

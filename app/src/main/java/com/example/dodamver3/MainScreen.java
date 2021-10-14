@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,11 @@ import com.android.volley.toolbox.Volley;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -107,6 +113,8 @@ public class MainScreen extends Fragment {
 
         RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
 
+        ShowIntro("DoDaM 포인트", "포인트를 모아 아래의 식물을 성장시킬 수 있어요.", view, R.id.point, 1);
+
         String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -141,7 +149,6 @@ public class MainScreen extends Fragment {
                 mNow = System.currentTimeMillis();
                 mDate = new Date(mNow);
                 String date = mFormat.format(mDate);
-
                 while (cursor.moveToNext()) {
                     if (cursor.getString(0).equals(date)) {
                         i++;
@@ -149,6 +156,7 @@ public class MainScreen extends Fragment {
                 }
                 if(i!=0){
                     Toast.makeText(view.getContext(),"오늘의 심리진단은 완료되었습니다. 잘했어요!", Toast.LENGTH_LONG).show();
+                    i--;
                 } else {
                     Intent intent = new Intent(view.getContext(), Psychological_Test.class);
                     startActivity(intent);
@@ -239,5 +247,37 @@ public class MainScreen extends Fragment {
     public void onPause() {
         super.onPause();
         getContext().unregisterReceiver(broadcastReceiver);
+    }
+    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+
+        new GuideView.Builder(getContext())
+                .setTitle(title)
+                .setContentText(text)
+                .setTargetView(view1.findViewById(id))
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14)//optional
+                .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        if (type == 1) {
+                            View viewe=view1;
+                            ShowIntro("명언 말풍선", "매일 다른 격려의 글귀를 보여줘요.", viewe, R.id.Fsaying, 2);
+                        } else if (type == 2) {
+                            View viewe=view1;
+                            ShowIntro("식물 키우기", "열심히 자신을 가꾸면 식물도 함께 자라나요.", viewe, R.id.plant, 3);
+                        } else if (type == 3) {
+                            View viewe=view1;
+                            ShowIntro("심리 진단 버튼", "하루에 한번씩 심리 상태를 진단할 수 있어요.", viewe, R.id.test_btn, 4);
+                        } else if (type == 4) {
+                            View viewe=view1;
+                            ShowIntro("미니게임 버튼", "두 가지 미니게임을 할 수 있어요.", viewe, R.id.minigame_btn, 5);
+                        } else if (type == 5) {
+
+                        }
+                    }
+                })
+                .build()
+                .show();
     }
 }

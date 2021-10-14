@@ -42,6 +42,9 @@ import java.util.Date;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -125,6 +128,9 @@ public class HabitTracker extends Fragment {
         jum1_btn = view.findViewById(R.id.jum1_btn);
         jum2_btn = view.findViewById(R.id.jum2_btn);
         habit_recycle = view.findViewById(R.id.habit_recycle);
+
+        ShowIntro("습관 목록 작성 버튼", "+ 버튼을 누르면 습관을 작성할 수 있어요.", view, R.id.plus_btn, 1);
+
 
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
@@ -435,4 +441,30 @@ public class HabitTracker extends Fragment {
 
         }
     };
+    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+
+        new GuideView.Builder(getContext())
+                .setTitle(title)
+                .setContentText(text)
+                .setTargetView(view1.findViewById(id))
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14)//optional
+                .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        if (type == 1) {
+                            View viewe = view1;
+                            ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", viewe, R.id.calendarView, 2);
+                        } else if (type == 2) {
+                            View viewe = view1;
+                            ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", viewe, R.id.habit_recycle, 3);
+                        } else if (type == 3) {
+
+                        }
+                    }
+                })
+                .build()
+                .show();
+    }
 }

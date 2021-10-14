@@ -10,125 +10,143 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/cal"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="15dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/mleft"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:scaleType="fitCenter"
-                android:background="#FFFFFF"
-                android:src="@drawable/leftarrow"
-                android:layout_marginTop="2.5dp"
-                android:layout_marginRight="20dp"
-                android:rotation="15"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center">                    >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/mleft"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#FFFFFF"
+                    android:rotation="15"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/leftarrow" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">>
+
+                    <TextView
+                        android:id="@+id/year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="년월"
+                        android:textColor="#696969"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/mright"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="2.5dp"
+                    android:background="#FFFFFF"
+                    android:rotation="15"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/rightarrow" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center">
+
                 <TextView
-                    android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="년월"
-                    android:textColor="#696969"
-                    android:textStyle="bold"
-                    android:textSize="20dp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SUN"
+                    android:textColor="#f58989"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="MON"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TUE"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="WED"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="THU"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="FRI"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SAT"
+                    android:textColor="#79a9a9"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/mright"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:scaleType="fitCenter"
-                android:background="#FFFFFF"
-                android:src="@drawable/rightarrow"
-                android:layout_marginTop="2.5dp"
-                android:rotation="15"
-                android:layout_marginLeft="20dp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center">
-            <TextView
-                android:textSize="15dp"
-                android:text="SUN"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:textColor="#f58989"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="MON"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="TUE"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="WED"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="THU"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="FRI"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:textSize="15dp"
-                android:text="SAT"
-                android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:gravity="center"
-                android:textColor="#79a9a9"
-                android:layout_weight="1"/>
+            <GridView
+                android:id="@+id/calendar_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:numColumns="7" />
 
         </LinearLayout>
 
-
-        <GridView
-            android:id="@+id/calendar_grid"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="30dp"
-            android:numColumns="7"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#D3D3D3"
-            />
+            android:background="#D3D3D3" />
 
         <RelativeLayout
             android:id="@+id/diaryContainer"
@@ -148,12 +166,11 @@
                 android:id="@+id/stamp"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
                 android:visibility="invisible" />
         </RelativeLayout>
-
 
 
     </LinearLayout>
