@@ -5,15 +5,20 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AllReward extends AppCompatActivity {
     RecyclerView allRewardRecyclerView;
+    ImageView allRewardHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,7 @@ public class AllReward extends AppCompatActivity {
         setContentView( R.layout.activity_all_reward );
 
         allRewardRecyclerView = (RecyclerView) findViewById( R.id.allRewardRecyclerView );
+        allRewardHome = (ImageView) findViewById( R.id.allRewardHome );
 
         RewardDBHelper rewardDBHelper = new RewardDBHelper( getApplicationContext() );
         SQLiteDatabase rewardDB = rewardDBHelper.getReadableDatabase();
@@ -41,5 +47,13 @@ public class AllReward extends AppCompatActivity {
         allRewardRecyclerView.setAdapter( allRewardAdapter );
         allRewardRecyclerView.setLayoutManager( new GridLayoutManager( this, 3) );
 
+
+        allRewardHome.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getApplicationContext(), MainActivity.class );
+                startActivity( intent );
+            }
+        } );
     }
 }

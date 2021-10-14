@@ -28,14 +28,14 @@
         android:gravity="center"
         android:text="설명글"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explanationTitle" />
 
     <Button
         android:id="@+id/explanationButton"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="확인"
