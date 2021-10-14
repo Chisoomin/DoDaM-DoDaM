@@ -34,25 +34,25 @@ public class EggGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_egg_game);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_egg_game );
 
-        eggTextView = (TextView) findViewById(R.id.eggTextView);
-        eggImageView = (ImageView) findViewById(R.id.eggImageView);
+        eggTextView = (TextView) findViewById( R.id.eggTextView );
+        eggImageView = (ImageView) findViewById( R.id.eggImageView );
 
-        pointRes = (TextView) findViewById(R.id.point);
+        pointRes = (TextView) findViewById( R.id.point );
 
 
         // 오늘 날짜 포맷
         Date listCurrentTime = Calendar.getInstance().getTime();
-        String listDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(listCurrentTime);
+        String listDate = new SimpleDateFormat( "yyyy-MM-dd", Locale.getDefault() ).format( listCurrentTime );
 
         // 알깨는 횟수 DB 설정
-        DiaryDBHelper diaryDBHelper = new DiaryDBHelper(getApplicationContext());
+        DiaryDBHelper diaryDBHelper = new DiaryDBHelper( getApplicationContext() );
         SQLiteDatabase eggDB = diaryDBHelper.getReadableDatabase();
 
         // 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
-        Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '%" + listDate + "%';", null);
+        Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%" + listDate + "%';", null );
 
         // 테스트 용, 오늘 날짜를 DB에서 검색해서 기분 정도 알아내기
         // Cursor diaryCursor = eggDB.rawQuery("select bad from DiaryData where date like '2021-06-02';", null);
@@ -132,7 +132,7 @@ public class EggGame extends AppCompatActivity {
                     eggBadInt = eggBadIntM + 1;
 
                     // point DB 값 수정
-                    // pointDB();
+                    pointDB();
 
                     // 알을 다 깬후 나오는 AlertDialog
                     eggShowDialog();

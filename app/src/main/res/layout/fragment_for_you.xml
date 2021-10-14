@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:gravity="left"
-                        android:text="미니 게임"
+                        android:text="미니게임"
                         android:textColor="#353535"
                         android:textSize="16sp"
                         android:textStyle="bold" />

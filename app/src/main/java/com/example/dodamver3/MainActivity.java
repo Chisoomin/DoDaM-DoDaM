@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent playlistIntent = new Intent(getApplicationContext(), PlayList.class);
                         startActivity( playlistIntent );
                     case R.id.rewardBar:
-                        // Intent rewardIntent = new Intent(getApplicationContext(), .class);
-                        // startActivity( rewardIntent );
+                        Intent rewardIntent = new Intent(getApplicationContext(), AllReward.class);
+                        startActivity( rewardIntent );
                     case R.id.settingsBar:
                         // Intent settingsIntent = new Intent(getApplicationContext(), .class);
                         // startActivity( settingsIntent );
