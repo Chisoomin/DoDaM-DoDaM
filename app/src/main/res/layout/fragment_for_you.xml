@@ -100,9 +100,9 @@
 
                     <ImageButton
                         android:id="@+id/questionMark1"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="#FFFFFF"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="#AAEAE0CE"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
 
@@ -152,9 +152,9 @@
 
                     <ImageButton
                         android:id="@+id/questionMark2"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="#FFFFFF"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="#AAEAE0CE"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
 
@@ -204,7 +204,7 @@
                         android:id="@+id/questionMark3"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="#FFFFFF"
+                        android:background="#AAEAE0CE"
                         android:src="@drawable/questionmark" />
                 </LinearLayout>
 
@@ -234,7 +234,7 @@
                                 android:id="@+id/eggBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:background="#FFE6E6"
+                                android:background="#ffdede"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/eggs" />
 
