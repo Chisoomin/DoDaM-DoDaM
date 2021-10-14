@@ -61,15 +61,6 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/plus_btn" />
 
-            <ImageButton
-                android:id="@+id/jum1_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center|right|end"
-                android:layout_marginRight="16dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/jum_btn" />
 
         </LinearLayout>
     </LinearLayout>
@@ -91,18 +82,17 @@
     </devs.mulham.horizontalcalendar.HorizontalCalendarView>
 
     <ImageButton
-        android:id="@+id/jum2_btn"
+        android:id="@+id/explain"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center|right|end"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="30dp"
-        android:background="@android:color/transparent"
+        android:layout_marginRight="16dp"
+        android:background="#00000000"
         android:scaleType="fitCenter"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:srcCompat="@drawable/jum_btn" />
+        app:srcCompat="@drawable/questionmark" />
 
     <TextView
         android:id="@+id/textView2"
@@ -127,6 +117,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jum2_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

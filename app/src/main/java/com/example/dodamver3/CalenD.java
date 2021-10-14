@@ -97,6 +97,7 @@ public class CalenD extends Fragment {
     String dbDate;
     String month;
     String day;
+    static int cnt1=0;
 
     int happyInt, badInt, sadInt;
 
@@ -117,7 +118,10 @@ public class CalenD extends Fragment {
         diary = (TextView) view.findViewById(R.id.diary);
         stamp = (ImageView) view.findViewById(R.id.stamp);
 
-        ShowIntro("캘린더", "날짜를 클릭해서 일기를 볼 수 있어요.", view, R.id.cal, 1);
+        if(cnt1==0){
+            //ShowIntro("캘린더", "날짜를 클릭해서 일기를 볼 수 있어요.", view.getRootView(), R.id.cal, 1);
+            cnt1++;
+        }
 
 
         bLastMonth.setOnClickListener(this::onClick);
@@ -334,12 +338,12 @@ public class CalenD extends Fragment {
         mGvCalendar.setAdapter(mCalendarAdapter);
     }
 
-    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+    private void ShowIntro(String title, String text, View view, int id, final int type) {
 
         new GuideView.Builder(getContext())
                 .setTitle(title)
                 .setContentText(text)
-                .setTargetView(view1.findViewById(id))
+                .setTargetView(view.findViewById(id))
                 .setContentTextSize(12)//optional
                 .setTitleTextSize(14)//optional
                 .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
@@ -347,8 +351,7 @@ public class CalenD extends Fragment {
                     @Override
                     public void onDismiss(View view) {
                         if (type == 1) {
-                            View viewe = view1;
-                            ShowIntro("일기 보기 및 쓰기", "일기를 썼다면 그날의 일기를, 안썼다면 클릭해서 일기를 쓸 수 있어요.", viewe, R.id.diaryContainer, 2);
+                            ShowIntro("일기 보기 및 쓰기", "일기를 썼다면 그날의 일기를, 안썼다면 클릭해서 일기를 쓸 수 있어요.", getView(), R.id.diaryContainer, 2);
                         } else if (type == 2) {
 
                         }

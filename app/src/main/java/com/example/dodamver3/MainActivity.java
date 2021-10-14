@@ -30,12 +30,16 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
+
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     boolean isDrawerOpened;
-
+    public static int hope = 0;
     TextView navViewName;
     String name;
 
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //MiniGame miniGame;
+
 
     public void changeFragment(int index) {
         switch (index) {
@@ -189,6 +194,26 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_btn );
                 myPagerAdapter.notifyDataSetChanged();
+                if (tab.getPosition() == 1) {
+                    hope=1;
+                    Log.e("hope",""+hope);
+                }
+                if (tab.getPosition() == 0) {
+                    hope=0;
+                    Log.e("hope",""+hope);
+                }
+                if (tab.getPosition() == 2) {
+                    hope=2;
+                    Log.e("hope",""+hope);
+                }
+                if (tab.getPosition() == 3) {
+                    hope=3;
+                    Log.e("hope",""+hope);
+                }
+                if (tab.getPosition() == 4) {
+                    hope=4;
+                    Log.e("hope",""+hope);
+                }
             }
 
             @Override

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -97,7 +98,10 @@ public class MainScreen extends Fragment {
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-    int i=0;
+    int i = 0;
+    static int cnt = 0;
+    ImageButton ques;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,10 +114,19 @@ public class MainScreen extends Fragment {
         Fpeople = (TextView) view.findViewById(R.id.Fpeople);
         test_btn = view.findViewById(R.id.test_btn);
         minigame_btn = view.findViewById(R.id.minigame_btn);
+        ques = view.findViewById(R.id.ques);
 
         RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
-
-        ShowIntro("DoDaM 포인트", "포인트를 모아 아래의 식물을 성장시킬 수 있어요.", view, R.id.point, 1);
+        if (cnt == 0) {
+            ShowIntro("DoDaM 포인트", "포인트를 모아 아래의 식물을 성장시킬 수 있어요.", view.getRootView(), R.id.point, 1);
+            cnt++;
+        }
+        ques.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowIntro("DoDaM 포인트", "포인트를 모아 아래의 식물을 성장시킬 수 있어요.", view.getRootView(), R.id.point, 1);
+            }
+        });
 
         String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -154,8 +167,8 @@ public class MainScreen extends Fragment {
                         i++;
                     }
                 }
-                if(i!=0){
-                    Toast.makeText(view.getContext(),"오늘의 심리진단은 완료되었습니다. 잘했어요!", Toast.LENGTH_LONG).show();
+                if (i != 0) {
+                    Toast.makeText(view.getContext(), "오늘의 심리진단은 완료되었습니다. 잘했어요!", Toast.LENGTH_LONG).show();
                     i--;
                 } else {
                     Intent intent = new Intent(view.getContext(), Psychological_Test.class);
@@ -248,12 +261,13 @@ public class MainScreen extends Fragment {
         super.onPause();
         getContext().unregisterReceiver(broadcastReceiver);
     }
-    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+
+    private void ShowIntro(String title, String text, View view, int id, final int type) {
 
         new GuideView.Builder(getContext())
                 .setTitle(title)
                 .setContentText(text)
-                .setTargetView(view1.findViewById(id))
+                .setTargetView(view.findViewById(id))
                 .setContentTextSize(12)//optional
                 .setTitleTextSize(14)//optional
                 .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
@@ -261,17 +275,13 @@ public class MainScreen extends Fragment {
                     @Override
                     public void onDismiss(View view) {
                         if (type == 1) {
-                            View viewe=view1;
-                            ShowIntro("명언 말풍선", "매일 다른 격려의 글귀를 보여줘요.", viewe, R.id.Fsaying, 2);
+                            ShowIntro("명언 말풍선", "매일 다른 격려의 글귀를 보여줘요.", getView(), R.id.Fsaying, 2);
                         } else if (type == 2) {
-                            View viewe=view1;
-                            ShowIntro("식물 키우기", "열심히 자신을 가꾸면 식물도 함께 자라나요.", viewe, R.id.plant, 3);
+                            ShowIntro("식물 키우기", "열심히 자신을 가꾸면 식물도 함께 자라나요.", getView(), R.id.plant, 3);
                         } else if (type == 3) {
-                            View viewe=view1;
-                            ShowIntro("심리 진단 버튼", "하루에 한번씩 심리 상태를 진단할 수 있어요.", viewe, R.id.test_btn, 4);
+                            ShowIntro("심리 진단 버튼", "하루에 한번씩 심리 상태를 진단할 수 있어요.", getView(), R.id.test_btn, 4);
                         } else if (type == 4) {
-                            View viewe=view1;
-                            ShowIntro("미니게임 버튼", "두 가지 미니게임을 할 수 있어요.", viewe, R.id.minigame_btn, 5);
+                            ShowIntro("미니게임 버튼", "두 가지 미니게임을 할 수 있어요.", getView(), R.id.minigame_btn, 5);
                         } else if (type == 5) {
 
                         }

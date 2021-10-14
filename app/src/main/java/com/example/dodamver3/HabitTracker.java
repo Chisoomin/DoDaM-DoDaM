@@ -1,15 +1,15 @@
 package com.example.dodamver3;
 
+import static com.example.dodamver3.MainActivity.hope;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,14 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.dhaval2404.colorpicker.ColorPickerDialog;
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog;
 import com.github.dhaval2404.colorpicker.listener.ColorListener;
 import com.github.dhaval2404.colorpicker.model.ColorShape;
@@ -84,6 +81,12 @@ public class HabitTracker extends Fragment {
         return fragment;
     }
 
+
+    public static HabitTracker newInstance() {
+        return new HabitTracker();
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +100,7 @@ public class HabitTracker extends Fragment {
     ArrayList<habit_getset> list = new ArrayList<habit_getset>();
     habitAdapter adapter;
     TextView date;
-    ImageButton month_pick, plus_btn, jum1_btn, jum2_btn;
+    ImageButton month_pick, plus_btn, explain;
     RecyclerView habit_recycle;
     long mNow;
     Date mDate;
@@ -116,20 +119,28 @@ public class HabitTracker extends Fragment {
 
     String[] h_id= new String[100];
     int i =0;
+    static int cnt2=0;
+    String pos="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_habit_tracker, container, false);
+
+
         date = view.findViewById(R.id.date);
         month_pick = view.findViewById(R.id.monthpick_btn);
         plus_btn = view.findViewById(R.id.plus_btn);
-        jum1_btn = view.findViewById(R.id.jum1_btn);
-        jum2_btn = view.findViewById(R.id.jum2_btn);
+        explain = view.findViewById(R.id.explain);
         habit_recycle = view.findViewById(R.id.habit_recycle);
 
-        ShowIntro("습관 목록 작성 버튼", "+ 버튼을 누르면 습관을 작성할 수 있어요.", view, R.id.plus_btn, 1);
+
+        if(hope==1){
+            Log.e("hope",""+hope);
+            cnt2++;
+        }
+
 
 
         mNow = System.currentTimeMillis();
@@ -218,6 +229,7 @@ public class HabitTracker extends Fragment {
             @Override
             public void onClick(View view) {
                 //list.add(new habit_getset("1", "열심히 프로젝트", "2021. 10. 09"));
+                Log.e("hope",""+hope);
 
                 new MaterialColorPickerDialog
                         .Builder(view.getContext())
@@ -296,19 +308,16 @@ public class HabitTracker extends Fragment {
             }
         });
 
-        jum1_btn.setOnClickListener(new View.OnClickListener() {
+        explain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
+                if(hope==1){
+                    ShowIntro("습관 목록 작성 버튼", "+ 버튼을 누르면 습관을 작성할 수 있어요.", view.getRootView(), R.id.plus_btn, 1);
+                }
+
             }
         });
 
-        jum2_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //
-            }
-        });
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -100);
@@ -441,12 +450,13 @@ public class HabitTracker extends Fragment {
 
         }
     };
-    private void ShowIntro(String title, String text, View view1, int id, final int type) {
+
+    private void ShowIntro(String title, String text, View view, int id, final int type) {
 
         new GuideView.Builder(getContext())
                 .setTitle(title)
                 .setContentText(text)
-                .setTargetView(view1.findViewById(id))
+                .setTargetView(view.findViewById(id))
                 .setContentTextSize(12)//optional
                 .setTitleTextSize(14)//optional
                 .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
@@ -454,11 +464,9 @@ public class HabitTracker extends Fragment {
                     @Override
                     public void onDismiss(View view) {
                         if (type == 1) {
-                            View viewe = view1;
-                            ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", viewe, R.id.calendarView, 2);
+                            ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", getView(), R.id.calendarView, 2);
                         } else if (type == 2) {
-                            View viewe = view1;
-                            ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", viewe, R.id.habit_recycle, 3);
+                            ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habit_recycle, 3);
                         } else if (type == 3) {
 
                         }
@@ -467,4 +475,5 @@ public class HabitTracker extends Fragment {
                 .build()
                 .show();
     }
+
 }
