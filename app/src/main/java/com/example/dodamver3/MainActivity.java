@@ -49,30 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu( menu );
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate( R.menu.menu, menu );
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected( item );
-        switch (item.getItemId()) {
-            case R.id.logout:
-                Intent Intro = new Intent( getApplicationContext(), IntroPage.class );
-                startActivity( Intro );
-                return true;
-            case android.R.id.home:
-                drawerLayout.openDrawer( GravityCompat.START );
-        }
-        return super.onOptionsItemSelected( item );
-    }
-
     //MiniGame miniGame;
-
 
     public void changeFragment(int index) {
         switch (index) {
@@ -133,12 +110,19 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.playlistBar:
                         Intent playlistIntent = new Intent(getApplicationContext(), PlayList.class);
                         startActivity( playlistIntent );
+                        return true;
                     case R.id.rewardBar:
                         Intent rewardIntent = new Intent(getApplicationContext(), AllReward.class);
                         startActivity( rewardIntent );
+                        return true;
                     case R.id.settingsBar:
                         // Intent settingsIntent = new Intent(getApplicationContext(), .class);
                         // startActivity( settingsIntent );
+                        return true;
+                    case R.id.logoutBar:
+                        Intent Intro = new Intent( getApplicationContext(), IntroPage.class );
+                        startActivity( Intro );
+                        return true;
                 }
                 drawerLayout.closeDrawer( GravityCompat.START );
                 return true;

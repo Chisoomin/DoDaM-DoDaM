@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class AllReward extends AppCompatActivity {
+    // 1
     RecyclerView allRewardRecyclerView;
     ImageView allRewardHome;
 
@@ -25,18 +27,20 @@ public class AllReward extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_all_reward );
 
+        // 2
         allRewardRecyclerView = (RecyclerView) findViewById( R.id.allRewardRecyclerView );
         allRewardHome = (ImageView) findViewById( R.id.allRewardHome );
 
         RewardDBHelper rewardDBHelper = new RewardDBHelper( getApplicationContext() );
         SQLiteDatabase rewardDB = rewardDBHelper.getReadableDatabase();
 
-        Cursor rewardCursor = rewardDB.rawQuery( "select image, exp from rewardData", null );
+        Cursor rewardCursor = rewardDB.rawQuery( "select image, exp, detailExp from rewardData", null );
         ArrayList<RewardItem> rewardItemArrayList = new ArrayList<>();
         while (rewardCursor.moveToNext()) {
             RewardItem rewardItem = new RewardItem();
             rewardItem.rewardImage = rewardCursor.getBlob( 0 );
             rewardItem.rewardExp = rewardCursor.getString( 1 );
+            rewardItem.rewardDetailExp = rewardCursor.getString( 2 );
             rewardItemArrayList.add( rewardItem );
         }
 
@@ -47,13 +51,19 @@ public class AllReward extends AppCompatActivity {
         allRewardRecyclerView.setAdapter( allRewardAdapter );
         allRewardRecyclerView.setLayoutManager( new GridLayoutManager( this, 3) );
 
-
+        // 3
         allRewardHome.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent( getApplicationContext(), MainActivity.class );
                 startActivity( intent );
+                finish();
             }
         } );
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
