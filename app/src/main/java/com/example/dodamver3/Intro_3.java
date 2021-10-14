@@ -87,13 +87,13 @@ public class Intro_3 extends Fragment {
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        birthday.setOnTouchListener(new View.OnTouchListener() {
+        /*birthday.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 new DatePickerDialog(view.getContext(), mDateSetListener, Year, Month, Day).show();
-                return true;
+                return false;
             }
-        });
+        });*/
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override

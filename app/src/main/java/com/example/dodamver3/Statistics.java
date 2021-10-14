@@ -1,5 +1,7 @@
 package com.example.dodamver3;
 
+import static com.example.dodamver3.MainActivity.hope;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -10,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
@@ -23,6 +27,10 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 
 /**
@@ -74,6 +82,7 @@ public class Statistics extends Fragment {
     BarChart barChart;
     ArrayList<Integer> jsonList = new ArrayList<>(); // ArrayList 선언
     ArrayList<String> labelList = new ArrayList<>(); // ArrayList 선언
+    ImageButton imageButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,6 +90,7 @@ public class Statistics extends Fragment {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         barChart = view.findViewById(R.id.BarChart_test);
         //ArrayList<Entry> values = new ArrayList<>();
+        imageButton = view.findViewById(R.id.questionMark1);
 
         graphInitSetting();       //그래프 기본 세팅
 
@@ -88,6 +98,15 @@ public class Statistics extends Fragment {
         barChart.setTouchEnabled(false); //확대하지못하게 막아버림! 별로 안좋은 기능인 것 같아~
         barChart.getAxisRight().setAxisMaxValue(80);
         barChart.getAxisLeft().setAxisMaxValue(80);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(hope==3){
+                    ShowIntro("심리 진단 그래프", "심리 진단 결과를 그래프로 확인할 수 있어요.", view.getRootView(), R.id.BarChart_test, 1);
+                }
+            }
+        });
 
 
 
@@ -162,5 +181,29 @@ public class Statistics extends Fragment {
         barChart.setData(data);
         barChart.animateXY(1000, 1000);
         barChart.invalidate();
+    }
+    private void ShowIntro(String title, String text, View view, int id, final int type) {
+
+        new GuideView.Builder(getContext())
+                .setTitle(title)
+                .setContentText(text)
+                .setTargetView(view.findViewById(id))
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14)//optional
+                .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        if (type == 1) {
+                            //ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", getView(), R.id.calendarView, 2);
+                        } else if (type == 2) {
+                            //ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habit_recycle, 3);
+                        } else if (type == 3) {
+
+                        }
+                    }
+                })
+                .build()
+                .show();
     }
 }

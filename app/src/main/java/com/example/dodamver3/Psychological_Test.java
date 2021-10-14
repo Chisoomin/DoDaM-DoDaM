@@ -128,7 +128,7 @@ public class Psychological_Test extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(getApplicationContext(), QuesId + "번 답" + answer, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), QuesId + "번 답" + answer, Toast.LENGTH_SHORT).show();
                 TestResultDB testResultDB = new TestResultDB(Psychological_Test.this);
                 SQLiteDatabase db2 = testResultDB.getWritableDatabase();
                 //String[] Quesid_s = new String[20];
