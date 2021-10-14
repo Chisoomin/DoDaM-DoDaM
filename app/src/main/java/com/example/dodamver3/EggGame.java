@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Matrix;
@@ -187,7 +188,9 @@ public class EggGame extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 확인 버튼을 누른 후 토스트 메세지
-                Toast.makeText(getApplicationContext(), "다시 시작합니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "홈으로 돌아갑니다", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
         AlertDialog eggAlertDialog = builder.create();
