@@ -9,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import java.util.Random;
 public class MoleGame extends AppCompatActivity {
     TextView timer, score;
     int game_score = 0; // 플레이 중 점수
+    int mole_point;
     //ImageView hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9;
     Button timerBtn;
     Thread thread;
@@ -67,7 +70,7 @@ public class MoleGame extends AppCompatActivity {
             //img_array[i].setForeground(ContextCompat.getDrawable(getContext(), R.drawable.mole));
             // img_array[i].setImageResource(R.drawable.mole);
             img_array[i].setTag(TAG_OFF);
-           // System.out.println(img_array[i]);
+            // System.out.println(img_array[i]);
             img_array[i].setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
@@ -107,6 +110,25 @@ public class MoleGame extends AppCompatActivity {
             }
         });
 
+    }
+
+    // point 값 수정 DB 설정,
+    private void pointDB() {
+
+
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
+        SQLiteDatabase ReadPointDB2 = dbHelper.getReadableDatabase();
+        SQLiteDatabase pointDB2 = dbHelper.getWritableDatabase();
+        //Cursor diaryCursor = eggDB.rawQuery( "select bad from DiaryData where date like '%"+listDate+"%';", null );
+        Cursor pointCursor = ReadPointDB2.rawQuery("select point from Dodam", null);
+        while (pointCursor.moveToNext()) {
+            System.out.println("기존 포인트 : " + (int) pointCursor.getInt(0));
+            mole_point = (int) pointCursor.getInt(0) + (int) (game_score / 3);
+            System.out.println("추가 포인트 : " + mole_point);
+        }
+
+        String molePoint_UPDATE = "UPDATE Dodam SET point=" + mole_point;
+        pointDB2.execSQL(molePoint_UPDATE);
     }
 
     // 두더지 터치 중복 -> 강종 방지
@@ -246,13 +268,19 @@ public class MoleGame extends AppCompatActivity {
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                //
+            //
             }
         });
-        builder.setMessage("시간 종료!.\n\nPOINT : +" + game_score);
+
+        builder.setMessage("시간 종료!.\n\nPOINT : +" + game_score / 3);
+        // point DB 값 수정
+        pointDB();
+
+
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 finish();
                 // 확인 버튼을 누른 후 토스트 메세지
                 Toast.makeText(getApplicationContext(), "홈으로 돌아갑니다", Toast.LENGTH_SHORT).show();
