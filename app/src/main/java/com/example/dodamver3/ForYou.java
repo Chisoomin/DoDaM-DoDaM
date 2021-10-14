@@ -171,10 +171,10 @@ public class ForYou extends Fragment {
         // playlist DB 설정
         albumImage();
 
-        PlayListDBHelper playListDBHelper = new PlayListDBHelper( getContext() );
-        SQLiteDatabase db = playListDBHelper.getReadableDatabase();
+        ForYouDBHelper forYouDBHelper = new ForYouDBHelper( getContext() );
+        SQLiteDatabase db = forYouDBHelper.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery( "select music, artist, albumImage, videoId from PlayListData where mood like '%" + moodNum + "%'", null );
+        Cursor cursor = db.rawQuery( "select music, artist, albumImage, videoId from ForYouData where mood like '%" + moodNum + "%'", null );
         ArrayList<ForYouItem> mList = new ArrayList<>();
         while (cursor.moveToNext()) {
             ForYouItem forYouItem = new ForYouItem();
@@ -585,10 +585,10 @@ public class ForYou extends Fragment {
 
     // 플레이리스트 DB 저장
     private void albumImage() {
-        PlayListDBHelper playListDBHelper = new PlayListDBHelper( getContext() );
-        SQLiteDatabase playlistDB = playListDBHelper.getReadableDatabase();
+        ForYouDBHelper forYouDBHelper = new ForYouDBHelper( getContext() );
+        SQLiteDatabase foryouDB = forYouDBHelper.getReadableDatabase();
 
-        Cursor okCursor = playlistDB.rawQuery( "select music from PlayListData", null );
+        Cursor okCursor = foryouDB.rawQuery( "select music from ForYouData", null );
         boolean checkDB = false;
         while (okCursor.moveToNext()) {
             if ((okCursor.getString( 0 )).equals( "Autumn Breeze (Feat. Rachel Lim)" )) {
@@ -601,7 +601,7 @@ public class ForYou extends Fragment {
             // 555
             Drawable aD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.plasticplants, null );
             byte[] a = getByteArrayFromDrawable( aD );
-            SQLiteStatement aS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement aS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             aS.bindString( 1, "555" );
             aS.bindString( 2, "Plastic Plants" );
             aS.bindString( 3, "Mahalia" );
@@ -611,7 +611,7 @@ public class ForYou extends Fragment {
 
             Drawable bD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.yourtext, null );
             byte[] b = getByteArrayFromDrawable( bD );
-            SQLiteStatement bS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement bS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             bS.bindString( 1, "555" );
             bS.bindString( 2, "your text" );
             bS.bindString( 3, "Sundial" );
@@ -621,7 +621,7 @@ public class ForYou extends Fragment {
 
             Drawable cD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.stay, null );
             byte[] c = getByteArrayFromDrawable( cD );
-            SQLiteStatement cS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement cS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             cS.bindString( 1, "555" );
             cS.bindString( 2, "STAY" );
             cS.bindString( 3, "The Kid LAROI, Justin Bieber" );
@@ -631,7 +631,7 @@ public class ForYou extends Fragment {
 
             Drawable dD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.butter, null );
             byte[] d = getByteArrayFromDrawable( dD );
-            SQLiteStatement dS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement dS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             dS.bindString( 1, "555" );
             dS.bindString( 2, "Butter" );
             dS.bindString( 3, "방탄소년단" );
@@ -642,7 +642,7 @@ public class ForYou extends Fragment {
             // 500
             Drawable eD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.dundundance, null );
             byte[] e = getByteArrayFromDrawable( eD );
-            SQLiteStatement eS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement eS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             eS.bindString( 1, "500" );
             eS.bindString( 2, "Dun Dun Dance" );
             eS.bindString( 3, "오마이걸(OH MY GIRL)" );
@@ -652,7 +652,7 @@ public class ForYou extends Fragment {
 
             Drawable fD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.myhand, null );
             byte[] f = getByteArrayFromDrawable( fD );
-            SQLiteStatement fS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement fS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             fS.bindString( 1, "500" );
             fS.bindString( 2, "내 손을 잡아" );
             fS.bindString( 3, "아이유(IU)" );
@@ -662,7 +662,7 @@ public class ForYou extends Fragment {
 
             Drawable gD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.trafficlight, null );
             byte[] g = getByteArrayFromDrawable( gD );
-            SQLiteStatement gS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement gS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             gS.bindString( 1, "500" );
             gS.bindString( 2, "신호등" );
             gS.bindString( 3, "이무진" );
@@ -672,7 +672,7 @@ public class ForYou extends Fragment {
 
             Drawable hD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.hello, null );
             byte[] h = getByteArrayFromDrawable( hD );
-            SQLiteStatement hS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement hS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             hS.bindString( 1, "500" );
             hS.bindString( 2, "안녕(Hello)" );
             hS.bindString( 3, "조이(JOY)" );
@@ -683,7 +683,7 @@ public class ForYou extends Fragment {
             // 050
             Drawable iD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.salt, null );
             byte[] i = getByteArrayFromDrawable( iD );
-            SQLiteStatement iS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement iS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             iS.bindString( 1, "050" );
             iS.bindString( 2, "Salt" );
             iS.bindString( 3, "Ava Max" );
@@ -693,7 +693,7 @@ public class ForYou extends Fragment {
 
             Drawable jD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.yourthinking, null );
             byte[] j = getByteArrayFromDrawable( jD );
-            SQLiteStatement jS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement jS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             jS.bindString( 1, "050" );
             jS.bindString( 2, "그건 니 생각이고" );
             jS.bindString( 3, "장기하와 얼굴들" );
@@ -703,7 +703,7 @@ public class ForYou extends Fragment {
 
             Drawable kD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.newrules, null );
             byte[] k = getByteArrayFromDrawable( kD );
-            SQLiteStatement kS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement kS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             kS.bindString( 1, "050" );
             kS.bindString( 2, "New Rules" );
             kS.bindString( 3, "Dua Lipa" );
@@ -713,7 +713,7 @@ public class ForYou extends Fragment {
 
             Drawable lD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.crystal, null );
             byte[] l = getByteArrayFromDrawable( lD );
-            SQLiteStatement lS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement lS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             lS.bindString( 1, "050" );
             lS.bindString( 2, "주옥같다" );
             lS.bindString( 3, "고옥희" );
@@ -724,7 +724,7 @@ public class ForYou extends Fragment {
             //005
             Drawable mD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.thereyouare, null );
             byte[] m = getByteArrayFromDrawable( mD );
-            SQLiteStatement mS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement mS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             mS.bindString( 1, "005" );
             mS.bindString( 2, "There You Are" );
             mS.bindString( 3, "ZAYN" );
@@ -734,7 +734,7 @@ public class ForYou extends Fragment {
 
             Drawable nD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.dazedandconfused, null );
             byte[] n = getByteArrayFromDrawable( nD );
-            SQLiteStatement nS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement nS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             nS.bindString( 1, "005" );
             nS.bindString( 2, "Dazed & Confused" );
             nS.bindString( 3, "Ruel" );
@@ -744,7 +744,7 @@ public class ForYou extends Fragment {
 
             Drawable oD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.needy, null );
             byte[] o = getByteArrayFromDrawable( oD );
-            SQLiteStatement oS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement oS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             oS.bindString( 1, "005" );
             oS.bindString( 2, "needy" );
             oS.bindString( 3, "Ariana Grande" );
@@ -754,7 +754,7 @@ public class ForYou extends Fragment {
 
             Drawable pD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.pov, null );
             byte[] p = getByteArrayFromDrawable( pD );
-            SQLiteStatement pS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement pS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             pS.bindString( 1, "005" );
             pS.bindString( 2, "pov" );
             pS.bindString( 3, "Ariana Grande" );
@@ -765,7 +765,7 @@ public class ForYou extends Fragment {
             // 550
             Drawable qD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.good4u, null );
             byte[] q = getByteArrayFromDrawable( qD );
-            SQLiteStatement qS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement qS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             qS.bindString( 1, "550" );
             qS.bindString( 2, "good 4 u" );
             qS.bindString( 3, "Olivia Rodrigo" );
@@ -775,7 +775,7 @@ public class ForYou extends Fragment {
 
             Drawable rD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.callmecruella, null );
             byte[] r = getByteArrayFromDrawable( rD );
-            SQLiteStatement rS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement rS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             rS.bindString( 1, "550" );
             rS.bindString( 2, "Call me Cruella" );
             rS.bindString( 3, "Florence + the Machine" );
@@ -785,7 +785,7 @@ public class ForYou extends Fragment {
 
             Drawable sD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.nextlevel, null );
             byte[] s = getByteArrayFromDrawable( sD );
-            SQLiteStatement sS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement sS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             sS.bindString( 1, "550" );
             sS.bindString( 2, "Next Level" );
             sS.bindString( 3, "aespa" );
@@ -795,7 +795,7 @@ public class ForYou extends Fragment {
 
             Drawable tD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.prettysavage, null );
             byte[] t = getByteArrayFromDrawable( tD );
-            SQLiteStatement tS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement tS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             tS.bindString( 1, "550" );
             tS.bindString( 2, "Pretty Savage" );
             tS.bindString( 3, "BLACKPINK" );
@@ -806,7 +806,7 @@ public class ForYou extends Fragment {
             // 505
             Drawable uD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.feelspecial, null );
             byte[] u = getByteArrayFromDrawable( uD );
-            SQLiteStatement uS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement uS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             uS.bindString( 1, "505" );
             uS.bindString( 2, "Feel Special" );
             uS.bindString( 3, "TWICE(트와이스)" );
@@ -816,7 +816,7 @@ public class ForYou extends Fragment {
 
             Drawable vD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.airplane, null );
             byte[] v = getByteArrayFromDrawable( vD );
-            SQLiteStatement vS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement vS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             vS.bindString( 1, "505" );
             vS.bindString( 2, "Airplane" );
             vS.bindString( 3, "f(x)" );
@@ -826,7 +826,7 @@ public class ForYou extends Fragment {
 
             Drawable wD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.day1, null );
             byte[] w = getByteArrayFromDrawable( wD );
-            SQLiteStatement wS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement wS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             wS.bindString( 1, "505" );
             wS.bindString( 2, "Day 1 ◑" );
             wS.bindString( 3, "HONNE" );
@@ -836,7 +836,7 @@ public class ForYou extends Fragment {
 
             Drawable xD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.alwaysillcare, null );
             byte[] x = getByteArrayFromDrawable( xD );
-            SQLiteStatement xS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement xS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             xS.bindString( 1, "505" );
             xS.bindString( 2, "always, i''ll care" );
             xS.bindString( 3, "Jeremy Zucker" );
@@ -847,7 +847,7 @@ public class ForYou extends Fragment {
             // 055
             Drawable yD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.inandout, null );
             byte[] y = getByteArrayFromDrawable( yD );
-            SQLiteStatement yS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement yS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             yS.bindString( 1, "055" );
             yS.bindString( 2, "In & Out" );
             yS.bindString( 3, "Red Velvet(레드벨벳)" );
@@ -857,7 +857,7 @@ public class ForYou extends Fragment {
 
             Drawable zD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.w, null );
             byte[] z = getByteArrayFromDrawable( zD );
-            SQLiteStatement zS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement zS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             zS.bindString( 1, "055" );
             zS.bindString( 2, "W(Feat. Gunna)" );
             zS.bindString( 3, "Koffee" );
@@ -867,7 +867,7 @@ public class ForYou extends Fragment {
 
             Drawable aaD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.savage, null );
             byte[] aa = getByteArrayFromDrawable( aaD );
-            SQLiteStatement aaS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement aaS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             aaS.bindString( 1, "055" );
             aaS.bindString( 2, "Savage(Nightcore Remix)" );
             aaS.bindString( 3, "Bahari" );
@@ -877,7 +877,7 @@ public class ForYou extends Fragment {
 
             Drawable bbD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.inferno, null );
             byte[] bb = getByteArrayFromDrawable( bbD );
-            SQLiteStatement bbS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement bbS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             bbS.bindString( 1, "055" );
             bbS.bindString( 2, "INFERNO" );
             bbS.bindString( 3, "Sub Urban & Bella Poarch" );
@@ -888,7 +888,7 @@ public class ForYou extends Fragment {
             // 000
             Drawable ccD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.congratulation, null );
             byte[] cc = getByteArrayFromDrawable( ccD );
-            SQLiteStatement ccS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement ccS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             ccS.bindString( 1, "000" );
             ccS.bindString( 2, "금요일에 만나요(Feat. 장이정 of HISTORY)" );
             ccS.bindString( 3, "아이유(IU)" );
@@ -898,7 +898,7 @@ public class ForYou extends Fragment {
 
             Drawable ddD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.friday, null );
             byte[] dd = getByteArrayFromDrawable( ddD );
-            SQLiteStatement ddS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement ddS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             ddS.bindString( 1, "000" );
             ddS.bindString( 2, "남이 될 수 있을까" );
             ddS.bindString( 3, "볼빨간사춘기 & 스무살" );
@@ -908,7 +908,7 @@ public class ForYou extends Fragment {
 
             Drawable eeD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.dawn, null );
             byte[] ee = getByteArrayFromDrawable( eeD );
-            SQLiteStatement eeS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement eeS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             eeS.bindString( 1, "000" );
             eeS.bindString( 2, "또 새벽이 오면(Feat. 백현(BAEKHYUN))" );
             eeS.bindString( 3, "Colde(콜드)" );
@@ -918,7 +918,7 @@ public class ForYou extends Fragment {
 
             Drawable ffD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.autumnbreeze, null );
             byte[] ff = getByteArrayFromDrawable( ffD );
-            SQLiteStatement ffS = playlistDB.compileStatement( "INSERT INTO PlayListData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
+            SQLiteStatement ffS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             ffS.bindString( 1, "000" );
             ffS.bindString( 2, "Autumn Breeze(Feat. Rachel Lim)" );
             ffS.bindString( 3, "JIDA(지다)" );
@@ -927,6 +927,6 @@ public class ForYou extends Fragment {
             ffS.execute();
         }
 
-        playlistDB.close();
+        foryouDB.close();
     }
 }

@@ -8,5 +8,7 @@
 
     <string name="default_notification_channel_name" translatable="true">DoDaMDoDaM</string>
     <string name="fcm_message">DoDaMDoDaM</string>
+    <string name="drawer_open" />
+    <string name="drawer_close" />
 
 </resources>

@@ -99,7 +99,6 @@ public class PlayList extends YouTubeBaseActivity {
         //날짜 바꿔보기
         Cursor diaryCursor = youtubeDB.rawQuery( "select happy, bad, sad, date from DiaryData;", null );
 
-
         while (diaryCursor.moveToNext()) {
             happyStr = diaryCursor.getString( 0 );
             badStr = diaryCursor.getString( 1 );
@@ -190,11 +189,12 @@ public class PlayList extends YouTubeBaseActivity {
                 player.setPlayerStateChangeListener( new YouTubePlayer.PlayerStateChangeListener() {
                     @Override
                     public void onLoading() {
+                        player.play();
                     }
 
                     @Override
                     public void onLoaded(String id) {
-                        player.loadVideo( videoId );
+                        // player.loadVideo( videoId );
                     }
 
                     @Override

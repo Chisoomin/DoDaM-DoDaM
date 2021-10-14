@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 class PlayListDBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 1;
 
     //미완성!
 
@@ -23,11 +23,9 @@ class PlayListDBHelper extends SQLiteOpenHelper {
                 "mood text, " + // 기분
                 "music text, " + // 노래
                 "artist text," + // 아티스트
-                "albumImage BLOB," + // 아티스트m
                 "videoId text)"; // 비디오 아이디
         db.execSQL(PlayListSQL);
 
-        /*
         // 감정별 노래
         // 555
         PlayListSQL = "insert into PlayListData(mood, music, artist, videoId) values('555', 'Plastic Plants', 'Mahalia', 'YYYRSS-ePxQ')";
@@ -110,8 +108,6 @@ class PlayListDBHelper extends SQLiteOpenHelper {
         db.execSQL(PlayListSQL);
         PlayListSQL = "insert into PlayListData(mood, music, artist, videoId) values('000', 'Autumn Breeze (Feat. Rachel Lim)', 'JIDA(지다)', 'EzQsoZYY470')";
         db.execSQL(PlayListSQL);
-
-         */
     }
 
 

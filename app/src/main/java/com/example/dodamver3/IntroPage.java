@@ -16,8 +16,8 @@ public class IntroPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_page);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        // ActionBar actionBar = getSupportActionBar();
+        // actionBar.hide();
 
         DBHelper helper = new DBHelper(getApplicationContext());
         SQLiteDatabase db = helper.getReadableDatabase();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/playlistBar"
+            android:icon="@drawable/playlist"
+            android:title="플레이리스트" />
+        <item
+            android:id="@+id/rewardBar"
+            android:icon="@drawable/reward"
+            android:title="업적 전체보기" />
+        <item android:title="설정">
+            <menu>
+                <item
+                    android:id="@+id/settingsBar"
+                    android:icon="@drawable/settings"
+                    android:title="설정" />
+            </menu>
+        </item>
+    </group>
+</menu>
