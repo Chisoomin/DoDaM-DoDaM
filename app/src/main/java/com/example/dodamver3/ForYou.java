@@ -886,7 +886,7 @@ public class ForYou extends Fragment {
             bbS.execute();
 
             // 000
-            Drawable ccD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.congratulation, null );
+            Drawable ccD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.friday, null );
             byte[] cc = getByteArrayFromDrawable( ccD );
             SQLiteStatement ccS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             ccS.bindString( 1, "000" );
@@ -896,7 +896,7 @@ public class ForYou extends Fragment {
             ccS.bindString( 5, "EiVmQZwJhsA" );
             ccS.execute();
 
-            Drawable ddD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.friday, null );
+            Drawable ddD = ResourcesCompat.getDrawable( getContext().getResources(), R.drawable.someone, null );
             byte[] dd = getByteArrayFromDrawable( ddD );
             SQLiteStatement ddS = foryouDB.compileStatement( "INSERT INTO ForYouData(mood, music, artist, albumImage, videoId) values(?,?,?,?,?);" );
             ddS.bindString( 1, "000" );
