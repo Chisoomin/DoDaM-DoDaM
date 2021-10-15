@@ -575,7 +575,7 @@ public class ForYou extends Fragment {
                 SQLiteStatement p = rewardDB.compileStatement( "INSERT INTO RewardData(image, exp, detailExp) values(?,?,?);" );
                 p.bindBlob( 1, diary );
                 p.bindString( 2, "첫 일기 작성!" );
-                p.bindString( 3, "축하드려요!\n첫 일기를 작성하셨네요.\n\n오늘 하루 겪었던 일,\n느꼈던 감정 모두 적어 보아요.\n\n자신을 돌아보는 건\n\n자존감에 아주 좋은 일이랍니다." );
+                p.bindString( 3, "축하드려요!\n첫 일기를 작성하셨네요.\n\n오늘 하루 겪었던 일,\n느꼈던 감정 모두 적어 보아요.\n\n자신을 돌아보는 건\n자존감에 아주 좋은 일이랍니다." );
                 p.execute();
             }
         }

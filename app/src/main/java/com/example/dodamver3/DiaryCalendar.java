@@ -177,8 +177,8 @@ public class DiaryCalendar extends AppCompatActivity {
                 diaryDBW.insert( "DiaryData", null, values );
                 diaryDBW.close();
 
-                //Intent intent = new Intent( getApplicationContext(), PlayList.class );
-                //startActivity( intent );
+                Intent intent = new Intent( getApplicationContext(), PlayList.class );
+                startActivity( intent );
 
                 /*
                 content = diaryContent.getText().toString();
