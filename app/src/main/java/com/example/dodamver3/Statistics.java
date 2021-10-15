@@ -96,8 +96,10 @@ public class Statistics extends Fragment {
 
         BarChartGraph(labelList, jsonList);
         barChart.setTouchEnabled(false); //확대하지못하게 막아버림! 별로 안좋은 기능인 것 같아~
-        barChart.getAxisRight().setAxisMaxValue(80);
-        barChart.getAxisLeft().setAxisMaxValue(80);
+        barChart.getAxisRight().setAxisMinValue(0);
+        barChart.getAxisLeft().setAxisMinValue(0);
+        barChart.getAxisRight().setAxisMaxValue(3);
+        barChart.getAxisLeft().setAxisMaxValue(60);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +151,10 @@ public class Statistics extends Fragment {
 //        barChart.setTop(50);
 //        barChart.setBottom(0);
 //        barChart.setAutoScaleMinMaxEnabled(true);
-        barChart.getAxisRight().setAxisMaxValue(80);
-        barChart.getAxisLeft().setAxisMaxValue(80);
+        barChart.getAxisRight().setAxisMinValue(0);
+        barChart.getAxisLeft().setAxisMinValue(0);
+        barChart.getAxisRight().setAxisMaxValue(3);
+        barChart.getAxisLeft().setAxisMaxValue(60);
     }
     /**
      * 그래프함수

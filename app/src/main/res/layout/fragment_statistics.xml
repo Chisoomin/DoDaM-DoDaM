@@ -60,7 +60,17 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" >
+
+                </com.github.mikephil.charting.charts.BarChart>
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="그래프 오른쪽에서 0-1은 정상범주에서 보통의 우울감, 1-2은 심한 우울감에서 매우 심한 우울감을 뜻해요.\n1 이상의 범위에 속하는 결과가 많다면 전문가와의 상담을 추천드려요.\n☎ 1577-0199"
+                    android:textColor="#000000" />
 
             </LinearLayout>
         </LinearLayout>
