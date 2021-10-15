@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -25,6 +26,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -199,7 +202,7 @@ public class Statistics extends Fragment {
                     @Override
                     public void onDismiss(View view) {
                         if (type == 1) {
-                            //ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", getView(), R.id.calendarView, 2);
+                            ShowIntro("그래프 설명", "그래프에 대한 설명을 보고 자신의 상태를 진단할 수 있어요.", getView(), R.id.exp, 2);
                         } else if (type == 2) {
                             //ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habit_recycle, 3);
                         } else if (type == 3) {
