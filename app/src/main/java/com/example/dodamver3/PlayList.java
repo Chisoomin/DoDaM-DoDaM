@@ -36,6 +36,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
+
 public class PlayList extends YouTubeBaseActivity {
     // 1
     YouTubePlayerView playerView;
@@ -50,6 +54,8 @@ public class PlayList extends YouTubeBaseActivity {
     ListView playlistCustom;
 
     ImageView homeImageView;
+    ImageView ques_you;
+
 
     // 유튜브 API KEY
     private static String API_KEY = "AIzaSyAbJ7W-mkjLm5aYR0BuqWSvOq9pkAISOAg";
@@ -66,6 +72,8 @@ public class PlayList extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_list);
 
+
+
         // 2
         playerView = (YouTubePlayerView) findViewById( R.id.youTubePlayerView );
         youtubeLinearLayout = (LinearLayout) findViewById( R.id.youtubeLinearLayout );
@@ -77,10 +85,48 @@ public class PlayList extends YouTubeBaseActivity {
         playlistCustom = (ListView) findViewById( R.id.playlistCustom );
 
         homeImageView = (ImageView) findViewById( R.id.homeImageView );
+        ques_you=findViewById(R.id.ques_you);
 
         // 처음 안보이게 설정
         playerView.setVisibility( View.GONE );
         numberPlaylist.setVisibility( View.GONE );
+
+
+        ques_you.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new GuideView.Builder(PlayList.this)
+                        .setTitle("감정 플레이리스트")
+                        .setContentText("추천 플레이리스트의 원하는 노래를 플레이 할 수 있어요.")
+                        .setTargetView(playlistCustom)
+                        .setContentTextSize(12)//optional
+                        .setTitleTextSize(14)//optional
+                        .setDismissType(DismissType.targetView) //optional - default dismissible by TargetView
+                        .setGuideListener(new GuideListener() {
+                            @Override
+                            public void onDismiss(View view) {
+                                new GuideView.Builder(PlayList.this)
+                                        .setTitle("유튜브 노래 듣기")
+                                        .setContentText("이곳에서 추천 노래를 들을 수 있어요.")
+                                        .setTargetView(youtubeLinearLayout)
+                                        .setContentTextSize(12)//optional
+                                        .setTitleTextSize(14)//optional
+                                        .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                                        .setGuideListener(new GuideListener() {
+                                            @Override
+                                            public void onDismiss(View view) {
+
+                                            }
+                                        })
+                                        .build()
+                                        .show();
+                            }
+                        })
+                        .build()
+                        .show();
+            }
+        });
+
 
         // youtube, textView 배경색 지정, DB 설정
         DiaryDBHelper diaryDBHelper = new DiaryDBHelper( this );

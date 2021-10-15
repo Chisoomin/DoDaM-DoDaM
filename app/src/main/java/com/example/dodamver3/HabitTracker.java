@@ -143,6 +143,7 @@ public class HabitTracker extends Fragment {
 
 
 
+
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
         date.setText(mFormat.format(mDate));
@@ -169,7 +170,7 @@ public class HabitTracker extends Fragment {
         month_pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(view.getContext(), mDateSetListener, Year, Month, Day).show();
+                //new DatePickerDialog(view.getContext(), mDateSetListener, Year, Month, Day).show();
             }
         });
 
@@ -417,7 +418,6 @@ public class HabitTracker extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -466,7 +466,7 @@ public class HabitTracker extends Fragment {
                         if (type == 1) {
                             ShowIntro("가로 캘린더", "날짜를 선택해서 매일의 습관을 볼 수 있어요.", getView(), R.id.calendarView, 2);
                         } else if (type == 2) {
-                            ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habit_recycle, 3);
+                            ShowIntro("습관 목록", "습관 목록들을 아래에서 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habitlist, 3);
                         } else if (type == 3) {
 
                         }

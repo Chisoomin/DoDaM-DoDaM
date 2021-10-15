@@ -99,7 +99,7 @@ public class MainScreen extends Fragment {
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
     int i = 0;
-    static int cnt = 0;
+    //static int cnt = 0;
     ImageButton ques;
 
     @Override
@@ -117,10 +117,7 @@ public class MainScreen extends Fragment {
         ques = view.findViewById(R.id.ques);
 
         RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
-        if (cnt == 0) {
-            ShowIntro("DoDaM 포인트", "포인트를 모아 아래의 식물을 성장시킬 수 있어요.", view.getRootView(), R.id.point, 1);
-            cnt++;
-        }
+
         ques.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

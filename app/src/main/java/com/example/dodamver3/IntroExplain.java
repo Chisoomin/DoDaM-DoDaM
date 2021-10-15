@@ -13,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link IntroExplain#newInstance} factory method to
@@ -69,6 +73,7 @@ public class IntroExplain extends Fragment {
     TextView subTitle;
     AlphaAnimation AA;
     String i = "0";
+    ImageButton first_ques;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +84,7 @@ public class IntroExplain extends Fragment {
         name = view.findViewById(R.id.name);
         Introoo = (ImageView) view.findViewById(R.id.introoo);
         subTitle = view.findViewById(R.id.subtitle);
+        first_ques = view.findViewById(R.id.first_ques);
 
         AA = new AlphaAnimation(1, 0);
         AA.setDuration(3000);
@@ -99,6 +105,27 @@ public class IntroExplain extends Fragment {
                 subTitle.setVisibility(View.INVISIBLE);
             }
         }
+
+        first_ques.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new GuideView.Builder(getContext())
+                        .setTitle("다음 버튼")
+                        .setContentText("다음 버튼을 눌러주세요.")
+                        .setTargetView(next)
+                        .setContentTextSize(12)//optional
+                        .setTitleTextSize(14)//optional
+                        .setDismissType(DismissType.targetView) //optional - default dismissible by TargetView
+                        .setGuideListener(new GuideListener() {
+                            @Override
+                            public void onDismiss(View view) {
+
+                            }
+                        })
+                        .build()
+                        .show();
+            }
+        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

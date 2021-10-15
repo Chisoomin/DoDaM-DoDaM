@@ -1,5 +1,7 @@
 package com.example.dodamver3;
 
+import static com.example.dodamver3.MainActivity.hope;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -102,6 +104,7 @@ public class CalenD extends Fragment {
     int happyInt, badInt, sadInt;
 
     LinearLayout diaryContainer;
+    ImageButton ques_cal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -118,10 +121,16 @@ public class CalenD extends Fragment {
         diary = (TextView) view.findViewById(R.id.diary);
         stamp = (ImageView) view.findViewById(R.id.stamp);
 
-        if(cnt1==0){
-            //ShowIntro("캘린더", "날짜를 클릭해서 일기를 볼 수 있어요.", view.getRootView(), R.id.cal, 1);
-            cnt1++;
-        }
+        ques_cal = view.findViewById(R.id.ques_cal);
+
+        ques_cal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(hope == 0){
+                    ShowIntro("캘린더", "날짜를 클릭해서 일기를 볼 수 있어요.", view.getRootView(), R.id.cal, 1);
+                }
+            }
+        });
 
 
         bLastMonth.setOnClickListener(this::onClick);

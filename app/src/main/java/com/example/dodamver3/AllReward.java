@@ -17,10 +17,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
+
 public class AllReward extends AppCompatActivity {
     // 1
     RecyclerView allRewardRecyclerView;
     ImageView allRewardHome;
+    ImageButton ques_reward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,28 @@ public class AllReward extends AppCompatActivity {
         // 2
         allRewardRecyclerView = (RecyclerView) findViewById( R.id.allRewardRecyclerView );
         allRewardHome = (ImageView) findViewById( R.id.allRewardHome );
+        ques_reward = findViewById(R.id.ques_reward);
+
+        ques_reward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new GuideView.Builder(AllReward.this)
+                        .setTitle("업적 상세보기")
+                        .setContentText("내가 이룬 업적의 상세 설명을 볼 수있어요/")
+                        .setTargetView(allRewardRecyclerView)
+                        .setContentTextSize(12)//optional
+                        .setTitleTextSize(14)//optional
+                        .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                        .setGuideListener(new GuideListener() {
+                            @Override
+                            public void onDismiss(View view) {
+
+                            }
+                        })
+                        .build()
+                        .show();
+            }
+        });
 
         RewardDBHelper rewardDBHelper = new RewardDBHelper( getApplicationContext() );
         SQLiteDatabase rewardDB = rewardDBHelper.getReadableDatabase();

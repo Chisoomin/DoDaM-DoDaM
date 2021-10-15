@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/subtitle"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -25,6 +26,8 @@
 
     <ImageView
         android:id="@+id/introoo"
+        android:visibility="gone"
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:elevation="1dp"
@@ -72,18 +75,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="도담도담은 심리 상태 분석을 통해 사용자들에게 현재 자신의 심리 상태를 파악하여 심리 상태를 관리해주는 앱이에요.\n\n
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="도담도담은 심리 상태 분석을 통해 사용자들에게 현재 자신의 심리 상태를 파악하여 심리 상태를 관리해주는 앱이에요.\n\n
 여러분의 심리 상태를 관리하기 위해 몇가지 컨텐츠를 담고 있답니다.:)\n1. 자신의 감정을 쉽게 파악할 수 있는 감정일기쓰기\n2. 좋은 습관을 만들어 자존감을 키울 수 있는 해빗 트레커
 \n3. 쌓이는 스트레스를 조금이나마 해소할 수 있도록 하는 여러 미니게임\n\n개인의 기록들을 관리해야 하기 때문에 간단한 회원가입과 초기 심리 상태 검사를 하고 넘어갈거에요!\n잘 따라와 주세요^^ gogo!"
-            android:textColor="#FF636060"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#FF636060"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/first_ques"
+                android:layout_margin="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:src="@drawable/questionmark_reverse"
+                android:background="#00000000"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#FF636060"
+                android:textSize="16sp"
+                android:text="또 앞으로 이 버튼이 여러분에게 앱을 설명해 줄 거예요. 이 버튼이 보이면 클릭해 주세요.\n\n 지금도 클릭해 볼까요?"/>
+
+        </LinearLayout>
+
+
     </ScrollView>
 
 

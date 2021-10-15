@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,6 +20,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 public class DiaryCalendar extends AppCompatActivity {
     // 1
@@ -34,6 +39,9 @@ public class DiaryCalendar extends AppCompatActivity {
 
     String dbDate;
     String dateS;
+    ImageButton question;
+    LinearLayout emotion;
+    LinearLayout setting;
 
     /*
        구현 남은 것 메모
@@ -48,6 +56,16 @@ public class DiaryCalendar extends AppCompatActivity {
 
         date = (TextView) findViewById( R.id.date );
         diaryContent = (EditText) findViewById( R.id.diaryContent );
+        question = findViewById(R.id.question_reverse);
+        emotion = findViewById(R.id.emotion);
+        setting = findViewById(R.id.setting);
+
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowIntro("일기 쓰는 날짜", "일기를 쓰는 날짜를 확인할 수 있어요.", date, 1);
+            }
+        });
 
 
         Date listCurrentTime = Calendar.getInstance().getTime();
@@ -247,6 +265,32 @@ public class DiaryCalendar extends AppCompatActivity {
                 alert.show();
             }
         } );
+    }
+    private void ShowIntro(String title, String text, View widget, final int type) {
+
+        new GuideView.Builder(DiaryCalendar.this)
+                .setTitle(title)
+                .setContentText(text)
+                .setTargetView(widget)
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14)//optional
+                .setDismissType(DismissType.anywhere) //optional - default dismissible by TargetView
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        if (type == 1) {
+                            ShowIntro("일기 입력", "이곳에 일기를 입력해 주세요.", diaryContent, 2);
+                        } else if (type == 2) {
+                            ShowIntro("감정 입력", "오늘 느낀 기쁨, 분노, 슬픔의 감정을 새싹을 옮겨 0-10까지 수로 표현해 주세요.", emotion, 3);
+                        } else if (type == 3) {
+                            ShowIntro("감정 일기 입력", "이렇게 쓴 일기를 저장, 수정, 삭제할 수 있어요.", setting, 4);
+                        } else if(type==4){
+
+                        }
+                    }
+                })
+                .build()
+                .show();
     }
 }
 

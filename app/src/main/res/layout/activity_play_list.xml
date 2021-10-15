@@ -82,6 +82,17 @@
             android:layout_marginTop="8dp" />
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/ques_you"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="18dp"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:src="@drawable/questionmark_reverse2"
+        app:layout_constraintBottom_toTopOf="@+id/homeImageView"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:id="@+id/homeImageView"
         android:layout_width="50dp"

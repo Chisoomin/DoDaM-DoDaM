@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled( false );
         actionBar.setDisplayShowCustomEnabled( true ); //커스터마이징 하기 위해 필요
         actionBar.setDisplayHomeAsUpEnabled(true); //툴바 메뉴버튼 생성
-        actionBar.setHomeAsUpIndicator(R.drawable.menu); // 메뉴 버튼 모양 설정
+        actionBar.setHomeAsUpIndicator(R.drawable.menumenu); // 메뉴 버튼 모양 설정
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
