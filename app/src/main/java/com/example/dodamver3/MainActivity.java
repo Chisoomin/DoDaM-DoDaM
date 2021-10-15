@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity( rewardIntent );
                         return true;
                     case R.id.settingsBar:
-                        // Intent settingsIntent = new Intent(getApplicationContext(), .class);
-                        // startActivity( settingsIntent );
+                        Intent settingsIntent = new Intent(getApplicationContext(), Settings.class);
+                        startActivity( settingsIntent );
                         return true;
                     case R.id.logoutBar:
                         Intent Intro = new Intent( getApplicationContext(), IntroPage.class );
