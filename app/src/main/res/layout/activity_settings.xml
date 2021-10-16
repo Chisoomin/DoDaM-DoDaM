@@ -11,7 +11,6 @@
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/borderline_1"
         android:orientation="vertical"
         android:padding="8dp"
@@ -35,5 +34,35 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:text="1.0.0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderline_1"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="참고자료"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:text="심리검사 : 조맹제, 김계희(1993). 주요 우울증 환자 예비평가에서 the Center for Epidemiologic Studies Depression Scale (CEW-D)진단적 타당성 연구" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

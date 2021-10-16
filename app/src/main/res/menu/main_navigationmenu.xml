@@ -9,6 +9,18 @@
             android:id="@+id/rewardBar"
             android:icon="@drawable/reward"
             android:title="업적 전체보기" />
+        <item android:title="설명서">
+            <menu>
+                <item
+                    android:id="@+id/guideBar"
+                    android:icon="@drawable/menuguide"
+                    android:title="메뉴 설명서" />
+                <item
+                    android:id="@+id/componentBar"
+                    android:icon="@drawable/component"
+                    android:title="구성요소 설명서" />
+            </menu>
+        </item>
         <item android:title="설정">
             <menu>
                 <item

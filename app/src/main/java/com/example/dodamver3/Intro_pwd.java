@@ -130,7 +130,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -160,7 +160,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -190,7 +190,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -220,7 +220,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -250,7 +250,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -280,7 +280,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -310,7 +310,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -340,7 +340,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -370,7 +370,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -400,7 +400,7 @@ public class Intro_pwd extends Fragment {
 
                 if(i==4){
                     if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                        Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                        Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                         startActivity(intent2);
                     }else {
                         constraintLayout.setBackgroundResource(R.drawable.pwd);
@@ -419,7 +419,7 @@ public class Intro_pwd extends Fragment {
                 if (MY_ACTION.equals(intent.getAction())) {
                     if(i==3){
                         if (i>=3 && (pwd[0] + pwd[1] + pwd[2] + pwd[3]).equals(finalUserPwd)) {
-                            Intent intent2 = new Intent(view.getContext(), MainActivity.class);
+                            Intent intent2 = new Intent(view.getContext(), UserGuide.class);
                             startActivity(intent2);
                         }else {
                             constraintLayout.setBackgroundResource(R.drawable.pwd);

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     // Drawer이 열렸을 때 뒤로가기 누르면 닫히는 기능
     @Override
     public void onBackPressed() {
-        if(isDrawerOpened) {
+        if (isDrawerOpened) {
             drawerLayout.closeDrawer( Gravity.LEFT );
         } else {
             finish();
@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled( false );
         actionBar.setDisplayShowCustomEnabled( true ); //커스터마이징 하기 위해 필요
-        actionBar.setDisplayHomeAsUpEnabled(true); //툴바 메뉴버튼 생성
-        actionBar.setHomeAsUpIndicator(R.drawable.menumenu); // 메뉴 버튼 모양 설정
+        actionBar.setDisplayHomeAsUpEnabled( true ); //툴바 메뉴버튼 생성
+        actionBar.setHomeAsUpIndicator( R.drawable.menumenu ); // 메뉴 버튼 모양 설정
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+        actionBarDrawerToggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close ) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened( drawerView );
@@ -113,20 +113,28 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.playlistBar:
-                        Intent playlistIntent = new Intent(getApplicationContext(), PlayList.class);
+                        Intent playlistIntent = new Intent( getApplicationContext(), PlayList.class );
                         startActivity( playlistIntent );
                         return true;
                     case R.id.rewardBar:
-                        Intent rewardIntent = new Intent(getApplicationContext(), AllReward.class);
+                        Intent rewardIntent = new Intent( getApplicationContext(), AllReward.class );
                         startActivity( rewardIntent );
                         return true;
                     case R.id.settingsBar:
-                        Intent settingsIntent = new Intent(getApplicationContext(), Settings.class);
+                        Intent settingsIntent = new Intent( getApplicationContext(), Settings.class );
                         startActivity( settingsIntent );
                         return true;
                     case R.id.logoutBar:
                         Intent Intro = new Intent( getApplicationContext(), IntroPage.class );
                         startActivity( Intro );
+                        return true;
+                    case R.id.guideBar:
+                        Intent guide = new Intent( getApplicationContext(), UserGuide.class );
+                        startActivity( guide );
+                        return true;
+                    case R.id.componentBar:
+                        Intent component = new Intent( getApplicationContext(), componentGuide.class );
+                        startActivity( component );
                         return true;
                 }
                 drawerLayout.closeDrawer( GravityCompat.START );
@@ -184,34 +192,33 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter( myPagerAdapter );
 
 
-
         //탭 선택 이벤트
         tabs.addOnTabSelectedListener( new TabLayout.ViewPagerOnTabSelectedListener( viewPager ) );
         viewPager.addOnPageChangeListener( new TabLayout.TabLayoutOnPageChangeListener( tabs ) );
         tabs.setOnTabSelectedListener( new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+                viewPager.setCurrentItem( tab.getPosition() );
                 myPagerAdapter.notifyDataSetChanged();
                 if (tab.getPosition() == 0) {
-                    hope=0;
+                    hope = 0;
                     tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_cal );
                 }
                 if (tab.getPosition() == 1) {
-                    hope=1;
+                    hope = 1;
                     tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_habit );
                 }
                 if (tab.getPosition() == 2) {
-                    hope=2;
+                    hope = 2;
                     tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_home );
 
                 }
                 if (tab.getPosition() == 3) {
-                    hope=3;
+                    hope = 3;
                     tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_sta );
                 }
                 if (tab.getPosition() == 4) {
-                    hope=4;
+                    hope = 4;
                     tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_for );
                 }
             }

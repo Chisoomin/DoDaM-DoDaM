@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dodamver3" >
+    package="com.example.dodamver3">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -21,19 +21,35 @@
         android:roundIcon="@mipmap/logo_launch_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoDaMVer3"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".Settings"
-            android:exported="true" >
+            android:name=".componentGuide"
+            android:exported="true">
             <intent-filter>
-
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".UserGuide"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Settings"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AllReward"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -45,7 +61,7 @@
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.example.dodamver3.action.ACTION_MY_BROADCAST" />
             </intent-filter>
@@ -53,7 +69,7 @@
 
         <activity
             android:name=".MoleGame"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -66,14 +82,14 @@
             android:exported="true" />
         <activity
             android:name=".Psychological_Test"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".IntroPage"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -82,21 +98,21 @@
         </activity>
         <activity
             android:name=".PlayList"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".DiaryCalendar"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -105,7 +121,7 @@
         <service
             android:name=".MyFirebaseMessagingService"
             android:directBootAware="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
