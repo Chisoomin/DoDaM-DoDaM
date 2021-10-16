@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,7 +17,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -24,12 +28,14 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import smartdevelop.ir.eram.showcaseviewlib.GuideView;
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
@@ -82,17 +88,21 @@ public class Statistics extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     BarChart barChart;
+    HorizontalBarChart horizontalBarChart;
     ArrayList<Integer> jsonList = new ArrayList<>(); // ArrayList 선언
     ArrayList<String> labelList = new ArrayList<>(); // ArrayList 선언
     ImageButton imageButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         barChart = view.findViewById(R.id.BarChart_test);
-        //ArrayList<Entry> values = new ArrayList<>();
+        horizontalBarChart = view.findViewById(R.id.bar_negative);
+        ArrayList<Entry> values = new ArrayList<>();
         imageButton = view.findViewById(R.id.questionMark1);
 
         graphInitSetting();       //그래프 기본 세팅
@@ -104,20 +114,47 @@ public class Statistics extends Fragment {
         barChart.getAxisRight().setAxisMaxValue(3);
         barChart.getAxisLeft().setAxisMaxValue(60);
 
+
+        BarData data = new BarData(getXAxisValues(), getDataSet());
+        horizontalBarChart.setData(data);
+        horizontalBarChart.animateXY(1000, 1000);
+        horizontalBarChart.invalidate();
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(hope==3){
+                if (hope == 3) {
                     ShowIntro("심리 진단 그래프", "심리 진단 결과를 그래프로 확인할 수 있어요.", view.getRootView(), R.id.BarChart_test, 1);
                 }
             }
         });
 
 
-
         return view;
     }
-    public void graphInitSetting(){
+
+    private BarDataSet getDataSet() {
+
+        ArrayList<BarEntry> entries = new ArrayList();
+        entries.add(new BarEntry(4f, 0));
+        entries.add(new BarEntry(8f, 1));
+        entries.add(new BarEntry(6f, 2));
+
+        BarDataSet dataset = new BarDataSet(entries,"부정적인 단어");
+        dataset.setColors(ColorTemplate.PASTEL_COLORS);
+        return dataset;
+    }
+
+    private ArrayList<String> getXAxisValues() {
+        ArrayList<String> labels = new ArrayList();
+        labels.add("2021년 10월 14일");
+        labels.add("2021년 10월 15일");
+        labels.add("2021년 10월 16일");
+
+        return labels;
+    }
+
+    public void graphInitSetting() {
         labelList.clear();
         jsonList.clear();
 
@@ -128,7 +165,7 @@ public class Statistics extends Fragment {
         while (cursor.moveToNext()) {
             String[] date = new String[3];
             date = cursor.getString(0).split(" ");
-            labelList.add(date[1]+date[2]);
+            labelList.add(date[1] + date[2]);
             jsonList.add(Integer.valueOf(cursor.getString(1)));
         }
 
@@ -146,7 +183,6 @@ public class Statistics extends Fragment {
         jsonList.add(50);*/
 
 
-
         BarChartGraph(labelList, jsonList);
         barChart.setTouchEnabled(false); //확대하지못하게 막아버림! 별로 안좋은 기능인 것 같아~
         //barChart.setRendererLeftYAxis();
@@ -159,6 +195,7 @@ public class Statistics extends Fragment {
         barChart.getAxisRight().setAxisMaxValue(3);
         barChart.getAxisLeft().setAxisMaxValue(60);
     }
+
     /**
      * 그래프함수
      */
@@ -189,6 +226,8 @@ public class Statistics extends Fragment {
         barChart.animateXY(1000, 1000);
         barChart.invalidate();
     }
+
+
     private void ShowIntro(String title, String text, View view, int id, final int type) {
 
         new GuideView.Builder(getContext())

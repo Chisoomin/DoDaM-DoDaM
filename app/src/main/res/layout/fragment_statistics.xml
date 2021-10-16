@@ -9,7 +9,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +64,7 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" >
+                    app:layout_constraintTop_toTopOf="parent">
 
                 </com.github.mikephil.charting.charts.BarChart>
 
@@ -72,8 +76,35 @@
                     android:text="그래프 오른쪽에서 0-1은 정상범주에서 보통의 우울감, 1-2은 심한 우울감에서 매우 심한 우울감을 뜻해요.\n1 이상의 범위에 속하는 결과가 많다면 전문가와의 상담을 추천드려요.\n☎ 1577-0199 (정신건강위기상담전화)"
                     android:textColor="#000000" />
 
+                <TextView
+                    android:id="@+id/diary_negative"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="left"
+                    android:text="일기에 적힌 부정적 단어 횟수"
+                    android:textColor="#353535"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/bar_negative"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+                <TextView
+                    android:id="@+id/exp_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="일기 작성 후, 각 날에 적힌 부정적인 단어의 빈도를 알 수 있어요."
+                    android:textColor="#000000" />
+
+
             </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 
 
