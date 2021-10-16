@@ -243,7 +243,7 @@ public class Statistics extends Fragment {
                         if (type == 1) {
                             ShowIntro("그래프 설명", "그래프에 대한 설명을 보고 자신의 상태를 진단할 수 있어요.", getView(), R.id.exp, 2);
                         } else if (type == 2) {
-                            //ShowIntro("습관 목록", "습관 목록들을 확인 할 수 있어요.\n각각의 목록을 왼쪽으로 밀면 달성할 수 있어요.", getView(), R.id.habit_recycle, 3);
+                            ShowIntro("일기 기반 그래프", "일기에 적힌 부정적인 단어의 빈도를 한눈에 확인 할 수 있어요.", getView(), R.id.bar_negative, 3);
                         } else if (type == 3) {
 
                         }

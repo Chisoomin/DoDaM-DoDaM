@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="left|center_vertical"
                     android:gravity="left"
-                    android:text="일기에 적힌 부정적 단어 횟수"
+                    android:text="일기 기반 부정적 단어 빈도 그래프"
                     android:textColor="#353535"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
