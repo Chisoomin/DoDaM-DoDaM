@@ -192,27 +192,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_btn );
                 myPagerAdapter.notifyDataSetChanged();
-                if (tab.getPosition() == 1) {
-                    hope=1;
-                    Log.e("hope",""+hope);
-                }
                 if (tab.getPosition() == 0) {
                     hope=0;
-                    Log.e("hope",""+hope);
+                    tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_cal );
+                }
+                if (tab.getPosition() == 1) {
+                    hope=1;
+                    tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_habit );
                 }
                 if (tab.getPosition() == 2) {
                     hope=2;
-                    Log.e("hope",""+hope);
+                    tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_home );
+
                 }
                 if (tab.getPosition() == 3) {
                     hope=3;
-                    Log.e("hope",""+hope);
+                    tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_sta );
                 }
                 if (tab.getPosition() == 4) {
                     hope=4;
-                    Log.e("hope",""+hope);
+                    tabs.getTabAt( tab.getPosition() ).view.setBackgroundResource( R.drawable.open_for );
                 }
             }
 

@@ -36,7 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         @SuppressLint("RemoteViewLayout") RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.notification);
         remoteViews.setTextViewText(R.id.noti_title, title);
         remoteViews.setTextViewText(R.id.noti_message, message);
-        remoteViews.setImageViewResource(R.id.noti_icon, R.drawable.logo);
+        remoteViews.setImageViewResource(R.id.noti_icon, R.drawable.logo_pink);
         return remoteViews;
     }
 
@@ -47,7 +47,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channel_id)
-                .setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.drawable.logo_pink)
                 .setSound(uri)
                 .setAutoCancel(true)
                 .setVibrate(new long[] {1000, 1000, 1000, 1000, 1000})
@@ -62,7 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         {
             builder = builder.setContentTitle(title)
                     .setContentText(message)
-                    .setSmallIcon(R.drawable.logo);
+                    .setSmallIcon(R.drawable.logo_pink);
         }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
