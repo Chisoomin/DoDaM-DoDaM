@@ -24,7 +24,7 @@ import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 public class AllReward extends AppCompatActivity {
     // 1
     RecyclerView allRewardRecyclerView;
-    ImageView allRewardHome;
+    ImageView closeImage3;
     ImageButton ques_reward;
 
     @Override
@@ -34,7 +34,7 @@ public class AllReward extends AppCompatActivity {
 
         // 2
         allRewardRecyclerView = (RecyclerView) findViewById( R.id.allRewardRecyclerView );
-        allRewardHome = (ImageView) findViewById( R.id.allRewardHome );
+        closeImage3 = (ImageView) findViewById( R.id.closeImage3 );
         ques_reward = findViewById(R.id.ques_reward);
 
         ques_reward.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +79,9 @@ public class AllReward extends AppCompatActivity {
         allRewardRecyclerView.setLayoutManager( new GridLayoutManager( this, 3) );
 
         // 3
-        allRewardHome.setOnClickListener( new View.OnClickListener() {
+        closeImage3.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent( getApplicationContext(), MainActivity.class );
-                startActivity( intent );
+            public void onClick(View view) {
                 finish();
             }
         } );

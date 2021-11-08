@@ -53,7 +53,7 @@ public class PlayList extends YouTubeBaseActivity {
     TextView numberPlaylist;
     ListView playlistCustom;
 
-    ImageView homeImageView;
+    ImageView closeImage2;
     ImageView ques_you;
 
 
@@ -72,8 +72,6 @@ public class PlayList extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_list);
 
-
-
         // 2
         playerView = (YouTubePlayerView) findViewById( R.id.youTubePlayerView );
         youtubeLinearLayout = (LinearLayout) findViewById( R.id.youtubeLinearLayout );
@@ -84,13 +82,20 @@ public class PlayList extends YouTubeBaseActivity {
         numberPlaylist = (TextView) findViewById( R.id.numberPlaylist );
         playlistCustom = (ListView) findViewById( R.id.playlistCustom );
 
-        homeImageView = (ImageView) findViewById( R.id.homeImageView );
+        closeImage2 = (ImageView) findViewById( R.id.closeImage2 );
         ques_you=findViewById(R.id.ques_you);
+
+        // 3
+        closeImage2.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        } );
 
         // 처음 안보이게 설정
         playerView.setVisibility( View.GONE );
         numberPlaylist.setVisibility( View.GONE );
-
 
         ques_you.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,15 +195,6 @@ public class PlayList extends YouTubeBaseActivity {
         // playlist 어댑터 연결
         PlayListAdapter playListAdapter = new PlayListAdapter( this, R.layout.custom_item_playlist, data );
         playlistCustom.setAdapter( playListAdapter );
-
-        // 3, 홈 화면 이동 이미지 버튼 리스너
-        homeImageView.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent( getApplicationContext(), MainActivity.class );
-                startActivity( intent );
-            }
-        } );
     }
 
     // youtube, textView 배경색 지정 메소드
@@ -347,5 +343,10 @@ public class PlayList extends YouTubeBaseActivity {
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

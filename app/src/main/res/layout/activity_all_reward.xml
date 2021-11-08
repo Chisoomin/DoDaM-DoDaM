@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AAEAE0CE"
     android:padding="16dp"
-    tools:context=".AllReward"
-    android:background="#AAEAE0CE">
+    tools:context=".AllReward">
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="업적 전체보기"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -24,12 +24,19 @@
         android:id="@+id/ques_reward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="12dp"
         android:background="#00000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/closeImage3"
+        app:layout_constraintTop_toTopOf="@+id/textView24"
         app:srcCompat="@drawable/questionmark" />
+
+    <ImageView
+        android:id="@+id/closeImage3"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ques_reward"
+        android:src="@drawable/close" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allRewardRecyclerView"
@@ -39,11 +46,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24"
         tools:layout_editor_absoluteX="16dp" />
 
-    <ImageView
-        android:id="@+id/allRewardHome"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/house" />
 </androidx.constraintlayout.widget.ConstraintLayout>
