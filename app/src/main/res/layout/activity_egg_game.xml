@@ -5,8 +5,7 @@
     android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/intro_b"
-    tools:context=".MiniGame">
+    android:background="@drawable/intro_b">
 
     <TextView
         android:id="@+id/eggTextView"
@@ -29,18 +28,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
         android:scaleType="matrix"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eggTextView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.371"
         app:srcCompat="@drawable/egg0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

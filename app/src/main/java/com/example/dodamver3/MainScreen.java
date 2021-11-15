@@ -30,6 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import smartdevelop.ir.eram.showcaseviewlib.GuideView;
@@ -125,14 +126,19 @@ public class MainScreen extends Fragment {
             }
         });
 
-        String url = "http://192.168.56.1:8080/AndroidAppEx/saying.jsp";
+        String url = "http://118.67.134.226:8080/Dodam_jsp/saying.jsp";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        re = response;
+                        String[] re = response.split("</br>");
                         Log.e("명언", " " + re.toString());
-                        saying = re.split("#");
+                        Calendar toDay = Calendar.getInstance();
+                        int day=toDay.get(Calendar.DAY_OF_MONTH);
+                        if(day>10){
+                            day = day % 10;
+                        }
+                        saying = re[day].split("#");
                         Fsaying.setText("\"" + saying[0].trim() + "\"");
                         Fpeople.setText("- " + saying[1].trim());
                     }
@@ -145,7 +151,8 @@ public class MainScreen extends Fragment {
                     }
                 });
         requestQueue.add(stringRequest);
-
+        Fsaying.setText("\"" + "오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아 간다." + "\"");
+        Fpeople.setText("- " + "앙드레 말로");
         DBHelper helper = new DBHelper(getContext());
         SQLiteDatabase db = helper.getReadableDatabase();
         cursor = db.rawQuery("select point, _id from Dodam;", null);
