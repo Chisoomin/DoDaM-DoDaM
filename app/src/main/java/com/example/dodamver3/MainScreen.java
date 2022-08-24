@@ -29,9 +29,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import smartdevelop.ir.eram.showcaseviewlib.GuideView;
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
@@ -102,6 +118,9 @@ public class MainScreen extends Fragment {
     int i = 0;
     //static int cnt = 0;
     ImageButton ques;
+    String clientId = "9k7yq1sy4c";             // Application Client ID";
+    String clientSecret = "VNLTV1AKiGNCz6SuJMHiVcd0EWbvntrVcwCmG9Pl";     // Application Client Secret";
+    String response;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,6 +136,7 @@ public class MainScreen extends Fragment {
         minigame_btn = view.findViewById(R.id.minigame_btn);
         ques = view.findViewById(R.id.ques);
 
+
         RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
 
         ques.setOnClickListener(new View.OnClickListener() {
@@ -126,19 +146,14 @@ public class MainScreen extends Fragment {
             }
         });
 
-        String url = "http://118.67.134.226:8080/Dodam_jsp/saying.jsp";
+        String url = "http://118.67.134.226:8080/AndroidAppEx/saying.jsp";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String[] re = response.split("</br>");
+                        re = response;
                         Log.e("명언", " " + re.toString());
-                        Calendar toDay = Calendar.getInstance();
-                        int day=toDay.get(Calendar.DAY_OF_MONTH);
-                        if(day>10){
-                            day = day % 10;
-                        }
-                        saying = re[day].split("#");
+                        saying = re.split("#");
                         Fsaying.setText("\"" + saying[0].trim() + "\"");
                         Fpeople.setText("- " + saying[1].trim());
                     }
@@ -151,8 +166,8 @@ public class MainScreen extends Fragment {
                     }
                 });
         requestQueue.add(stringRequest);
-        Fsaying.setText("\"" + "오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아 간다." + "\"");
-        Fpeople.setText("- " + "앙드레 말로");
+        //Fsaying.setText("\"" + "오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아 간다." + "\"");
+        //Fpeople.setText("- " + "앙드레 말로");
         DBHelper helper = new DBHelper(getContext());
         SQLiteDatabase db = helper.getReadableDatabase();
         cursor = db.rawQuery("select point, _id from Dodam;", null);
@@ -294,4 +309,6 @@ public class MainScreen extends Fragment {
                 .build()
                 .show();
     }
+
+
 }

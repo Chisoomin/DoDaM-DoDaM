@@ -17,7 +17,7 @@ class TestQuesDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String testSQL = "create table TestQues(" +
                 "_id integer primary key autoincrement," +
-                "ques_numid test, " + //질문 아이디
+                "ques_numid text, " + //질문 아이디
                 "questions text, " + // 질문
                 "type text)";  // 질문 타입
 

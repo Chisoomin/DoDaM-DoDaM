@@ -32,8 +32,16 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,7 +102,11 @@ public class Statistics extends Fragment {
     ArrayList<Integer> jsonList = new ArrayList<>(); // ArrayList 선언
     ArrayList<String> labelList = new ArrayList<>(); // ArrayList 선언
     ImageButton imageButton;
-
+    String response;
+    int negative=0;
+    String clientId = "9k7yq1sy4c";             // Application Client ID";
+    String clientSecret = "VNLTV1AKiGNCz6SuJMHiVcd0EWbvntrVcwCmG9Pl";     // Application Client Secret";
+    int i = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -134,22 +146,114 @@ public class Statistics extends Fragment {
     }
 
     private BarDataSet getDataSet() {
+        DiaryDBHelper diaryDBHelper = new DiaryDBHelper(getContext());
+        SQLiteDatabase db = diaryDBHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select _id, negative from DiaryData;", null);
+        int[] negative = new int[1000];
+        int j =0;
+        while (cursor.moveToNext()) {
+            i = cursor.getInt(0);
+            negative[j] = cursor.getInt(1);
+            j++;
+        }
 
         ArrayList<BarEntry> entries = new ArrayList();
-        entries.add(new BarEntry(4f, 0));
-        entries.add(new BarEntry(8f, 1));
-        entries.add(new BarEntry(6f, 2));
+        entries.clear();
+        if (i == 1) {
+            entries.add(new BarEntry(0, 0));
+        }
+        if (i == 2) {
+            entries.add(new BarEntry(negative[1], 0));
+        }
+        if (i == 3) {
+            entries.add(new BarEntry(negative[2], 0));
+            entries.add(new BarEntry(negative[1], 1));
+        }
+        if (i >= 4) {
+            entries.add(new BarEntry(negative[i-1], 0));
+            entries.add(new BarEntry(negative[i-2], 1));
+            entries.add(new BarEntry(negative[i-3], 2));
+        }
 
-        BarDataSet dataset = new BarDataSet(entries,"부정적인 단어");
+        BarDataSet dataset = new BarDataSet(entries, "부정적인 문장 수");
         dataset.setColors(ColorTemplate.PASTEL_COLORS);
         return dataset;
     }
 
     private ArrayList<String> getXAxisValues() {
+        DiaryDBHelper diaryDBHelper = new DiaryDBHelper(getContext());
+        SQLiteDatabase db = diaryDBHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select _id from DiaryData;", null);
+
+        while (cursor.moveToNext()) {
+            i = cursor.getInt(0);
+        }
+        int k = i - 2;
+        int j = 0;
+
         ArrayList<String> labels = new ArrayList();
-        labels.add("2021년 10월 14일");
-        labels.add("2021년 10월 15일");
-        labels.add("2021년 10월 16일");
+        labels.clear();
+        if (i == 1) {
+            labels.add("일기 미작성");
+        }
+        if (i == 2) {
+            DiaryDBHelper diaryDBH = new DiaryDBHelper(getContext());
+            SQLiteDatabase db2 = diaryDBH.getReadableDatabase();
+            Cursor cursor2 = db2.rawQuery("select _id, date from DiaryData;", null);
+            String[] date = new String[1];
+
+            while (cursor2.moveToNext()) {
+
+                if (cursor2.getInt(0) == 2) {
+                    date[j] = cursor2.getString(1);
+                    j++;
+                }
+                if (j == 1) {
+                    break;
+                }
+            }
+
+            labels.add(date[0]+"");
+        }
+        if (i == 3) {
+            DiaryDBHelper diaryDBH = new DiaryDBHelper(getContext());
+            SQLiteDatabase db2 = diaryDBH.getReadableDatabase();
+            Cursor cursor2 = db2.rawQuery("select _id, date from DiaryData;", null);
+            String[] date = new String[2];
+
+            while (cursor2.moveToNext()) {
+
+                if (cursor2.getInt(0) == 2) {
+                    date[0] = cursor2.getString(1);
+                }
+                if(cursor2.getInt(0)==3){
+                    date[1]=cursor2.getString(1);
+                }
+            }
+
+            labels.add(date[1]+"");
+            labels.add(date[0]+"");
+        }
+        if (i >= 4) {
+            DiaryDBHelper diaryDBH = new DiaryDBHelper(getContext());
+            SQLiteDatabase db2 = diaryDBH.getReadableDatabase();
+            Cursor cursor2 = db2.rawQuery("select _id, date from DiaryData;", null);
+            String[] date = new String[3];
+
+            while (cursor2.moveToNext()) {
+
+                if (cursor2.getInt(0) == k) {
+                    date[j] = cursor2.getString(1);
+                    j++;
+                    k++;
+                }
+            }
+
+            labels.add(date[2]+"");
+            labels.add(date[1]+"");
+            labels.add(date[0]+"");
+        }
+
 
         return labels;
     }
@@ -203,6 +307,8 @@ public class Statistics extends Fragment {
         // BarChart 메소드
 
 
+
+
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.clear();
         for (int i = 0; i < valList.size(); i++) {
@@ -226,7 +332,6 @@ public class Statistics extends Fragment {
         barChart.animateXY(1000, 1000);
         barChart.invalidate();
     }
-
 
     private void ShowIntro(String title, String text, View view, int id, final int type) {
 

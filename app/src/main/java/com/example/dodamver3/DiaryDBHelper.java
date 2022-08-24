@@ -24,10 +24,11 @@ class DiaryDBHelper extends SQLiteOpenHelper {
                 "bad int, " + //화남
                 "sad int, " + // 슬픔
                 "date datetime default CURRENT_TIMESTAMP, " + // 날짜
-                "content text)"; //내용
+                "content text, "+  //내용
+                "negative int)"; //부정적인 문장 수
 
         db.execSQL(DiarySQL);
-        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content) values(5, 0, 0, '2021-10-02', '오늘은 팀 프로젝트 중이다.')";
+        DiarySQL = "insert into DiaryData(happy, bad, sad, date, content, negative) values(5, 0, 0, '2021-10-02', '오늘은 팀 프로젝트 중이다.',2)";
         db.execSQL(DiarySQL);
     }
 

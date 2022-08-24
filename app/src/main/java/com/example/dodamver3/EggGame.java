@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class EggGame extends AppCompatActivity {
-    String eggBadStr, pointSavStr;
+    String eggBadStr="공백", pointSavStr;
     Integer eggBadInt, eggBadIntM, pointInt, pointSav = 0;
     int egg_point;
     TextView eggTextView;
@@ -70,6 +71,10 @@ public class EggGame extends AppCompatActivity {
 
         eggDB.close();
 
+        if(eggBadStr.equals("공백")){
+            checkDB = true;
+            eggBadStr = "0";
+        }
         if (checkDB == true)
             eggBadInt = 100;
         else
