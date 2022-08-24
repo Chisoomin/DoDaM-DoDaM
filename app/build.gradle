@@ -44,9 +44,6 @@ dependencies {
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation files('D:\\AndroidProject\\DoDamver3.5\\app\\libs\\YouTubeAndroidPlayerApi.jar')
-    /*한유경 그래들 용
-    implementation files('C:\\Users\\YK\\Desktop\\DoDam3\\app\\libs\\YouTubeAndroidPlayerApi')
-    implementation files('C:\\Users\\YK\\Desktop\\DoDam3\\app\\libs\\YouTubeAndroidPlayerApi.jar')*/
     implementation 'com.github.dhaval2404:colorpicker:2.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.0-M1'
     implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
