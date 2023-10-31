@@ -58,7 +58,7 @@ public class PlayList extends YouTubeBaseActivity {
 
 
     // 유튜브 API KEY
-    private static String API_KEY = "AIzaSyAbJ7W-mkjLm5aYR0BuqWSvOq9pkAISOAg";
+    private static String API_KEY = "";
 
     // 동영상 ID 변수 설정
     // ex) https://www.youtube.com/watch?v=Ys4Oq27H0Yc에서 v= 다음 부분이 videoId
